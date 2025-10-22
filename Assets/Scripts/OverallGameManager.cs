@@ -30,11 +30,6 @@ public class OverallGameManager : MonoBehaviour
         DontDestroyOnLoad(this.gameObject);
     }
 
-    void Start()
-    {
-
-    }
-
     private bool loadJson(int idx)
     {
         string json = File.ReadAllText(path_to_save);
