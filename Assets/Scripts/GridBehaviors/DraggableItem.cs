@@ -11,7 +11,14 @@ public class DraggableItem : MonoBehaviour
     #endregion
 
     private void OnEnable()
-    {
+    {   
+        visElement = GetComponent<UIDocument>().rootVisualElement.Q<VisualElement>("Item");
+
+        if (visElement == null)
+        {
+            Debug.LogError("No visual element found!");
+        }
+
         // register to unity events so this script knows when they happen
         visElement.RegisterCallback<PointerDownEvent>(OnPointerDown);
         visElement.RegisterCallback<PointerMoveEvent>(OnPointerMove);
@@ -39,6 +46,7 @@ public class DraggableItem : MonoBehaviour
         visElement.BringToFront();
 
         // temporarily show that we are indeed holding the item
+        visElement.style.scale = new StyleScale(new Vector2(1f, 1f));
         visElement.style.borderTopColor = Color.green; 
     }
 
@@ -59,16 +67,20 @@ public class DraggableItem : MonoBehaviour
         // check if the pointer is on this item we started dragging
         if (visElement.HasPointerCapture(eventData.pointerId))
         {
-            if (false)
+            visElement.style.position = Position.Relative;
+            visElement.style.scale = new StyleScale(new Vector2(1f, 1f));
+            visElement.style.borderTopColor = new Color(0, 0, 0, 0.2f);
+
+            if (eventData.)
             {
-                // is this a valid position to drop the element?
+                // is this a valid position to drop the element
+                
+                return; 
             }
 
             // go back if not a valid position
             visElement.style.left = itemStartPos.x;
             visElement.style.top = itemStartPos.y;
-            visElement.style.position = Position.Relative;
-            visElement.style.borderTopColor = new Color(0, 0, 0, 0);
 
         }
     }
