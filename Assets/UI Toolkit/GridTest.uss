@@ -1,0 +1,38 @@
+.GridSlot {
+    flex-grow: 1;
+    width: 25%;
+    height: 25%;
+    min-height: auto;
+    max-height: 25%;
+    max-width: 25%;
+    flex-direction: column;
+    flex-wrap: nowrap;
+    margin-top: 0;
+    margin-right: 0;
+    margin-bottom: 0;
+    margin-left: 0;
+    background-color: rgba(188, 139, 72, 0.8);
+    border-top-width: 8px;
+    border-right-width: 8px;
+    border-bottom-width: 8px;
+    border-left-width: 8px;
+    border-left-color: rgba(0, 0, 0, 0.4);
+    border-right-color: rgba(0, 0, 0, 0.4);
+    border-top-color: rgba(0, 0, 0, 0.4);
+    border-bottom-color: rgba(0, 0, 0, 0.4);
+}
+
+.Grid {
+    flex-grow: 1;
+    flex-wrap: wrap;
+    flex-direction: row;
+    align-items: flex-start;
+}
+
+.Item {
+    flex-grow: 1;
+    justify-content: center;
+    align-items: center;
+    align-content: center;
+    overflow: visible;
+}
