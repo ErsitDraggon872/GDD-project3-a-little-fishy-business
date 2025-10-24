@@ -1,11 +1,14 @@
 using UnityEngine;
 using UnityEngine.UIElements;
+using System.Collections.Generic;
 
 public class GridManager : MonoBehaviour
 {
     [SerializeField] private UIDocument uiDoc;
     [SerializeField] private VisualTreeAsset slotTemplate;
     [SerializeField] private int gridSize;
+
+    public static List<SlotArea> gridSlots = new List<SlotArea>();
 
     private VisualElement grid;
 
@@ -29,20 +32,25 @@ public class GridManager : MonoBehaviour
     public void GenerateGrid(int size)
     {
         grid.Clear();
+        gridSlots.Clear();
 
         for (int i = 0; i < size * size; i++)
         {
-            Debug.Log("slot added!");
-            TemplateContainer itemSlot = slotTemplate.Instantiate();
+            SlotArea slot = new SlotArea();
 
             // changes size of boxes depending on grid size!
-            itemSlot.style.width = 512f / size;
-            itemSlot.style.height = 512f / size;
-            itemSlot.style.width = new Length(100f / size, LengthUnit.Percent);
-            itemSlot.style.height = new Length(100f / size, LengthUnit.Percent);
+            // slot.style.width = 512f / size;
+            // slot.style.height = 512f / size;
+            slot.style.width = new Length(100f / size, LengthUnit.Percent);
+            slot.style.height = new Length(100f / size, LengthUnit.Percent);
 
-            grid.Add(itemSlot);
+            gridSlots.Add(slot);    
+
+            grid.Add(slot);
         }
+
+        Debug.Log($"{size*size} slots added!");
+
     }
 
 }

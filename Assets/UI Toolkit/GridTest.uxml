@@ -2,5 +2,6 @@
     <Style src="project://database/Assets/UI%20Toolkit/GridTest.uss?fileID=7433441132597879392&amp;guid=85d2dc6cedf9c5d41b041b9f1d838f5c&amp;type=3#GridTest" />
     <ui:VisualElement name="GridHolder" style="flex-grow: 1; -unity-text-align: upper-left; justify-content: center; align-items: stretch; flex-direction: row; flex-wrap: nowrap; flex-basis: auto; align-self: auto; translate: 0 0;">
         <ui:VisualElement name="Grid" class="Grid" style="flex-wrap: wrap; align-items: stretch; -unity-background-scale-mode: stretch-to-fill; margin-left: 0; transform-origin: center; translate: -50% 20%; flex-direction: row;" />
+        <ui:VisualElement name="Hotbar" class="Hotbar" />
     </ui:VisualElement>
 </ui:UXML>
