@@ -1,0 +1,52 @@
+{
+    "Slot_0": {
+        "Slot_Name": "Empty Save Slot",
+        "Current_Day": 1,
+        "Current_Rent": 2000,
+        "Alive": true,
+        "New": true,
+        "Money": 0,
+        "Upgrades": {},
+        "Relationships": {}
+    },
+    "Slot_1": {
+        "Slot_Name": "Empty Save Slot",
+        "Current_Day": 1,
+        "Current_Rent": 2000,
+        "Alive": true,
+        "New": true,
+        "Money": 0,
+        "Upgrades": {},
+        "Relationships": {}
+    },
+    "Slot_2": {
+        "Slot_Name": "Empty Save Slot",
+        "Current_Day": 1,
+        "Current_Rent": 2000,
+        "Alive": true,
+        "New": true,
+        "Money": 0,
+        "Upgrades": {},
+        "Relationships": {}
+    },
+    "Slot_3": {
+        "Slot_Name": "Empty Save Slot",
+        "Current_Day": 1,
+        "Current_Rent": 2000,
+        "Alive": true,
+        "New": true,
+        "Money": 0,
+        "Upgrades": {},
+        "Relationships": {}
+    },
+    "Slot_4": {
+        "Slot_Name": "Empty Save Slot",
+        "Current_Day": 1,
+        "Current_Rent": 2000,
+        "Alive": true,
+        "New": true,
+        "Money": 0,
+        "Upgrades": {},
+        "Relationships": {}
+    }
+}
