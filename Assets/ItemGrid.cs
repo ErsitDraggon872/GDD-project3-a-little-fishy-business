@@ -21,7 +21,9 @@ public class ItemGrid : MonoBehaviour
 
         InventoryItem inventoryItem = Instantiate(inventoryItemPrefab).GetComponent<InventoryItem>();
         PlaceItem(inventoryItem, 1, 1);
-        PlaceItem(inventoryItem, 3, 4);
+        
+        inventoryItem = Instantiate(inventoryItemPrefab).GetComponent<InventoryItem>();
+        PlaceItem(inventoryItem, 2, 2);
     }
 
     private void Init(int width, int height)
