@@ -10,8 +10,8 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: b9a7153f3da8c49da8a3b85d110471f4, type: 3}
-  m_Name: Katana
+  m_Name: fish1
   m_EditorClassIdentifier: 
   width: 1
   height: 1
-  itemIcon: {fileID: 0}
+  itemIcon: {fileID: 8959118705387878318, guid: dd11cd65a30ad4d9db0dc03adbde533b, type: 3}
