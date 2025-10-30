@@ -2,8 +2,8 @@ using UnityEngine;
 
 public class ItemGrid : MonoBehaviour
 {
-    const float tileSizeWidth = 32;
-    const float tileSizeHeight = 32;
+    public const float tileSizeWidth = 32;
+    public const float tileSizeHeight = 32;
 
     InventoryItem[,] inventoryItemSlot;
 
@@ -21,9 +21,6 @@ public class ItemGrid : MonoBehaviour
 
         InventoryItem inventoryItem = Instantiate(inventoryItemPrefab).GetComponent<InventoryItem>();
         PlaceItem(inventoryItem, 1, 1);
-        
-        inventoryItem = Instantiate(inventoryItemPrefab).GetComponent<InventoryItem>();
-        PlaceItem(inventoryItem, 2, 2);
     }
 
     private void Init(int width, int height)
