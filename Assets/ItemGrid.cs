@@ -17,17 +17,18 @@ public class ItemGrid : MonoBehaviour
     private void Start()
     {
         rectTransform = GetComponent<RectTransform>();
-        Init(gridSizeWidth, gridSizeHeight);
+        Init(gridSizeWidth, gridSizeHeight, 23, 382);
 
         InventoryItem inventoryItem = Instantiate(inventoryItemPrefab).GetComponent<InventoryItem>();
         PlaceItem(inventoryItem, 1, 1);
     }
 
-    private void Init(int width, int height)
+    private void Init(int width, int height, int xGrid, int yGrid)
     {
         inventoryItemSlot = new InventoryItem[width, height];
         Vector2 size = new Vector2(width * tileSizeWidth, height * tileSizeHeight);
         rectTransform.sizeDelta = size;
+        rectTransform.anchoredPosition = new Vector2(xGrid, yGrid);
     }
 
     Vector2 positionOnTheGrid = new Vector2();
