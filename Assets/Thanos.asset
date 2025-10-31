@@ -12,6 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b9a7153f3da8c49da8a3b85d110471f4, type: 3}
   m_Name: Thanos
   m_EditorClassIdentifier: 
-  width: 1
-  height: 1
-  itemIcon: {fileID: 0}
+  width: 2
+  height: 2
+  itemIcon: {fileID: 5993231112860516382, guid: 253ea8d3ad3d249f4aa26641d8cf2e87, type: 3}
