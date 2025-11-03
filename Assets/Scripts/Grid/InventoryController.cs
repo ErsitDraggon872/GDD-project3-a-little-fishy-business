@@ -1,6 +1,7 @@
 using UnityEngine;
 using System.Collections.Generic;
 
+//
 public class InventoryController : MonoBehaviour
 {
     [HideInInspector]
@@ -57,7 +58,7 @@ public class InventoryController : MonoBehaviour
             PlaceItem(tileGridPosition);
         }
     }
-    
+
     private void PlaceItem(Vector2Int tileGridPosition)
     {
         selectedItemGrid.PlaceItem(selectedItem, tileGridPosition.x, tileGridPosition.y);
@@ -71,8 +72,9 @@ public class InventoryController : MonoBehaviour
             rectTransform = selectedItem.GetComponent<RectTransform>();
         }
     }
-    
-    private void ItemIconDrag() {
+
+    private void ItemIconDrag()
+    {
         if (selectedItem != null)
         {
             rectTransform.position = Input.mousePosition;
