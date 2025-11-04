@@ -3,7 +3,7 @@ using UnityEngine.UI;
 
 
 //size in grid, attached to GO
-public class InventoryItem : MonoBehaviour
+public class GridItem : MonoBehaviour
 {
     public ItemData itemData;
 

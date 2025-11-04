@@ -1,13 +1,15 @@
 using UnityEngine;
 using System.Collections.Generic;
 
+
+
 //
-public class InventoryController : MonoBehaviour
+public class GridController : MonoBehaviour
 {
     [HideInInspector]
     public ItemGrid selectedItemGrid;
 
-    InventoryItem selectedItem;
+    GridItem selectedItem;
     RectTransform rectTransform;
 
     [SerializeField] List<ItemData> items;
@@ -33,14 +35,14 @@ public class InventoryController : MonoBehaviour
 
     private void CreateRandomItem()
     {
-        InventoryItem inventoryItem = Instantiate(itemPrefab).GetComponent<InventoryItem>();
-        selectedItem = inventoryItem;
+        GridItem gridItem = Instantiate(itemPrefab).GetComponent<GridItem>();
+        selectedItem = gridItem;
 
-        rectTransform = inventoryItem.GetComponent<RectTransform>();
+        rectTransform = gridItem.GetComponent<RectTransform>();
         rectTransform.SetParent(canvasTransform);
 
         int selectedItemID = UnityEngine.Random.Range(0, items.Count);
-        inventoryItem.Set(items[selectedItemID]);
+        gridItem.Set(items[selectedItemID]);
     }
 
     private void LeftMouseButtonPress()

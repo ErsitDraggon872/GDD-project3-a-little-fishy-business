@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 
 public class ItemGrid : MonoBehaviour
@@ -5,33 +6,43 @@ public class ItemGrid : MonoBehaviour
     public const float tileSizeWidth = 32;
     public const float tileSizeHeight = 32;
 
-    InventoryItem[,] inventoryItemSlot;
+    GridItem[,] gridItemSlot;
 
     RectTransform rectTransform;
 
     [SerializeField] int gridSizeWidth;
     [SerializeField] int gridSizeHeight;
 
-    [SerializeField] GameObject inventoryItemPrefab;
+    [SerializeField] GameObject gridItemPrefab;
 
     private void Start()
     {
         rectTransform = GetComponent<RectTransform>();
         Init(gridSizeWidth, gridSizeHeight);
 
-        InventoryItem inventoryItem = Instantiate(inventoryItemPrefab).GetComponent<InventoryItem>();
-        PlaceItem(inventoryItem, 1, 1);
+        GridItem gridItem = Instantiate(gridItemPrefab).GetComponent<GridItem>();
+        PlaceItem(gridItem, 1, 1);
     }
 
     private void Init(int width, int height)
     {
-        inventoryItemSlot = new InventoryItem[width, height];
+        gridItemSlot = new GridItem[width, height];
         Vector2 size = new Vector2(width * tileSizeWidth, height * tileSizeHeight);
         rectTransform.sizeDelta = size;
     }
 
     Vector2 positionOnTheGrid = new Vector2();
     Vector2Int tileGridPosition = new Vector2Int();
+    public (int, int) GetGridDimensions()
+    {
+        return (gridSizeWidth, gridSizeHeight);
+    }
+
+    public ItemData GetSlotItemData(int x, int y)
+    {
+        return gridItemSlot[x, y]?.itemData;
+    }
+
     public Vector2Int GetTileGridPosition(Vector2 mousePosition)
     {
         positionOnTheGrid.x = mousePosition.x - rectTransform.position.x;
@@ -43,20 +54,20 @@ public class ItemGrid : MonoBehaviour
         return tileGridPosition;
     }
 
-    public void PlaceItem(InventoryItem inventoryItem, int posX, int posY)
+    public void PlaceItem(GridItem gridItem, int posX, int posY)
     {
-        RectTransform rectTransform = inventoryItem.GetComponent<RectTransform>();
+        RectTransform rectTransform = gridItem.GetComponent<RectTransform>();
         rectTransform.SetParent(this.rectTransform);
-        for (int x = 0; x < inventoryItem.itemData.width; x++)
+        for (int x = 0; x < gridItem.itemData.width; x++)
         {
-            for (int y = 0; y < inventoryItem.itemData.height; y++)
+            for (int y = 0; y < gridItem.itemData.height; y++)
             {
-                inventoryItemSlot[posX + x, posY + y] = inventoryItem;
+                gridItemSlot[posX + x, posY + y] = gridItem;
             }
         }
 
-        inventoryItem.onGridPositionX = posX;
-        inventoryItem.onGridPositionY = posY;
+        gridItem.onGridPositionX = posX;
+        gridItem.onGridPositionY = posY;
             
 
         Vector2 position = new Vector2();
@@ -66,15 +77,15 @@ public class ItemGrid : MonoBehaviour
         rectTransform.localPosition = position;
     }
 
-    public InventoryItem PickUpItem(int x, int y)
+    public GridItem PickUpItem(int x, int y)
     {
-        InventoryItem toReturn = inventoryItemSlot[x, y];
+        GridItem toReturn = gridItemSlot[x, y];
 
         for (int ix = 0; ix < toReturn.itemData.width; ix++)
         {
             for (int iy = 0; iy < toReturn.itemData.height; iy++)
             {
-                inventoryItemSlot[toReturn.onGridPositionX + ix, toReturn.onGridPositionY + iy] = null;
+                gridItemSlot[toReturn.onGridPositionX + ix, toReturn.onGridPositionY + iy] = null;
             }
         }
         

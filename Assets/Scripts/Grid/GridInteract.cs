@@ -2,26 +2,25 @@ using UnityEngine;
 using UnityEngine.EventSystems;
 
 [RequireComponent(typeof(ItemGrid))]
-
 public class GridInteract : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
 {
-    InventoryController inventoryController;
+    GridController gridController;
     ItemGrid itemGrid;
     private void Awake()
     {
-        inventoryController = FindObjectOfType(typeof(InventoryController)) as InventoryController;
+        gridController = FindObjectOfType(typeof(GridController)) as GridController;
         itemGrid = GetComponent<ItemGrid>();
     }
 
     public void OnPointerEnter(PointerEventData eventData)
     {
-        inventoryController.selectedItemGrid = itemGrid;
+        gridController.selectedItemGrid = itemGrid;
         Debug.Log("Pointer enter");
     }
 
     public void OnPointerExit(PointerEventData eventData)
     {
-        inventoryController.selectedItemGrid = null;
+        gridController.selectedItemGrid = null;
         Debug.Log("Pointer exit");
     }
 

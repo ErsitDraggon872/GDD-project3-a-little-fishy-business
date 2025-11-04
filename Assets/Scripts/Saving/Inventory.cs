@@ -9,11 +9,13 @@ using System;
 
 public class FishMetaData
 {
-    int level;
+    public int level;
+    public float price;
 
-    public FishMetaData(int level)
+    public FishMetaData(int level, float price)
     {
         this.level = level;
+        this.price = price;
     }
 }
 
@@ -28,7 +30,7 @@ public class FishEntry
     public FishEntry(int ID, JObject JsonData)
     {
         this.ID = ID;
-        this.fishMetaData = new FishMetaData((int)JsonData["Level"]);
+        this.fishMetaData = new FishMetaData((int)JsonData["Level"], (float)JsonData["Price"]);
     }
 }
 
