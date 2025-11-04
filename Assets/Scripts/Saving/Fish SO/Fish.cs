@@ -1,16 +1,16 @@
 using System;
 using UnityEngine;
 
-public interface Fish
+public abstract class Fish: ScriptableObject
 {
 
-    public int GetID();
-    public FishMetaData GetData();
+    abstract public FishMetaData GetData();
 
-    public (Action<int>, string) GetAbilityTracker();
-    public void FinalAbility(int x);
-    public void OnCount(int x);
+    abstract public (Action<int>, string) GetAbilityTracker();
+    abstract public void FinalAbility(int x);
+    abstract public void OnCount((int x, int y) pos, int z, ItemGrid itemGrid);
     //Instantiate in real world as game object
-    public void Load(FishMetaData fishMetaData);
+    abstract public void Load(FishMetaData fishMetaData);
+    abstract public void Reset();
     
 }

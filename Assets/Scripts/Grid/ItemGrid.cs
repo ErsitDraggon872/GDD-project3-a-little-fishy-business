@@ -40,6 +40,7 @@ public class ItemGrid : MonoBehaviour
 
     public ItemData GetSlotItemData(int x, int y)
     {
+        // Debug.Log(gridItemSlot);
         return gridItemSlot[x, y]?.itemData;
     }
 

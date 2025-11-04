@@ -5,19 +5,9 @@ using System.Collections.Generic;
 using System.Data.Common;
 using System.Diagnostics.Tracing;
 using System;
+using Unity.VisualScripting;
 
 
-public class FishMetaData
-{
-    public int level;
-    public float price;
-
-    public FishMetaData(int level, float price)
-    {
-        this.level = level;
-        this.price = price;
-    }
-}
 
 public class FishEntry
 {
@@ -50,7 +40,7 @@ public class Inventory : MonoBehaviour
 
         foreach (GameObject fish in FishPrefabs)
         {
-            fishLookup[fish.GetComponent<Fish>().GetID()] = fish;
+            fishLookup[fish.GetComponent<Fish>().GetComponentInParent<ItemData>().ID] = fish;
         }
 
         LoadInventory();

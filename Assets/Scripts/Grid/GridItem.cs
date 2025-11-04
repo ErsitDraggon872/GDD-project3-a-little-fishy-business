@@ -10,9 +10,10 @@ public class GridItem : MonoBehaviour
     public int onGridPositionX;
     public int onGridPositionY;
 
-    internal void Set(ItemData itemData)
+    internal void Set(ItemData itemDataTemplate)
     {
-        this.itemData = itemData;
+        this.itemData = ScriptableObject.Instantiate(itemDataTemplate);
+        this.itemData.SetID(); 
 
         GetComponent<Image>().sprite = itemData.itemIcon;
 

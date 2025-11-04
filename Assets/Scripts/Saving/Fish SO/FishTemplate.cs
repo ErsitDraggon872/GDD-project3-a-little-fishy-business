@@ -2,40 +2,41 @@ using System;
 using Unity.VisualScripting;
 using UnityEngine;
 
-[CreateAssetMenu(menuName = "#Proj_3 - A Little Fishy Business/FishTemplate")]
+[CreateAssetMenu(menuName = "FishSO/FishTemplate")]
 public class FishTemplate : Fish
 {
-    protected int ID = 1;
-    protected FishMetaData fishMetaData;
-    public int GetID()
+    private static FishMetaData DefaultMetaData = new FishMetaData(3, 4);
+    protected FishMetaData fishMetaData = new FishMetaData(DefaultMetaData);
+    
+    public override FishMetaData GetData()
     {
-        return ID;
+        return fishMetaData; 
     }
 
-    public FishMetaData GetData()
-    {
-        return fishMetaData;
-    }
-
-    public void FinalAbility(int x)
+    public override void FinalAbility(int x)
     {
         return;
     }
-    public void OnCount(int x)
+    public override void OnCount((int x, int y) pos, int z, ItemGrid itemGrid)
     {
         
         return;
     }
 
-    public (Action<int>, string) GetAbilityTracker()
+    public override (Action<int>, string) GetAbilityTracker()
     {
 
         return (FinalAbility, "");
     }
 
-    public void Load(FishMetaData fishMetaData)
+    public override void Load(FishMetaData fishMetaData)
     {
         //init
+        Debug.Log("Reset");
         return;
+    }
+    public override void Reset()
+    {
+        fishMetaData = new FishMetaData(DefaultMetaData);
     }
 }
