@@ -12,4 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d2909ddbfe9a58847826bb1562a75fbe, type: 3}
   m_Name: Bass
   m_EditorClassIdentifier: 
-  sprite: {fileID: 0}
+  sprite: {fileID: -2987843178875456437, guid: f365ea0996a598f4a93d8f5afb38125b, type: 3}
+  baseData:
+    level: 0
+    price: 8
+    size: {x: 2, y: 2}

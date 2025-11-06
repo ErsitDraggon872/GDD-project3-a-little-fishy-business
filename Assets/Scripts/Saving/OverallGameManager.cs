@@ -135,7 +135,7 @@ public class OverallGameManager : MonoBehaviour
     private void EndGame()
     {
         DisableGamePanel.SetActive(true);
-        GameOverText.enabled = true;
+        GameOverText.gameObject.SetActive(true);
     }
     
     public int GetDay()

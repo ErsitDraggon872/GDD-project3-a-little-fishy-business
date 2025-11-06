@@ -12,4 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1b95665f852c54f488bd51847d4fb15b, type: 3}
   m_Name: Sardine
   m_EditorClassIdentifier: 
-  sprite: {fileID: 0}
+  sprite: {fileID: 545760364426183216, guid: 094cde53dccea4645a93f51bf3e0d378, type: 3}
+  baseData:
+    level: 0
+    price: 5
+    size: {x: 2, y: 1}
