@@ -17,7 +17,6 @@ public class OverallGameManager : MonoBehaviour
     private static JObject loadedUpgrades;
     #endregion
 
-
     #region FishInventory
     public static UnityEngine.Vector3 FishSpawnLocation;
     private static JObject loadedInventory;
@@ -27,9 +26,10 @@ public class OverallGameManager : MonoBehaviour
 
     void Awake()
     {
-        DontDestroyOnLoad(this.gameObject);
+        DontDestroyOnLoad(this);
     }
 
+    #region Saving/Loading 
     private bool loadJson(int idx)
     {
         string json = File.ReadAllText(path_to_save);
@@ -65,6 +65,7 @@ public class OverallGameManager : MonoBehaviour
 
         File.WriteAllText(path_to_save, root.ToString());
     }
+    #endregion
 
     private bool PayRent()
     {
@@ -108,6 +109,8 @@ public class OverallGameManager : MonoBehaviour
         money += moneyToAdd;
     }
 
+    #region JSON Getters
+
     private JObject GetCurrentInventory()
     {
         inventory.GetInventory();
@@ -128,9 +131,7 @@ public class OverallGameManager : MonoBehaviour
     {
         return loadedUpgrades;
     }
-
-
-
+    #endregion
 
 }
 
