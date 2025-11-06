@@ -2,51 +2,56 @@
     "Slot_0": {
         "Slot_Name": "Empty Save Slot",
         "Current_Day": 1,
-        "Current_Rent": 2000,
-        "Alive": true,
-        "New": true,
+        "Current_Rent": 50,
         "Money": 0,
+        "Inventory": {},
         "Upgrades": {},
-        "Relationships": {}
+        "Relationships": {},
+        "Alive": true,
+        "New": true
     },
     "Slot_1": {
         "Slot_Name": "Empty Save Slot",
         "Current_Day": 1,
-        "Current_Rent": 2000,
-        "Alive": true,
-        "New": true,
+        "Current_Rent": 50,
         "Money": 0,
+        "Inventory": {},
         "Upgrades": {},
-        "Relationships": {}
+        "Relationships": {},
+        "Alive": true,
+        "New": true
     },
     "Slot_2": {
         "Slot_Name": "Empty Save Slot",
         "Current_Day": 1,
-        "Current_Rent": 2000,
-        "Alive": true,
-        "New": true,
+        "Current_Rent": 50,
         "Money": 0,
+        "Inventory": {},
         "Upgrades": {},
-        "Relationships": {}
+        "Relationships": {},
+        "Alive": true,
+        "New": true
     },
     "Slot_3": {
         "Slot_Name": "Empty Save Slot",
         "Current_Day": 1,
-        "Current_Rent": 2000,
-        "Alive": true,
-        "New": true,
+        "Current_Rent": 50,
         "Money": 0,
+        "Inventory": {},
         "Upgrades": {},
-        "Relationships": {}
+        "Relationships": {},
+        "Alive": true,
+        "New": true
     },
     "Slot_4": {
         "Slot_Name": "Empty Save Slot",
         "Current_Day": 1,
-        "Current_Rent": 2000,
-        "Alive": true,
-        "New": true,
+        "Current_Rent": 50,
         "Money": 0,
+        "Inventory": {},
         "Upgrades": {},
-        "Relationships": {}
+        "Relationships": {},
+        "Alive": true,
+        "New": true
     }
 }

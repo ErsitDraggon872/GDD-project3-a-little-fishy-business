@@ -27,10 +27,11 @@ public class Counting : MonoBehaviour
     public ItemGrid itemGrid;
     public TextMeshProUGUI ScoreText;
 
-    public void UpdateScore()
+    public float UpdateScore()
     {
         Count();
         ScoreText.text = "Score: " + Score.ToString();
+        return Score;
     }
 
     private void Count(bool reset = true)
@@ -55,6 +56,9 @@ public class Counting : MonoBehaviour
                     {
                         fishObjects.Add(fishInfo);
                         counted.Add(itemData.ID);
+                        if (fishInfo == null){
+                            Debug.Log($"Null FishInfo");
+                        }
                         var (finalAbility, trackingName) = fishInfo.GetAbilityTracker();
                         if (countingDict.TryGetValue(trackingName, out var entry))
                         {
@@ -88,15 +92,23 @@ public class Counting : MonoBehaviour
                         Debug.Log(itemData.GetFishInformation().GetData().price);
                         Fish fishInfo = itemData.GetFishInformation();
                         Score += fishInfo.GetData().price;
-                    }   
+                    }
                 }
             }
         }
+
+        foreach (var kvp in countingDict)
+        {
+            var (action, count) = kvp.Value;
+
+            action?.Invoke(count);   // null-safe call
+        }
+        
         if (reset)
         {
             foreach (Fish fish in fishObjects)
             {
-                fish.Reset();
+                fish.ResetRuntime();
             }
         }
     }

@@ -89,8 +89,19 @@ public class ItemGrid : MonoBehaviour
                 gridItemSlot[toReturn.onGridPositionX + ix, toReturn.onGridPositionY + iy] = null;
             }
         }
-        
+
         return toReturn;
+    }
+    
+    public void ClearGrid()
+    {
+        for (int x = 0; x < gridSizeWidth; x++)
+        {
+            for (int y = 0; y < gridSizeHeight; y++)
+            {
+                gridItemSlot[x, y] = null;
+            }
+        }
     }
 }
 

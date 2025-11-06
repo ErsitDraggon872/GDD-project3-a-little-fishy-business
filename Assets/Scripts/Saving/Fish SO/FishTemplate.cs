@@ -5,14 +5,6 @@ using UnityEngine;
 [CreateAssetMenu(menuName = "FishSO/FishTemplate")]
 public class FishTemplate : Fish
 {
-    private static FishMetaData DefaultMetaData = new FishMetaData(3, 4);
-    protected FishMetaData fishMetaData = new FishMetaData(DefaultMetaData);
-    
-    public override FishMetaData GetData()
-    {
-        return fishMetaData; 
-    }
-
     public override void FinalAbility(int x)
     {
         return;
@@ -29,14 +21,4 @@ public class FishTemplate : Fish
         return (FinalAbility, "");
     }
 
-    public override void Load(FishMetaData fishMetaData)
-    {
-        //init
-        Debug.Log("Reset");
-        return;
-    }
-    public override void Reset()
-    {
-        fishMetaData = new FishMetaData(DefaultMetaData);
-    }
 }
