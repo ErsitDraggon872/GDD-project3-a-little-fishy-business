@@ -40,6 +40,11 @@ public class ItemGrid : MonoBehaviour
 
     public ItemData GetSlotItemData(int x, int y)
     {
+        if (x < 0 || y < 0 || x >= gridItemSlot.GetLength(0) || y > gridItemSlot.GetLength(1))
+        { 
+            return null;
+        }
+
         return gridItemSlot[x, y]?.itemData;
         // Debug.Log(gridItemSlot);
     }
@@ -70,7 +75,6 @@ public class ItemGrid : MonoBehaviour
         gridItem.onGridPositionX = posX;
         gridItem.onGridPositionY = posY;
             
-
         Vector2 position = new Vector2();
         position.x = posX * tileSizeWidth;
         position.y = -(posY * tileSizeHeight);

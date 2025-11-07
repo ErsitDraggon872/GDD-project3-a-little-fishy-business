@@ -120,7 +120,7 @@ public class OverallGameManager : MonoBehaviour
 
     private void UpdateMoney()
     {
-        moneyText.SetText($"Money: {money}");
+        moneyText.SetText($"Money: {Mathf.Round(money)}");
     }
 
     private void UpdateDay()
@@ -134,14 +134,14 @@ public class OverallGameManager : MonoBehaviour
 
     private void UpdateRent()
     {
-        RentText.SetText($"Rent: {currentRent}");
+        RentText.SetText($"Rent: {Mathf.Round(currentRent)}");
     }
 
     private void EndGame()
     {
         DisableGamePanel.SetActive(true);
         GameOverText.gameObject.SetActive(true);
-        GameOverText.text = $"Game Over!\nYou were ${currentRent - money} short!";
+        GameOverText.text = $"Game Over!\nYou were ${Mathf.Round(currentRent - money)} short!";
     }
     
     public int GetDay()
