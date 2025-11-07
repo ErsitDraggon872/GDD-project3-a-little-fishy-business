@@ -12,3 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3670c7b5d06da934d8b3d2cb7cae32e0, type: 3}
   m_Name: Perch
   m_EditorClassIdentifier: 
+  sprite: {fileID: -3123973929842080319, guid: 5b559b67c7fec9b48a650079fcd06f29, type: 3}
+  baseData:
+    level: 0
+    price: 6
+    size: {x: 1, y: 1}

@@ -4,13 +4,27 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Numerics;
 using System.IO;
+using TMPro;
 
 public class OverallGameManager : MonoBehaviour
 {
     public static string path_to_save = "data.json";
-    private static int money;
+    private static float money;
+    public static List<float> FirstSevenRent = new List<float>{50, 60, 75, 100, 130, 165, 200};
     private static int currentDay;
-    private static int currentRent;
+    private static float currentRent;
+
+    #region GameReferences
+
+    public Counting counting;
+    public TextMeshProUGUI moneyText;
+    public TextMeshProUGUI DayText;
+    public TextMeshProUGUI RentText;
+    public GameObject DisableGamePanel;
+    public TextMeshProUGUI GameOverText;
+    public ItemGrid itemGrid;
+
+    #endregion
 
     #region Upgrades
     private static Upgrades upgrades;
@@ -27,6 +41,11 @@ public class OverallGameManager : MonoBehaviour
     void Awake()
     {
         DontDestroyOnLoad(this);
+        path_to_save = Path.Combine(Application.streamingAssetsPath, path_to_save);
+        if (!loadJson(1))
+        {
+            EndGame();
+        }
     }
 
     #region Saving/Loading 
@@ -46,6 +65,10 @@ public class OverallGameManager : MonoBehaviour
         currentRent = (int)chosen_file["Current_Rent"];
         loadedUpgrades = (JObject)chosen_file["Upgrades"];
         loadedInventory = (JObject)chosen_file["Inventory"];
+
+        UpdateDay();
+        UpdateMoney();
+        UpdateRent();
 
         return true;
     }
@@ -73,6 +96,7 @@ public class OverallGameManager : MonoBehaviour
         {
             money -= currentRent;
             currentRent = CalculateNewRent();
+            UpdateRent();
             return true;
         }
         else
@@ -80,13 +104,46 @@ public class OverallGameManager : MonoBehaviour
             return false;
         }
     }
-    
-    private int CalculateNewRent()
+
+    private float CalculateNewRent()
     {
         //Change formula
-        return currentRent * 2;
+        if (currentDay <= 7)
+        {
+            return FirstSevenRent[currentDay - 1];
+        }
+        else
+        {
+            return currentRent * 2;
+        }
     }
 
+    private void UpdateMoney()
+    {
+        moneyText.SetText($"Money: {Mathf.Round(money)}");
+    }
+
+    private void UpdateDay()
+    {
+        if (DayText == null)
+        {
+            DayText = GameObject.Find("Day").GetComponent<TextMeshProUGUI>();
+        }
+        DayText.SetText($"Day: {currentDay}");
+    }
+
+    private void UpdateRent()
+    {
+        RentText.SetText($"Rent: {Mathf.Round(currentRent)}");
+    }
+
+    private void EndGame()
+    {
+        DisableGamePanel.SetActive(true);
+        GameOverText.gameObject.SetActive(true);
+        GameOverText.text = $"Game Over!\nYou were ${Mathf.Round(currentRent - money)} short!";
+    }
+    
     public int GetDay()
     {
         return currentDay;
@@ -95,16 +152,26 @@ public class OverallGameManager : MonoBehaviour
     public void EndDay()
     {
         currentDay += 1;
-        //count money
-        //AddMoney
+        UpdateDay();
+
+        float newMoney = counting.UpdateScore();
+        AddMoney(newMoney);
+        if (!PayRent())
+        {
+            EndGame();
+            return;
+        }
+        UpdateMoney();
+
+        itemGrid.ClearGrid();
     }
     
-    public int GetMoney()
+    public float GetMoney()
     {
         return money;
     }
 
-    public void AddMoney(int moneyToAdd)
+    public void AddMoney(float moneyToAdd)
     {
         money += moneyToAdd;
     }

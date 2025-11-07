@@ -12,7 +12,7 @@ public class GridController : MonoBehaviour
     GridItem selectedItem;
     RectTransform rectTransform;
 
-    [SerializeField] List<ItemData> items;
+    [SerializeField] List<Fish> items;
     [SerializeField] GameObject itemPrefab;
     [SerializeField] Transform canvasTransform;
 
@@ -42,7 +42,9 @@ public class GridController : MonoBehaviour
         rectTransform.SetParent(canvasTransform);
 
         int selectedItemID = UnityEngine.Random.Range(0, items.Count);
-        gridItem.Set(items[selectedItemID]);
+        ItemData itemData = ScriptableObject.CreateInstance<ItemData>();
+        itemData.SetData(items[selectedItemID]);
+        gridItem.Set(itemData);
     }
 
     private void LeftMouseButtonPress()
@@ -82,4 +84,5 @@ public class GridController : MonoBehaviour
             rectTransform.position = Input.mousePosition;
         }
     }
+
 }

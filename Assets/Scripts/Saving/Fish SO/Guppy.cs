@@ -1,19 +1,12 @@
 using System;
+using System.Collections.Generic;
+using NUnit.Framework;
 using Unity.VisualScripting;
 using UnityEngine;
 
 [CreateAssetMenu(menuName = "FishSO/Guppy")]
 public class Guppy : Fish
 {
-    private static FishMetaData DefaultMetaData = new FishMetaData(1, 4);
-    protected FishMetaData fishMetaData = new FishMetaData(DefaultMetaData);
-
-
-    public override FishMetaData GetData()
-    {
-        return fishMetaData; 
-    }
-
     public override void FinalAbility(int x)
     {
         return;
@@ -29,12 +22,17 @@ public class Guppy : Fish
             new Vector2Int( 1, -1)
         };
 
+        List<int> visited = new List<int>{itemGrid.GetSlotItemData(pos.x, pos.y).ID};
+
+
         foreach (var dir in directions)
         {
             var slotData = itemGrid.GetSlotItemData(pos.x + dir.x, pos.y + dir.y);
 
-            if (slotData == null || slotData.ID == itemGrid.GetSlotItemData(pos.x, pos.y).ID)
+            if (slotData == null || visited.Contains(slotData.ID))
                 continue;
+
+            visited.Add(slotData.ID);
             
 
             // Deconstruct (Action<int> finalAbility, string trackingName)
@@ -42,12 +40,7 @@ public class Guppy : Fish
             var finalAbility = tracker.Item1;
             var trackingName = tracker.Item2;
 
-            // Check ability name
-            if (trackingName == "Guppy")
-            {
-                fishMetaData.price *= 2f;    // use 2f for float math
-                Debug.Log($"{pos.x}, {pos.y}");
-            }
+            slotData.GetFishInformation().GetData().price *= 1.15f;
         }
 
 
@@ -59,14 +52,4 @@ public class Guppy : Fish
         return (FinalAbility, "Guppy");
     }
 
-    public override void Load(FishMetaData fishMetaData)
-    {
-        //init
-        return;
-    }
-    
-    public override void Reset()
-    {
-        fishMetaData = new FishMetaData(DefaultMetaData);
-    }
 }

@@ -61,6 +61,7 @@ public class MainSceneManager : MonoBehaviour
         // get new transition image
         transitionImage = GameObject.FindWithTag("TransitionFade").GetComponent<Image>();
         transitionImage.color = new Color(transitionImage.color.r, transitionImage.color.g, transitionImage.color.b, 1);
+        transitionImage.gameObject.SetActive(true);
 
         while (t > 0)
         {
@@ -72,5 +73,7 @@ public class MainSceneManager : MonoBehaviour
             // does nothing until fully transparent
             yield return null;
         }
+
+        transitionImage.gameObject.SetActive(false);
     }
 }

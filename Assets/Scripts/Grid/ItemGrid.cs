@@ -21,7 +21,7 @@ public class ItemGrid : MonoBehaviour
         Init(gridSizeWidth, gridSizeHeight);
 
         GridItem gridItem = Instantiate(gridItemPrefab).GetComponent<GridItem>();
-        PlaceItem(gridItem, 1, 1);
+        //PlaceItem(gridItem, 1, 1);
     }
 
     private void Init(int width, int height)
@@ -40,8 +40,13 @@ public class ItemGrid : MonoBehaviour
 
     public ItemData GetSlotItemData(int x, int y)
     {
-        // Debug.Log(gridItemSlot);
+        if (x < 0 || y < 0 || x >= gridItemSlot.GetLength(0) || y > gridItemSlot.GetLength(1))
+        { 
+            return null;
+        }
+
         return gridItemSlot[x, y]?.itemData;
+        // Debug.Log(gridItemSlot);
     }
 
     public Vector2Int GetTileGridPosition(Vector2 mousePosition)
@@ -70,7 +75,6 @@ public class ItemGrid : MonoBehaviour
         gridItem.onGridPositionX = posX;
         gridItem.onGridPositionY = posY;
             
-
         Vector2 position = new Vector2();
         position.x = posX * tileSizeWidth;
         position.y = -(posY * tileSizeHeight);
@@ -89,8 +93,23 @@ public class ItemGrid : MonoBehaviour
                 gridItemSlot[toReturn.onGridPositionX + ix, toReturn.onGridPositionY + iy] = null;
             }
         }
-        
+
         return toReturn;
+    }
+    
+    public void ClearGrid()
+    {
+        for (int x = 0; x < gridSizeWidth; x++)
+        {
+            for (int y = 0; y < gridSizeHeight; y++)
+            {
+                if (gridItemSlot[x, y] != null)
+                {
+                    Destroy(gridItemSlot[x, y].gameObject);
+                    gridItemSlot[x, y] = null;
+                }
+            }
+        }
     }
 }
 

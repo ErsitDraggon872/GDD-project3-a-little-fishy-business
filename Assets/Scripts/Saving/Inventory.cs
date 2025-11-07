@@ -20,7 +20,12 @@ public class FishEntry
     public FishEntry(int ID, JObject JsonData)
     {
         this.ID = ID;
-        this.fishMetaData = new FishMetaData((int)JsonData["Level"], (float)JsonData["Price"]);
+        JArray sizeArr = (JArray)JsonData["Size"];
+        int x = sizeArr[0].Value<int>();
+        int y = sizeArr[1].Value<int>();
+
+        Vector2Int size = new Vector2Int(x, y);
+        this.fishMetaData = new FishMetaData((int)JsonData["Level"], (float)JsonData["Price"], size);
     }
 }
 
@@ -57,13 +62,13 @@ public class Inventory : MonoBehaviour
         currentInventory.RemoveAt(index);
     }
 
-    public void GetFish(int index)
-    {
-        int id = currentInventory[index].ID;
-        FishMetaData fishMetaData = currentInventory[index].fishMetaData;
-        GameObject newFish = Instantiate(fishLookup[index], OverallGameManager.FishSpawnLocation, Quaternion.identity);
-        newFish.GetComponent<Fish>().Load(fishMetaData);
-    }
+    // public void GetFish(int index)
+    // {
+    //     int id = currentInventory[index].ID;
+    //     FishMetaData fishMetaData = currentInventory[index].fishMetaData;
+    //     GameObject newFish = Instantiate(fishLookup[index], OverallGameManager.FishSpawnLocation, Quaternion.identity);
+    //     newFish.GetComponent<Fish>().Load(fishMetaData);
+    // }
 
     public JObject GetInventory()
     {
