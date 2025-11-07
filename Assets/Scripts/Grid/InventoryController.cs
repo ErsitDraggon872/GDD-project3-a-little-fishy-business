@@ -8,6 +8,7 @@ public class InventoryController : MonoBehaviour
     public ItemGrid selectedItemGrid;
 
     InventoryItem selectedItem;
+    InventoryItem overlapItem;
     RectTransform rectTransform;
 
     [SerializeField] List<ItemData> items;
@@ -46,8 +47,9 @@ public class InventoryController : MonoBehaviour
     private void LeftMouseButtonPress()
     {
         //Debug.Log(selectedItemGrid.GetTileGridPosition(Input.mousePosition));
+        Vector2 position = Input.mousePosition;
 
-        Vector2Int tileGridPosition = selectedItemGrid.GetTileGridPosition(Input.mousePosition);
+        Vector2Int tileGridPosition = selectedItemGrid.GetTileGridPosition(position);
 
         if (selectedItem == null)
         {
@@ -61,8 +63,17 @@ public class InventoryController : MonoBehaviour
 
     private void PlaceItem(Vector2Int tileGridPosition)
     {
-        selectedItemGrid.PlaceItem(selectedItem, tileGridPosition.x, tileGridPosition.y);
-        selectedItem = null;
+        bool complete = selectedItemGrid.PlaceItem(selectedItem, tileGridPosition.x, tileGridPosition.y, ref overlapItem);
+        if (complete)
+        {
+            selectedItem = null;
+            if (overlapItem != null)
+            {
+                selectedItem = overlapItem;
+                overlapItem = null;
+                rectTransform = selectedItem.GetComponent<RectTransform>();
+            }
+        }
     }
     private void PickUpItem(Vector2Int tileGridPosition)
     {

@@ -19,8 +19,8 @@ public class ItemGrid : MonoBehaviour
         rectTransform = GetComponent<RectTransform>();
         Init(gridSizeWidth, gridSizeHeight);
 
-        InventoryItem inventoryItem = Instantiate(inventoryItemPrefab).GetComponent<InventoryItem>();
-        PlaceItem(inventoryItem, 1, 1);
+        // InventoryItem inventoryItem = Instantiate(inventoryItemPrefab).GetComponent<InventoryItem>();
+        // PlaceItem(inventoryItem, 1, 1);
     }
 
     private void Init(int width, int height)
@@ -43,8 +43,24 @@ public class ItemGrid : MonoBehaviour
         return tileGridPosition;
     }
 
-    public void PlaceItem(InventoryItem inventoryItem, int posX, int posY)
+    public bool PlaceItem(InventoryItem inventoryItem, int posX, int posY, ref InventoryItem overlapItem)
     {
+        if (BoundaryCheck(posX, posY, inventoryItem.itemData.width, inventoryItem.itemData.height) == false)
+        {
+            return false;
+        }
+
+        if (OverlapCheck(posX, posY, inventoryItem.itemData.width, inventoryItem.itemData.height, ref overlapItem) == false)
+        {
+            overlapItem = null;
+            return false;
+        }
+
+        if (overlapItem != null)
+        {
+            CleanGridReference(overlapItem);
+        }
+        
         RectTransform rectTransform = inventoryItem.GetComponent<RectTransform>();
         rectTransform.SetParent(this.rectTransform);
         for (int x = 0; x < inventoryItem.itemData.width; x++)
@@ -60,25 +76,95 @@ public class ItemGrid : MonoBehaviour
             
 
         Vector2 position = new Vector2();
-        position.x = posX * tileSizeWidth;
-        position.y = -(posY * tileSizeHeight);
+        position.x = posX * tileSizeWidth + (tileSizeWidth * inventoryItem.itemData.width / 2);
+        position.y = -(posY * tileSizeHeight + (tileSizeHeight * inventoryItem.itemData.height / 2));
 
         rectTransform.localPosition = position;
+
+        return true;
     }
 
     public InventoryItem PickUpItem(int x, int y)
     {
         InventoryItem toReturn = inventoryItemSlot[x, y];
 
-        for (int ix = 0; ix < toReturn.itemData.width; ix++)
+        if (toReturn == null)
         {
-            for (int iy = 0; iy < toReturn.itemData.height; iy++)
+            return null;
+        }
+
+        CleanGridReference(toReturn);
+
+        return toReturn;
+    }
+
+    private void CleanGridReference(InventoryItem item)
+    {
+        for (int ix = 0; ix < item.itemData.width; ix++)
+        {
+            for (int iy = 0; iy < item.itemData.height; iy++)
             {
-                inventoryItemSlot[toReturn.onGridPositionX + ix, toReturn.onGridPositionY + iy] = null;
+                inventoryItemSlot[item.onGridPositionX + ix, item.onGridPositionY + iy] = null;
             }
         }
-        
-        return toReturn;
+    }
+
+    bool PositionCheck(int posX, int posY)
+    {
+        if (posX < 0 || posY < 0)
+        {
+            return false;
+        }
+
+        if (posX >= gridSizeWidth || posY >= gridSizeHeight)
+        {
+            return false;
+        }
+
+        return true;
+    }
+
+    bool BoundaryCheck(int posX, int posY, int width, int height)
+    {
+        if (PositionCheck(posX, posY) == false)
+        {
+            return false;
+        }
+        posX += width - 1;
+        posY += height - 1;
+
+        if (PositionCheck(posX, posY) == false)
+        {
+            return false;
+        }
+
+        return true;
+    }
+    
+    bool OverlapCheck(int posX, int posY, int width, int height, ref InventoryItem overlapItem)
+    {
+        for (int x = 0; x < width; x++)
+        {
+            for (int y = 0; y < height; y++)
+            {
+                if (inventoryItemSlot[posX + x, posY + y] != null)
+                {
+                    if (overlapItem == null)
+                    {
+                        overlapItem = inventoryItemSlot[posX + x, posY + y];
+                    }
+                    else
+                    {
+                        if (overlapItem != inventoryItemSlot[posX + x, posY + y])
+                        {
+                            return false;
+                        }
+                    }
+                }
+            }
+        }
+
+        return true;
     }
 }
 
