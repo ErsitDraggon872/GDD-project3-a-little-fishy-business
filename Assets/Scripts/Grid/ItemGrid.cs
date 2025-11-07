@@ -103,6 +103,7 @@ public class ItemGrid : MonoBehaviour
         {
             for (int y = 0; y < gridSizeHeight; y++)
             {
+                Destroy(gridItemSlot[x, y]);
                 gridItemSlot[x, y] = null;
             }
         }

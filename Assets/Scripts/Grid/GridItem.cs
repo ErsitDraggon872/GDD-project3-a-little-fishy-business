@@ -13,7 +13,6 @@ public class GridItem : MonoBehaviour
     internal void Set(ItemData itemDataTemplate)
     {
         this.itemData = ScriptableObject.Instantiate(itemDataTemplate);
-        this.itemData.SetID(); 
 
         GetComponent<Image>().sprite = itemData.itemIcon;
 
