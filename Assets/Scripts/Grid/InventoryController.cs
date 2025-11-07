@@ -48,6 +48,12 @@ public class InventoryController : MonoBehaviour
     {
         //Debug.Log(selectedItemGrid.GetTileGridPosition(Input.mousePosition));
         Vector2 position = Input.mousePosition;
+        
+        if (selectedItem != null)
+        {
+            position.x -= (selectedItem.itemData.width - 1) * ItemGrid.tileSizeWidth / 2;
+            position.y += (selectedItem.itemData.height - 1) * ItemGrid.tileSizeHeight / 2;
+        }
 
         Vector2Int tileGridPosition = selectedItemGrid.GetTileGridPosition(position);
 
