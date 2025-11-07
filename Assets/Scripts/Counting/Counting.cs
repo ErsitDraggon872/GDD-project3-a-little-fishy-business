@@ -109,6 +109,7 @@ public class Counting : MonoBehaviour
             foreach (Fish fish in fishObjects)
             {
                 fish.ResetRuntime();
+                Destroy(fish);
             }
         }
 
