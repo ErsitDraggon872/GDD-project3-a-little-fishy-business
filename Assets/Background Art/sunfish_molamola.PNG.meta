@@ -134,7 +134,8 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      sunfish_molamola_0: 4281143133215887622
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

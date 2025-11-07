@@ -134,7 +134,8 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      blobfish_0: -1678848253255942117
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

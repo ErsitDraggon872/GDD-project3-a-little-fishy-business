@@ -6,8 +6,8 @@ public class ItemData : ScriptableObject
 {
     private static int newID = 1;
     public int ID;
-    public int width;
-    public int height;
+    public int width = 0;
+    public int height = 0;
 
 
     public Sprite itemIcon;
@@ -33,5 +33,10 @@ public class ItemData : ScriptableObject
     {
         ID = newID;
         newID += 1;
+    }
+
+    public int GetWidth()
+    {
+        return width;
     }
 }

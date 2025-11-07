@@ -111,6 +111,8 @@ public class Counting : MonoBehaviour
                 fish.ResetRuntime();
             }
         }
+
+        itemGrid.ClearGrid();
     }
 
 }

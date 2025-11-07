@@ -40,16 +40,12 @@ public class OverallGameManager : MonoBehaviour
 
     void Awake()
     {
-<<<<<<< HEAD
-        DontDestroyOnLoad(this.gameObject);
+        DontDestroyOnLoad(this);
         path_to_save = Path.Combine(Application.streamingAssetsPath, path_to_save);
         if (!loadJson(1))
         {
             EndGame();
         }
-=======
-        DontDestroyOnLoad(this);
->>>>>>> main
     }
 
     #region Saving/Loading 
@@ -129,6 +125,10 @@ public class OverallGameManager : MonoBehaviour
 
     private void UpdateDay()
     {
+        if (DayText == null)
+        {
+            DayText = GameObject.Find("Day").GetComponent<TextMeshProUGUI>();
+        }
         DayText.SetText($"Day: {currentDay}");
     }
 
@@ -141,6 +141,7 @@ public class OverallGameManager : MonoBehaviour
     {
         DisableGamePanel.SetActive(true);
         GameOverText.gameObject.SetActive(true);
+        GameOverText.text = $"Game Over!\nYou were ${currentRent - money} short!";
     }
     
     public int GetDay()

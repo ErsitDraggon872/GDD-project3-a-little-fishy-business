@@ -134,7 +134,8 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      goldfish_0: 2866502940677049033
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

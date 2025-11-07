@@ -21,7 +21,7 @@ public class ItemGrid : MonoBehaviour
         Init(gridSizeWidth, gridSizeHeight);
 
         GridItem gridItem = Instantiate(gridItemPrefab).GetComponent<GridItem>();
-        PlaceItem(gridItem, 1, 1);
+        //PlaceItem(gridItem, 1, 1);
     }
 
     private void Init(int width, int height)
@@ -40,8 +40,8 @@ public class ItemGrid : MonoBehaviour
 
     public ItemData GetSlotItemData(int x, int y)
     {
-        // Debug.Log(gridItemSlot);
         return gridItemSlot[x, y]?.itemData;
+        // Debug.Log(gridItemSlot);
     }
 
     public Vector2Int GetTileGridPosition(Vector2 mousePosition)
