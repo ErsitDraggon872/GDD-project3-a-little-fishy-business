@@ -39,9 +39,15 @@ public class InventoryController : MonoBehaviour
             CreateRandomItem();
         }
 
-        if (selectedItemGrid == null) {
+        if (Input.GetKeyDown(KeyCode.W))
+        {
+            InsertRandomItem();
+        }
+
+        if (selectedItemGrid == null)
+        {
             inventoryHighlight.Show(false);
-            return; 
+            return;
         }
 
         HandleHighlight();
@@ -52,6 +58,31 @@ public class InventoryController : MonoBehaviour
         }
     }
 
+    private void InsertRandomItem()
+    {
+        if (selectedItemGrid == null)
+        {
+            return;
+        }
+        
+        CreateRandomItem();
+        InventoryItem itemToInsert = selectedItem;
+        selectedItem = null;
+        InsertItem(itemToInsert);
+    }
+
+    private void InsertItem(InventoryItem itemToInsert)
+    {
+        Vector2Int? posOnGrid = selectedItemGrid.FindSpaceForObject(itemToInsert);
+
+        if (posOnGrid == null)
+        {
+            return;
+        }
+
+        selectedItemGrid.PlaceItem(itemToInsert, posOnGrid.Value.x, posOnGrid.Value.y);
+    }
+    
     private void CreateRandomItem()
     {
         InventoryItem inventoryItem = Instantiate(itemPrefab).GetComponent<InventoryItem>();
