@@ -20,7 +20,7 @@ public class InventoryController : MonoBehaviour
     InventoryItem overlapItem;
     RectTransform rectTransform;
 
-    [SerializeField] List<ItemData> items;
+    [SerializeField] List<Fish> fishes;
     [SerializeField] GameObject itemPrefab;
     [SerializeField] Transform canvasTransform;
 
@@ -30,6 +30,10 @@ public class InventoryController : MonoBehaviour
     private void Awake()
     {
         inventoryHighlight = GetComponent<InventoryHighlight>();
+    }
+
+    private void Start()
+    {
     }
 
     private void Update()
@@ -133,8 +137,11 @@ public class InventoryController : MonoBehaviour
         rectTransform.SetParent(canvasTransform);
         rectTransform.SetAsLastSibling();
 
-        int selectedItemID = UnityEngine.Random.Range(0, items.Count);
-        inventoryItem.Set(items[selectedItemID]);
+        // soon to be changed with actual probabilities
+        int selectedItemID = Random.Range(0, fishes.Count);
+        ItemData item = ScriptableObject.CreateInstance<ItemData>();
+        item.SetData(fishes[selectedItemID]);
+        inventoryItem.Set(item);
     }
     #endregion
 

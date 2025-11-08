@@ -224,6 +224,7 @@ RectTransform:
   - {fileID: 943117128}
   - {fileID: 1932873938}
   - {fileID: 806963736}
+  - {fileID: 1358031011}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
@@ -1067,13 +1068,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4dfe5e3f85c074829afc209b5003c5b4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  items:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
+  fishes:
+  - {fileID: 11400000, guid: f0049a288aec09742b937df3a76e9b6c, type: 2}
+  - {fileID: 11400000, guid: 6325b86027143ec489187fccb19d1eab, type: 2}
+  - {fileID: 11400000, guid: 9e8c3ec3c1c92c94eb698b5c4ff20364, type: 2}
+  - {fileID: 11400000, guid: e64f4a12b86c9b24ba33b4cd562ce707, type: 2}
+  - {fileID: 11400000, guid: 322ae3e8f5a8b124ca2611fb70e51151, type: 2}
+  - {fileID: 11400000, guid: eefbba4a4c523794c9670db6e8b2c08d, type: 2}
   itemPrefab: {fileID: 4677592062807147059, guid: aff9378aa009944b8a588d7932fe206d, type: 3}
   canvasTransform: {fileID: 128747090}
 --- !u!114 &992358364
@@ -1132,7 +1133,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 200cabd080f844258847f9af4897f6b3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  highlighter: {fileID: 0}
+  highlighter: {fileID: 1358031011}
 --- !u!1 &1037940463
 GameObject:
   m_ObjectHideFlags: 0
@@ -1269,6 +1270,81 @@ MonoBehaviour:
   m_hasFontAssetChanged: 0
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
+--- !u!1 &1358031010
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1358031011}
+  - component: {fileID: 1358031013}
+  - component: {fileID: 1358031012}
+  m_Layer: 5
+  m_Name: bluh
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &1358031011
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1358031010}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 128747090}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: -105, y: -128.1}
+  m_SizeDelta: {x: 32, y: 32}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &1358031012
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1358031010}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_RaycastTarget: 0
+  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
+  m_Maskable: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  m_Sprite: {fileID: -6106093331819987633, guid: 70f01d063c5ab49b1a27ac8b30ea8049, type: 3}
+  m_Type: 0
+  m_PreserveAspect: 0
+  m_FillCenter: 1
+  m_FillMethod: 4
+  m_FillAmount: 1
+  m_FillClockwise: 1
+  m_FillOrigin: 0
+  m_UseSpriteMesh: 0
+  m_PixelsPerUnitMultiplier: 1
+--- !u!222 &1358031013
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1358031010}
+  m_CullTransparentMesh: 1
 --- !u!1 &1658047826
 GameObject:
   m_ObjectHideFlags: 0
@@ -1955,13 +2031,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3b4f46cd9128420468fcbaf8c2d5b518, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  counting: {fileID: 0}
-  moneyText: {fileID: 0}
-  DayText: {fileID: 0}
-  RentText: {fileID: 0}
-  DisableGamePanel: {fileID: 0}
-  GameOverText: {fileID: 0}
-  itemGrid: {fileID: 0}
+  counting: {fileID: 1696671990}
+  moneyText: {fileID: 436417605}
+  DayText: {fileID: 2062304197}
+  RentText: {fileID: 1037940466}
+  DisableGamePanel: {fileID: 1932873937}
+  GameOverText: {fileID: 806963737}
+  itemGrid: {fileID: 1710837022}
 --- !u!4 &3219507580532435081
 Transform:
   m_ObjectHideFlags: 0

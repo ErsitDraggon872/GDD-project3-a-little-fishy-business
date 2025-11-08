@@ -40,7 +40,7 @@ public class InventoryItem : MonoBehaviour
     internal void Set(ItemData itemData)
     {
         this.itemData = itemData;
-
+        Debug.Log(itemData.itemIcon);
         GetComponent<Image>().sprite = itemData.itemIcon;
 
         Vector2 size = new Vector2();

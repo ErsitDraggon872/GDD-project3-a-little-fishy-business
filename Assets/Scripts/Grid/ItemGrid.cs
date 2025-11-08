@@ -65,7 +65,7 @@ public class ItemGrid : MonoBehaviour
 
     public ItemData GetSlotItemData(int x, int y)
     {
-        return GetItem(x, y).itemData;
+        return GetItem(x, y)?.itemData;
     }
 
     #region Item Placement
