@@ -8,7 +8,6 @@ using System;
 using Unity.VisualScripting;
 
 
-
 public class FishEntry
 {
     public int ID;

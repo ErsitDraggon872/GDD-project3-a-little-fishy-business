@@ -2,6 +2,7 @@ using UnityEngine;
 
 public class ItemGrid : MonoBehaviour
 {
+    #region Variables/References
     public const float tileSizeWidth = 32;
     public const float tileSizeHeight = 32;
 
@@ -13,7 +14,9 @@ public class ItemGrid : MonoBehaviour
     [SerializeField] int gridSizeHeight;
 
     [SerializeField] GameObject inventoryItemPrefab;
+    #endregion
 
+    #region Grid Initialization
     private void Start()
     {
         rectTransform = GetComponent<RectTransform>();
@@ -29,14 +32,21 @@ public class ItemGrid : MonoBehaviour
         Vector2 size = new Vector2(width * tileSizeWidth, height * tileSizeHeight);
         rectTransform.sizeDelta = size;
     }
+    #endregion
 
     internal InventoryItem GetItem(int x, int y)
     {
+        if (x < 0 || y < 0 || x >= inventoryItemSlot.GetLength(0) || y >= inventoryItemSlot.GetLength(1))
+        {
+            return null;
+        }
+
         return inventoryItemSlot[x, y];
     }
 
     Vector2 positionOnTheGrid = new Vector2();
     Vector2Int tileGridPosition = new Vector2Int();
+
     public Vector2Int GetTileGridPosition(Vector2 mousePosition)
     {
         positionOnTheGrid.x = mousePosition.x - rectTransform.position.x;
@@ -48,6 +58,17 @@ public class ItemGrid : MonoBehaviour
         return tileGridPosition;
     }
 
+    public (int, int) GetGridDimensions()
+    {
+        return (gridSizeWidth, gridSizeHeight);
+    }
+
+    public ItemData GetSlotItemData(int x, int y)
+    {
+        return GetItem(x, y).itemData;
+    }
+
+    #region Item Placement
     public Vector2Int? FindSpaceForObject(InventoryItem itemToInsert)
     {
         int height = gridSizeHeight - itemToInsert.HEIGHT + 1;
@@ -119,6 +140,9 @@ public class ItemGrid : MonoBehaviour
         return position;
     }
 
+    #endregion
+
+    #region Item Pickup
     public InventoryItem PickUpItem(int x, int y)
     {
         InventoryItem toReturn = inventoryItemSlot[x, y];
@@ -133,6 +157,10 @@ public class ItemGrid : MonoBehaviour
         return toReturn;
     }
 
+    #endregion
+
+    #region Grid Clearing
+
     private void CleanGridReference(InventoryItem item)
     {
         for (int ix = 0; ix < item.WIDTH; ix++)
@@ -144,6 +172,23 @@ public class ItemGrid : MonoBehaviour
         }
     }
 
+    public void ClearGrid()
+    {
+        for (int x = 0; x < gridSizeWidth; x++)
+        {
+            for (int y = 0; y < gridSizeHeight; y++)
+            {
+                if (inventoryItemSlot[x, y] != null)
+                {
+                    Destroy(inventoryItemSlot[x, y].gameObject);
+                    inventoryItemSlot[x, y] = null;
+                }
+            }
+        }
+    }
+    #endregion
+
+    #region Placement Validity Checks
     bool PositionCheck(int posX, int posY)
     {
         if (posX < 0 || posY < 0)
@@ -217,5 +262,6 @@ public class ItemGrid : MonoBehaviour
 
         return true;
     }
+    #endregion
 }
 

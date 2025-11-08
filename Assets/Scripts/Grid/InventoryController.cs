@@ -4,6 +4,7 @@ using System.Collections.Generic;
 //
 public class InventoryController : MonoBehaviour
 {
+    #region Variables/References
     [HideInInspector]
     private ItemGrid selectedItemGrid;
 
@@ -24,6 +25,7 @@ public class InventoryController : MonoBehaviour
     [SerializeField] Transform canvasTransform;
 
     InventoryHighlight inventoryHighlight;
+    #endregion
 
     private void Awake()
     {
@@ -66,6 +68,7 @@ public class InventoryController : MonoBehaviour
         }
     }
 
+    #region Rotation Call
     private void RotateItem()
     {
         if (selectedItem == null)
@@ -75,7 +78,39 @@ public class InventoryController : MonoBehaviour
 
         selectedItem.Rotate();
     }
+    #endregion
 
+    #region Item Placement
+    private void InsertItem(InventoryItem itemToInsert)
+    {
+        Vector2Int? posOnGrid = selectedItemGrid.FindSpaceForObject(itemToInsert);
+
+        if (posOnGrid == null)
+        {
+            return;
+        }
+
+        selectedItemGrid.PlaceItem(itemToInsert, posOnGrid.Value.x, posOnGrid.Value.y);
+    }
+
+    private void PlaceItem(Vector2Int tileGridPosition)
+    {
+        bool complete = selectedItemGrid.PlaceItem(selectedItem, tileGridPosition.x, tileGridPosition.y, ref overlapItem);
+        if (complete)
+        {
+            selectedItem = null;
+            if (overlapItem != null)
+            {
+                selectedItem = overlapItem;
+                overlapItem = null;
+                rectTransform = selectedItem.GetComponent<RectTransform>();
+                rectTransform.SetAsLastSibling();
+            }
+        }
+    }
+    #endregion
+
+    #region Item Randomization
     private void InsertRandomItem()
     {
         if (selectedItemGrid == null)
@@ -87,18 +122,6 @@ public class InventoryController : MonoBehaviour
         InventoryItem itemToInsert = selectedItem;
         selectedItem = null;
         InsertItem(itemToInsert);
-    }
-
-    private void InsertItem(InventoryItem itemToInsert)
-    {
-        Vector2Int? posOnGrid = selectedItemGrid.FindSpaceForObject(itemToInsert);
-
-        if (posOnGrid == null)
-        {
-            return;
-        }
-
-        selectedItemGrid.PlaceItem(itemToInsert, posOnGrid.Value.x, posOnGrid.Value.y);
     }
 
     private void CreateRandomItem()
@@ -113,7 +136,9 @@ public class InventoryController : MonoBehaviour
         int selectedItemID = UnityEngine.Random.Range(0, items.Count);
         inventoryItem.Set(items[selectedItemID]);
     }
+    #endregion
 
+    #region Item Movement
     private void LeftMouseButtonPress()
     {
         //Debug.Log(selectedItemGrid.GetTileGridPosition(Input.mousePosition));
@@ -142,21 +167,6 @@ public class InventoryController : MonoBehaviour
         return selectedItemGrid.GetTileGridPosition(position);
     }
 
-    private void PlaceItem(Vector2Int tileGridPosition)
-    {
-        bool complete = selectedItemGrid.PlaceItem(selectedItem, tileGridPosition.x, tileGridPosition.y, ref overlapItem);
-        if (complete)
-        {
-            selectedItem = null;
-            if (overlapItem != null)
-            {
-                selectedItem = overlapItem;
-                overlapItem = null;
-                rectTransform = selectedItem.GetComponent<RectTransform>();
-                rectTransform.SetAsLastSibling();
-            }
-        }
-    }
     private void PickUpItem(Vector2Int tileGridPosition)
     {
         selectedItem = selectedItemGrid.PickUpItem(tileGridPosition.x, tileGridPosition.y);
@@ -173,6 +183,9 @@ public class InventoryController : MonoBehaviour
             rectTransform.position = Input.mousePosition;
         }
     }
+    #endregion
+
+    #region Item Highlighting
 
     Vector2Int oldPosition;
     InventoryItem itemToHighlight;
@@ -215,5 +228,5 @@ public class InventoryController : MonoBehaviour
             inventoryHighlight.SetPosition(selectedItemGrid, selectedItem, positionOnGrid.x, positionOnGrid.y);
         }
     }
-
+    #endregion
 }

@@ -134,7 +134,8 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      sell-menu-background-whole_0: 4204050125434340015
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
