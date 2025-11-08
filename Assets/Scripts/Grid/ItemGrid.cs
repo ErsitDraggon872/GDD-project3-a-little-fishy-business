@@ -30,6 +30,11 @@ public class ItemGrid : MonoBehaviour
         rectTransform.sizeDelta = size;
     }
 
+    internal InventoryItem GetItem(int x, int y)
+    {
+        return inventoryItemSlot[x, y];
+    }
+
     Vector2 positionOnTheGrid = new Vector2();
     Vector2Int tileGridPosition = new Vector2Int();
     public Vector2Int GetTileGridPosition(Vector2 mousePosition)
@@ -60,7 +65,7 @@ public class ItemGrid : MonoBehaviour
         {
             CleanGridReference(overlapItem);
         }
-        
+
         RectTransform rectTransform = inventoryItem.GetComponent<RectTransform>();
         rectTransform.SetParent(this.rectTransform);
         for (int x = 0; x < inventoryItem.itemData.width; x++)
@@ -73,15 +78,19 @@ public class ItemGrid : MonoBehaviour
 
         inventoryItem.onGridPositionX = posX;
         inventoryItem.onGridPositionY = posY;
-            
-
-        Vector2 position = new Vector2();
-        position.x = posX * tileSizeWidth + (tileSizeWidth * inventoryItem.itemData.width / 2);
-        position.y = -(posY * tileSizeHeight + (tileSizeHeight * inventoryItem.itemData.height / 2));
+        Vector2 position = CalculatePositionOnGrid(inventoryItem, posX, posY);
 
         rectTransform.localPosition = position;
 
         return true;
+    }
+    
+    public Vector2 CalculatePositionOnGrid(InventoryItem inventoryItem, int posX, int posY)
+    {
+        Vector2 position = new Vector2();
+        position.x = posX * tileSizeWidth + (tileSizeWidth * inventoryItem.itemData.width / 2);
+        position.y = -(posY * tileSizeHeight + (tileSizeHeight * inventoryItem.itemData.height / 2));
+        return position;
     }
 
     public InventoryItem PickUpItem(int x, int y)
@@ -124,7 +133,7 @@ public class ItemGrid : MonoBehaviour
         return true;
     }
 
-    bool BoundaryCheck(int posX, int posY, int width, int height)
+    public bool BoundaryCheck(int posX, int posY, int width, int height)
     {
         if (PositionCheck(posX, posY) == false)
         {
