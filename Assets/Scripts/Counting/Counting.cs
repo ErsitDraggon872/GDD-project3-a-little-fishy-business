@@ -30,7 +30,7 @@ public class Counting : MonoBehaviour
     public float UpdateScore()
     {
         Count();
-        ScoreText.text = "Score: " + Score.ToString();
+        ScoreText.text = "Current Value: " + Score.ToString();
         return Score;
     }
 

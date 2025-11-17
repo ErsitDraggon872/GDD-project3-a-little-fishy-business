@@ -88,6 +88,7 @@ public class ItemGrid : MonoBehaviour
         return null;
     }
 
+    // Returns whether the item can be placed
     public bool PlaceItem(InventoryItem inventoryItem, int posX, int posY, ref InventoryItem overlapItem)
     {
         if (BoundaryCheck(posX, posY, inventoryItem.WIDTH, inventoryItem.HEIGHT) == false)
@@ -111,6 +112,7 @@ public class ItemGrid : MonoBehaviour
         return true;
     }
 
+    // Actually places the item in the "inventoryItemSlot" grid
     public void PlaceItem(InventoryItem inventoryItem, int posX, int posY)
     {
         RectTransform rectTransform = inventoryItem.GetComponent<RectTransform>();
@@ -161,6 +163,7 @@ public class ItemGrid : MonoBehaviour
 
     #region Grid Clearing
 
+    // Clears a single slot where "item" is located
     private void CleanGridReference(InventoryItem item)
     {
         for (int ix = 0; ix < item.WIDTH; ix++)
@@ -172,6 +175,7 @@ public class ItemGrid : MonoBehaviour
         }
     }
 
+    // Clears entire grid
     public void ClearGrid()
     {
         for (int x = 0; x < gridSizeWidth; x++)

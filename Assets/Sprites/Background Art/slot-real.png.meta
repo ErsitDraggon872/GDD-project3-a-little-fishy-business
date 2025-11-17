@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: 599952aadb3b2484185e8ebb2b470ace
+guid: eceb3c802252e9542b910eca4d9e7051
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 4204050125434340015
-    second: sell-menu-background-whole_0
+      213: -576241487463344855
+    second: slot-real_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -100,13 +100,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: sell-menu-background-whole_0
+      name: slot-real_0
       rect:
         serializedVersion: 2
         x: 0
         y: 0
-        width: 640
-        height: 360
+        width: 32
+        height: 32
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -115,8 +115,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: fa24378a059c75a30800000000000000
-      internalID: 4204050125434340015
+      spriteID: 92597e29b67c008f0800000000000000
+      internalID: -576241487463344855
       vertices: []
       indices: 
       edges: []
@@ -134,8 +134,7 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable:
-      sell-menu-background-whole_0: 4204050125434340015
+    nameFileIdTable: {}
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

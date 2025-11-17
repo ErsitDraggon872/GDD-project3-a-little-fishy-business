@@ -36,7 +36,7 @@ public class InventoryItem : MonoBehaviour
 
     public bool rotated = false;
 
-
+    // assigns given item data to the InventoryItem object
     internal void Set(ItemData itemData)
     {
         this.itemData = itemData;

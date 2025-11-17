@@ -32,10 +32,6 @@ public class InventoryController : MonoBehaviour
         inventoryHighlight = GetComponent<InventoryHighlight>();
     }
 
-    private void Start()
-    {
-    }
-
     private void Update()
     {
         ItemIconDrag();

@@ -123,7 +123,7 @@ public class OverallGameManager : MonoBehaviour
 
     private void UpdateMoney()
     {
-        moneyText.SetText($"Money: {Mathf.Round(money)}");
+        moneyText.SetText($"Money: {Mathf.Floor(money)}");
     }
 
     private void UpdateDay()
@@ -137,7 +137,7 @@ public class OverallGameManager : MonoBehaviour
 
     private void UpdateRent()
     {
-        RentText.SetText($"Rent: {Mathf.Round(currentRent)}");
+        RentText.SetText($"rent due: {Mathf.Round(currentRent)}");
     }
     
     public int GetDay()
