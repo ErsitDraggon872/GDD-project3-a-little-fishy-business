@@ -11,15 +11,13 @@ using Unity.VisualScripting;
 
 public class FishEntry
 {
-    public int ID;
 
     //Level etc
     public FishMetaData fishMetaData;
 
 
-    public FishEntry(int ID, JObject JsonData)
+    public FishEntry(JObject JsonData)
     {
-        this.ID = ID;
         JArray sizeArr = (JArray)JsonData["Size"];
         int x = sizeArr[0].Value<int>();
         int y = sizeArr[1].Value<int>();
@@ -28,9 +26,8 @@ public class FishEntry
         this.fishMetaData = new FishMetaData((int)JsonData["Level"], (float)JsonData["Price"], (float)JsonData["Cost"], size, (string)JsonData["FishType"]);
     }
 
-    public FishEntry(int ID, FishMetaData fishMetaData)
+    public FishEntry(FishMetaData fishMetaData)
     {
-        this.ID = ID; 
         this.fishMetaData = fishMetaData;
     }
 }
@@ -70,13 +67,13 @@ public class Inventory : MonoBehaviour
 
     private void AddFish(int id, JObject fishMetaData)
     {
-        FishEntry newFish = new FishEntry(id, fishMetaData);
+        FishEntry newFish = new FishEntry(fishMetaData);
         currentInventory.Add(newFish);
     }
     
     private void AddFish(int id, FishMetaData fishMetaData)
     {
-        FishEntry newFish = new FishEntry(id, fishMetaData);
+        FishEntry newFish = new FishEntry(fishMetaData);
         currentInventory.Add(newFish);
     }
 
@@ -116,7 +113,10 @@ public class Inventory : MonoBehaviour
         return fishLookup[name];
     }
 
-
+    public void AddFishByName(string name)
+    {
+        currentInventory.Add(new FishEntry(fishLookup[name].GetData()));
+    }
 
 
 
