@@ -1,13 +1,10 @@
 fileFormatVersion: 2
-guid: 253ea8d3ad3d249f4aa26641d8cf2e87
+guid: c984b0ccbf264564ba203643c6183e3e
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 5993231112860516382
-    second: thanos_0
-  - first:
-      213: 804043424281111303
-    second: thanos_1
+      213: -4368790897880801898
+    second: Untitled_Artwork-3-removebg-preview_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -103,13 +100,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: thanos_0
+      name: Untitled_Artwork-3-removebg-preview_0
       rect:
         serializedVersion: 2
-        x: 286
-        y: 132
-        width: 514
-        height: 760
+        x: 0
+        y: 0
+        width: 85
+        height: 70
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -118,30 +115,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: e10ced291fb3c2350800000000000000
-      internalID: 5993231112860516382
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: thanos_1
-      rect:
-        serializedVersion: 2
-        x: 808
-        y: 460
-        width: 12
-        height: 12
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 70ba3400c39882b00800000000000000
-      internalID: 804043424281111303
+      spriteID: 69ddad143dfee53c0800000000000000
+      internalID: -4368790897880801898
       vertices: []
       indices: 
       edges: []
@@ -160,8 +135,7 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      thanos_0: 5993231112860516382
-      thanos_1: 804043424281111303
+      Untitled_Artwork-3-removebg-preview_0: -4368790897880801898
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

@@ -42,9 +42,11 @@ public class MainSceneManager : MonoBehaviour
         {
             // minimum fade out time is 1 second
             t += Time.deltaTime;
+
             // fade out transition
             t = Mathf.Clamp01(t);
             transitionImage.color = new Color(transitionImage.color.r, transitionImage.color.g, transitionImage.color.b, t);
+
             // does nothing until scene is loaded 
             yield return null;
         }
@@ -65,11 +67,13 @@ public class MainSceneManager : MonoBehaviour
 
         while (t > 0)
         {
-            // minimum fade out time is 1 second
+            // minimum fade in time is 1 second
             t -= Time.deltaTime;
-            // fade out transition
+
+            // fade in transition
             t = Mathf.Clamp01(t);
             transitionImage.color = new Color(transitionImage.color.r, transitionImage.color.g, transitionImage.color.b, t);
+
             // does nothing until fully transparent
             yield return null;
         }
