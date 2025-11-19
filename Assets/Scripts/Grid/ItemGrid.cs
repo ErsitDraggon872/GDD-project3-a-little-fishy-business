@@ -3,10 +3,13 @@ using UnityEngine;
 public class ItemGrid : MonoBehaviour
 {
     #region Variables/References
-    public const float tileSizeWidth = 32;
-    public const float tileSizeHeight = 32;
+    public float tileSizeWidth = 32;
+    public float tileSizeHeight = 32;
+
 
     InventoryItem[,] inventoryItemSlot;
+
+    public bool isPocketGrid = false;
 
     RectTransform rectTransform;
 
@@ -102,6 +105,30 @@ public class ItemGrid : MonoBehaviour
             return false;
         }
 
+        if (isPocketGrid)
+        {
+            inventoryItem.itemData.width = 1;
+            inventoryItem.itemData.height = 1;
+            inventoryItem.rotated = false;
+        }
+
+        if (isPocketGrid)
+        {
+            var img = inventoryItem.GetComponent<UnityEngine.UI.Image>();
+            var rt = inventoryItem.GetComponent<RectTransform>();
+
+            // Force the sprite to shrink with the box
+            img.preserveAspect = true;
+
+            // Visually scale down the image (this shrinks the texture)
+            rt.localScale = Vector3.one * 0.35f;   // adjust as needed
+        }
+        else
+        {
+            // When placed in a normal grid → restore full size
+            var rt = inventoryItem.GetComponent<RectTransform>();
+            rt.localScale = Vector3.one;
+        }
 
         PlaceItem(inventoryItem, posX, posY);
 

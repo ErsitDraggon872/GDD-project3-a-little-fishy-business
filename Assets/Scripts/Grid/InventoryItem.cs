@@ -43,9 +43,11 @@ public class InventoryItem : MonoBehaviour
         Debug.Log(itemData.itemIcon);
         GetComponent<Image>().sprite = itemData.itemIcon;
 
+        ItemGrid parentGrid = GetComponentInParent<ItemGrid>();
+
         Vector2 size = new Vector2();
-        size.x = WIDTH * ItemGrid.tileSizeWidth;
-        size.y = HEIGHT * ItemGrid.tileSizeHeight;
+        size.x = WIDTH * parentGrid.tileSizeWidth;
+        size.y = HEIGHT * parentGrid.tileSizeHeight;
         GetComponent<RectTransform>().sizeDelta = size;
     }
 

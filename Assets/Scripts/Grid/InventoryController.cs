@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.UI;
 using System.Collections.Generic;
 
 //
@@ -115,7 +116,14 @@ public class InventoryController : MonoBehaviour
             rectTransform = selectedItem.GetComponent<RectTransform>();
 
         if (originalGrid != null)
+        {
+            if (originalGrid.isPocketGrid)
+                ApplyPocketGridSize(selectedItem, originalGrid);
+            else
+                ApplyMainGridSize(selectedItem, originalGrid);
+
             originalGrid.PlaceItem(selectedItem, originalX, originalY);
+        }
 
         rectTransform.localPosition = originalItemPosition;
 
@@ -173,8 +181,15 @@ public class InventoryController : MonoBehaviour
 
         if (selectedItem != null)
         {
-            Vector2Int tileGridPosition = GetTileGridPosition();
+            if (selectedItemGrid != originalGrid)
+            {
+                if (selectedItemGrid.isPocketGrid)
+                    ApplyPocketGridSize(selectedItem, selectedItemGrid);
+                else
+                    ApplyMainGridSize(selectedItem, selectedItemGrid);
+            }
 
+            Vector2Int tileGridPosition = GetTileGridPosition();
             PlaceItem(tileGridPosition);
         }
     }
@@ -232,10 +247,10 @@ public class InventoryController : MonoBehaviour
     {
         Vector2 position = Input.mousePosition;
 
-        if (selectedItem != null)
+        if (selectedItem != null && !selectedItemGrid.isPocketGrid)
         {
-            position.x -= (selectedItem.WIDTH - 1) * ItemGrid.tileSizeWidth / 2;
-            position.y += (selectedItem.HEIGHT - 1) * ItemGrid.tileSizeHeight / 2;
+            position.x -= (selectedItem.WIDTH - 1) * selectedItemGrid.tileSizeWidth / 2;
+            position.y += (selectedItem.HEIGHT - 1) * selectedItemGrid.tileSizeHeight / 2;
         }
 
         return selectedItemGrid.GetTileGridPosition(position);
@@ -249,6 +264,12 @@ public class InventoryController : MonoBehaviour
             rectTransform = selectedItem.GetComponent<RectTransform>();
 
             originalGrid = selectedItemGrid;
+
+            if (originalGrid.isPocketGrid)
+                ApplyPocketGridSize(selectedItem, originalGrid);
+            else
+                ApplyMainGridSize(selectedItem, originalGrid);
+
             originalX = selectedItem.onGridPositionX;
             originalY = selectedItem.onGridPositionY;
             originalItemPosition = rectTransform.localPosition;
@@ -261,7 +282,55 @@ public class InventoryController : MonoBehaviour
         {
             rectTransform.position = Input.mousePosition;
         }
+
+        // Resize only if pointer is inside a *different* grid from the one we picked up from
+        if (selectedItem != null && selectedItemGrid != null && pointerInsideGrid)
+        {
+            // Did we actually change grids?
+            if (selectedItemGrid != originalGrid)
+            {
+                if (selectedItemGrid.isPocketGrid)
+                    ApplyPocketGridSize(selectedItem, selectedItemGrid);
+                else
+                    ApplyMainGridSize(selectedItem, selectedItemGrid);
+            }
+        }
     }
+
+    public void ApplyPocketGridSize(InventoryItem item, ItemGrid pocketGrid)
+    {
+        item.itemData.width = 1;
+        item.itemData.height = 1;
+        item.rotated = false;
+
+        RectTransform rt = item.GetComponent<RectTransform>();
+        rt.localScale = Vector3.one;   // IMPORTANT
+        rt.sizeDelta = new Vector2(
+            pocketGrid.tileSizeWidth,
+            pocketGrid.tileSizeHeight
+        );
+
+        Image img = item.GetComponent<Image>();
+        img.preserveAspect = true;
+    }
+
+    public void ApplyMainGridSize(InventoryItem item, ItemGrid mainGrid)
+    {
+        var fish = item.itemData.GetFishInformation();
+        item.itemData.width = fish.GetData().size.x;
+        item.itemData.height = fish.GetData().size.y;
+
+        RectTransform rt = item.GetComponent<RectTransform>();
+        rt.localScale = Vector3.one;  // IMPORTANT
+        rt.sizeDelta = new Vector2(
+            item.WIDTH * mainGrid.tileSizeWidth,
+            item.HEIGHT * mainGrid.tileSizeHeight
+        );
+
+        Image img = item.GetComponent<Image>();
+        img.preserveAspect = true;
+    }
+
     #endregion
 
     #region Item Highlighting
