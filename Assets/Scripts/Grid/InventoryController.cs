@@ -12,9 +12,14 @@ public class InventoryController : MonoBehaviour
         get => selectedItemGrid;
         set {
             selectedItemGrid = value;
+
             inventoryHighlight.SetParent(value);
         }
     }
+
+    private Vector2 originalItemPosition;
+    private int originalX;
+    private int originalY;
 
     InventoryItem selectedItem;
     InventoryItem overlapItem;
@@ -86,6 +91,17 @@ public class InventoryController : MonoBehaviour
     #endregion
 
     #region Item Placement
+    private void SnapBack()
+    {
+        if (rectTransform == null)
+            rectTransform = selectedItem.GetComponent<RectTransform>();
+
+        selectedItemGrid.PlaceItem(selectedItem, originalX, originalY);
+
+        rectTransform.localPosition = originalItemPosition;
+
+        selectedItem = null;
+    }
     private void InsertItem(InventoryItem itemToInsert)
     {
         Vector2Int? posOnGrid = selectedItemGrid.FindSpaceForObject(itemToInsert);
@@ -111,8 +127,32 @@ public class InventoryController : MonoBehaviour
                 rectTransform = selectedItem.GetComponent<RectTransform>();
                 rectTransform.SetAsLastSibling();
             }
+        } 
+        else
+        {   
+            SnapBack();
         }
     }
+    private void PickUp()
+    {
+        Vector2Int tileGridPosition = GetTileGridPosition();
+
+        if (selectedItem == null)
+        {
+            PickUpItem(tileGridPosition);
+        }
+    }
+
+    private void PlaceDown()
+    {
+        if (selectedItem != null)
+        {
+            Vector2Int tileGridPosition = GetTileGridPosition();
+
+            PlaceItem(tileGridPosition);
+        }
+    }
+
     #endregion
 
     #region Item Randomization
@@ -162,26 +202,6 @@ public class InventoryController : MonoBehaviour
     //     }
     // }
 
-    private void PickUp()
-    {
-        Vector2Int tileGridPosition = GetTileGridPosition();
-
-        if (selectedItem == null)
-        {
-            PickUpItem(tileGridPosition);
-        }
-    }
-
-    private void PlaceDown()
-    {
-        Vector2Int tileGridPosition = GetTileGridPosition();
-
-        if (selectedItem != null)
-        {
-            PlaceItem(tileGridPosition);
-        }
-    }
-
     private Vector2Int GetTileGridPosition()
     {
         Vector2 position = Input.mousePosition;
@@ -201,6 +221,10 @@ public class InventoryController : MonoBehaviour
         if (selectedItem != null)
         {
             rectTransform = selectedItem.GetComponent<RectTransform>();
+
+            originalX = selectedItem.onGridPositionX;
+            originalY = selectedItem.onGridPositionY;
+            originalItemPosition = rectTransform.localPosition;
         }
     }
 
