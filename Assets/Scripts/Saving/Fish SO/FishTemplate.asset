@@ -12,3 +12,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 52c465f775768634bbb3e7dc325c50e7, type: 3}
   m_Name: FishTemplate
   m_EditorClassIdentifier: 
+  sprite: {fileID: 0}
+  baseData:
+    level: 0
+    price: 0
+    cost: 0
+    FishType: Template
+    size: {x: 0, y: 0}
