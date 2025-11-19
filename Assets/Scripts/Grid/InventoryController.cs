@@ -13,13 +13,24 @@ public class InventoryController : MonoBehaviour
         set {
             selectedItemGrid = value;
 
-            inventoryHighlight.SetParent(value);
+            if (value != null)
+                pointerInsideGrid = true;
+            else
+                pointerInsideGrid = false;
+
+            if (value != null)
+                inventoryHighlight.SetParent(value);
+            else
+                inventoryHighlight.Show(false);
         }
     }
 
+    private ItemGrid originalGrid;
     private Vector2 originalItemPosition;
     private int originalX;
     private int originalY;
+    private bool pointerInsideGrid = false;
+
 
     InventoryItem selectedItem;
     InventoryItem overlapItem;
@@ -62,6 +73,13 @@ public class InventoryController : MonoBehaviour
         if (selectedItemGrid == null)
         {
             inventoryHighlight.Show(false);
+
+            if (selectedItem != null && !Input.GetMouseButton(0)) {
+                {
+                    PlaceDown();
+                }
+            }
+
             return;
         }
 
@@ -96,7 +114,8 @@ public class InventoryController : MonoBehaviour
         if (rectTransform == null)
             rectTransform = selectedItem.GetComponent<RectTransform>();
 
-        selectedItemGrid.PlaceItem(selectedItem, originalX, originalY);
+        if (originalGrid != null)
+            originalGrid.PlaceItem(selectedItem, originalX, originalY);
 
         rectTransform.localPosition = originalItemPosition;
 
@@ -145,6 +164,13 @@ public class InventoryController : MonoBehaviour
 
     private void PlaceDown()
     {
+        if (!pointerInsideGrid)
+        {
+            SnapBack();
+
+            return;
+        }
+
         if (selectedItem != null)
         {
             Vector2Int tileGridPosition = GetTileGridPosition();
@@ -222,6 +248,7 @@ public class InventoryController : MonoBehaviour
         {
             rectTransform = selectedItem.GetComponent<RectTransform>();
 
+            originalGrid = selectedItemGrid;
             originalX = selectedItem.onGridPositionX;
             originalY = selectedItem.onGridPositionY;
             originalItemPosition = rectTransform.localPosition;
