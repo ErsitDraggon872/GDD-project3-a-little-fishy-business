@@ -25,33 +25,56 @@ public class FishEntry
         int y = sizeArr[1].Value<int>();
 
         Vector2Int size = new Vector2Int(x, y);
-        this.fishMetaData = new FishMetaData((int)JsonData["Level"], (float)JsonData["Price"], size);
+        this.fishMetaData = new FishMetaData((int)JsonData["Level"], (float)JsonData["Price"], (float)JsonData["Cost"], size, (string)JsonData["FishType"]);
+    }
+
+    public FishEntry(int ID, FishMetaData fishMetaData)
+    {
+        this.ID = ID; 
+        this.fishMetaData = fishMetaData;
     }
 }
+
 
 public class Inventory : MonoBehaviour
 {
     [Header("All Fish Prefabs (Containing SO)")]
-    public List<GameObject> FishPrefabs;
+    public List<Fish> FishSOs;
+    public static Inventory Instance;
 
 
-    private Dictionary<int, GameObject> fishLookup;
+    private Dictionary<string, Fish> fishLookup;
     private List<FishEntry> currentInventory;
 
     void Awake()
-    {
-        // Build lookup for quick access
-        fishLookup = new Dictionary<int, GameObject>();
-
-        foreach (GameObject fish in FishPrefabs)
+    { 
+        if (Instance != null && Instance != this)
         {
-            fishLookup[fish.GetComponent<Fish>().GetComponentInParent<ItemData>().ID] = fish;
+            Destroy(gameObject);
         }
+        else
+        {
+            Instance = this;
+            DontDestroyOnLoad(this);
+        }
+        // Build lookup for quick access
+        fishLookup = new Dictionary<string, Fish>();
 
+        foreach (Fish fish in FishSOs)
+        {
+            fishLookup[fish.GetData().FishType] = fish;
+        }
+        Debug.Log(fishLookup);
         LoadInventory();
     }
 
     private void AddFish(int id, JObject fishMetaData)
+    {
+        FishEntry newFish = new FishEntry(id, fishMetaData);
+        currentInventory.Add(newFish);
+    }
+    
+    private void AddFish(int id, FishMetaData fishMetaData)
     {
         FishEntry newFish = new FishEntry(id, fishMetaData);
         currentInventory.Add(newFish);
@@ -86,6 +109,11 @@ public class Inventory : MonoBehaviour
 
             AddFish(ID, value);
         }
+    }
+
+    public Fish getFishByName(string name)
+    {
+        return fishLookup[name];
     }
 
 
