@@ -112,24 +112,6 @@ public class ItemGrid : MonoBehaviour
             inventoryItem.rotated = false;
         }
 
-        if (isPocketGrid)
-        {
-            var img = inventoryItem.GetComponent<UnityEngine.UI.Image>();
-            var rt = inventoryItem.GetComponent<RectTransform>();
-
-            // Force the sprite to shrink with the box
-            img.preserveAspect = true;
-
-            // Visually scale down the image (this shrinks the texture)
-            rt.localScale = Vector3.one * 0.35f;   // adjust as needed
-        }
-        else
-        {
-            // When placed in a normal grid → restore full size
-            var rt = inventoryItem.GetComponent<RectTransform>();
-            rt.localScale = Vector3.one;
-        }
-
         PlaceItem(inventoryItem, posX, posY);
 
         return true;
