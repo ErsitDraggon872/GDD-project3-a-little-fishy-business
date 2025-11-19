@@ -102,10 +102,6 @@ public class ItemGrid : MonoBehaviour
             return false;
         }
 
-        if (overlapItem != null)
-        {
-            CleanGridReference(overlapItem);
-        }
 
         PlaceItem(inventoryItem, posX, posY);
 
@@ -233,17 +229,18 @@ public class ItemGrid : MonoBehaviour
             {
                 if (inventoryItemSlot[posX + x, posY + y] != null)
                 {
-                    if (overlapItem == null)
-                    {
-                        overlapItem = inventoryItemSlot[posX + x, posY + y];
-                    }
-                    else
-                    {
-                        if (overlapItem != inventoryItemSlot[posX + x, posY + y])
-                        {
-                            return false;
-                        }
-                    }
+                    // if (overlapItem == null)
+                    // {
+                    //     overlapItem = inventoryItemSlot[posX + x, posY + y];
+                    // }
+                    // else
+                    // {
+                    //     if (overlapItem != inventoryItemSlot[posX + x, posY + y])
+                    //     {
+                    //         return false;
+                    //     }
+                    // }
+                    return false;
                 }
             }
         }

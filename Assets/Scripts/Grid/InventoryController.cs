@@ -64,7 +64,12 @@ public class InventoryController : MonoBehaviour
 
         if (Input.GetMouseButtonDown(0))
         {
-            LeftMouseButtonPress();
+            PickUp();
+        }
+
+        if (!Input.GetMouseButton(0))
+        {
+            PlaceDown();
         }
     }
 
@@ -142,16 +147,36 @@ public class InventoryController : MonoBehaviour
     #endregion
 
     #region Item Movement
-    private void LeftMouseButtonPress()
+    // private void LeftMouseButtonPress()
+    // {
+    //     //Debug.Log(selectedItemGrid.GetTileGridPosition(Input.mousePosition));
+    //     Vector2Int tileGridPosition = GetTileGridPosition();
+
+    //     if (selectedItem == null)
+    //     {
+    //         PickUpItem(tileGridPosition);
+    //     }
+    //     else
+    //     {
+    //         PlaceItem(tileGridPosition);
+    //     }
+    // }
+
+    private void PickUp()
     {
-        //Debug.Log(selectedItemGrid.GetTileGridPosition(Input.mousePosition));
         Vector2Int tileGridPosition = GetTileGridPosition();
 
         if (selectedItem == null)
         {
             PickUpItem(tileGridPosition);
         }
-        else
+    }
+
+    private void PlaceDown()
+    {
+        Vector2Int tileGridPosition = GetTileGridPosition();
+
+        if (selectedItem != null)
         {
             PlaceItem(tileGridPosition);
         }
