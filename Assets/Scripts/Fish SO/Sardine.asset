@@ -17,5 +17,6 @@ MonoBehaviour:
     level: 0
     price: 5
     cost: 3
-    FishType: Sardine
+    FishType: 
+    FishName: Sardine
     size: {x: 2, y: 1}

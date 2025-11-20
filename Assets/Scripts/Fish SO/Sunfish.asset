@@ -17,5 +17,6 @@ MonoBehaviour:
     level: 0
     price: 25
     cost: 12
-    FishType: Sunfish
+    FishType: 
+    FishName: Sunfish
     size: {x: 3, y: 3}
