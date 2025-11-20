@@ -100,10 +100,12 @@ public class OverallGameManager : MonoBehaviour
             money -= currentRent;
             currentRent = CalculateNewRent();
             UpdateRent();
+            PlayVictory();
             return true;
         }
         else
         {
+            PlayLoss();
             return false;
         }
     }
@@ -203,6 +205,20 @@ public class OverallGameManager : MonoBehaviour
         return loadedUpgrades;
     }
     #endregion
+
+    public void ClickSound()
+    {
+        SoundManager.Instance.Play("click");
+    }
+    public void PlayVictory()
+    {
+        SoundManager.Instance.Play("victory");
+    }
+    public void PlayLoss()
+    {
+        SoundManager.Instance.Play("loss");
+    }
+
 
 }
 

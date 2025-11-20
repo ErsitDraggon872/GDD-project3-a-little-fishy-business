@@ -23,7 +23,10 @@ public class GridInteract : MonoBehaviour, IPointerEnterHandler, IPointerExitHan
     {
         inventoryController.SelectedItemGrid = null;
         Debug.Log("Pointer exit");
+
     }
+
+
 
 
 }
