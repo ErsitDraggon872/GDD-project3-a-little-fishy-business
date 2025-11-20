@@ -164,6 +164,15 @@ public class Inventory : MonoBehaviour
             rt.SetParent(grid.transform);
             rt.localScale = Vector3.one;
 
+            if (grid.isPocketGrid)
+            {
+                InventoryController.ApplyPocket(newItem, grid);
+            }
+            else
+            {
+                InventoryController.ApplyMain(newItem, grid);
+            }
+
             // 4. Find a free spot in the grid
             Vector2Int? pos = grid.FindSpaceForObject(newItem);
 

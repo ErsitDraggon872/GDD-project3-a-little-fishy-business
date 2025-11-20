@@ -5,6 +5,8 @@ using System.Collections.Generic;
 //
 public class InventoryController : MonoBehaviour
 {
+    public static InventoryController Instance;
+
     #region Variables/References
     [HideInInspector]
     private ItemGrid selectedItemGrid;
@@ -46,6 +48,7 @@ public class InventoryController : MonoBehaviour
 
     private void Awake()
     {
+        Instance = this;
         inventoryHighlight = GetComponent<InventoryHighlight>();
     }
 
@@ -330,6 +333,17 @@ public class InventoryController : MonoBehaviour
         Image img = item.GetComponent<Image>();
         img.preserveAspect = true;
     }
+
+    public static void ApplyPocket(InventoryItem item, ItemGrid grid)
+    {
+        Instance.ApplyPocketGridSize(item, grid);
+    }
+
+    public static void ApplyMain(InventoryItem item, ItemGrid grid)
+    {
+        Instance.ApplyMainGridSize(item, grid);
+    }
+
 
     #endregion
 
