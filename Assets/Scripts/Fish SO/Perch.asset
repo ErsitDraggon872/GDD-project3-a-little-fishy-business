@@ -9,11 +9,13 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d2909ddbfe9a58847826bb1562a75fbe, type: 3}
-  m_Name: Bass
+  m_Script: {fileID: 11500000, guid: 3670c7b5d06da934d8b3d2cb7cae32e0, type: 3}
+  m_Name: Perch
   m_EditorClassIdentifier: 
-  sprite: {fileID: -2987843178875456437, guid: f365ea0996a598f4a93d8f5afb38125b, type: 3}
+  sprite: {fileID: -3123973929842080319, guid: 5b559b67c7fec9b48a650079fcd06f29, type: 3}
   baseData:
     level: 0
-    price: 8
-    size: {x: 2, y: 2}
+    price: 6
+    cost: 2
+    FishType: Perch
+    size: {x: 1, y: 1}
