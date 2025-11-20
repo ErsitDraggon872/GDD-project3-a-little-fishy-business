@@ -20,7 +20,7 @@ public class ItemGrid : MonoBehaviour
     #endregion
 
     #region Grid Initialization
-    private void Start()
+    private void Awake()
     {
         rectTransform = GetComponent<RectTransform>();
         Init(gridSizeWidth, gridSizeHeight);
@@ -111,6 +111,7 @@ public class ItemGrid : MonoBehaviour
             inventoryItem.itemData.height = 1;
             inventoryItem.rotated = false;
         }
+
 
         PlaceItem(inventoryItem, posX, posY);
 
