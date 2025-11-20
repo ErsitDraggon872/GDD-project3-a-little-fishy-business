@@ -21,7 +21,15 @@ public class FishEntry
         int y = sizeArr[1].Value<int>();
 
         Vector2Int size = new Vector2Int(x, y);
-        this.fishMetaData = new FishMetaData((int)JsonData["Level"], (float)JsonData["Price"], (float)JsonData["Cost"], size, (string)JsonData["FishType"]);
+        this.fishMetaData = new FishMetaData(
+            (int)JsonData["Level"],
+            (float)JsonData["Price"],
+            (float)JsonData["Cost"],
+            size,
+            (string)JsonData["FishType"],
+            (string)JsonData["FishName"]
+        );
+
     }
 
     public FishEntry(FishMetaData fishMetaData)
@@ -39,6 +47,8 @@ public class Inventory : MonoBehaviour
 
 
     private Dictionary<string, Fish> fishLookup;
+    private Dictionary<string, Fish> fishLookupByName;
+
     private List<FishEntry> currentInventory = new List<FishEntry>();
 
     void Awake()
@@ -54,10 +64,17 @@ public class Inventory : MonoBehaviour
         }
         // Build lookup for quick access
         fishLookup = new Dictionary<string, Fish>();
+        fishLookupByName = new Dictionary<string, Fish>();
+
+        foreach (Fish fish in FishSOs)
+        {
+            Debug.Log($"SO asset name = {fish.name}, SO FishName = {fish.GetData().FishName}, SO FishType = {fish.GetData().FishType}");
+        }
 
         foreach (Fish fish in FishSOs)
         {
             fishLookup[fish.GetData().FishType] = fish;
+            fishLookupByName[fish.GetData().FishName] = fish;
         }
         Debug.Log(fishLookup);
         LoadInventory();
@@ -115,12 +132,12 @@ public class Inventory : MonoBehaviour
 
     public Fish getFishByName(string name)
     {
-        return fishLookup[name];
+        return fishLookupByName[name];
     }
 
     public void AddFishByName(string name)
     {
-        currentInventory.Add(new FishEntry(fishLookup[name].GetData()));
+        currentInventory.Add(new FishEntry(fishLookupByName[name].GetData()));
     }
 
     public void PopulateInventoryGrid(ItemGrid grid, GameObject itemPrefab)
@@ -134,7 +151,7 @@ public class Inventory : MonoBehaviour
 
             // 2. Create fresh ItemData
             ItemData data = ScriptableObject.CreateInstance<ItemData>();
-            var fishSO = fishLookup[entry.fishMetaData.FishType];
+            var fishSO = fishLookupByName[entry.fishMetaData.FishName];
             data.SetData(fishSO);
             data.width = fishSO.GetData().size.x;
             data.height = fishSO.GetData().size.y;
@@ -151,7 +168,7 @@ public class Inventory : MonoBehaviour
 
             if (pos == null)
             {
-                Debug.LogWarning("Inventory grid full, cannot place: " + entry.fishMetaData.FishType);
+                Debug.LogWarning("Inventory grid full, cannot place: " + entry.fishMetaData.FishName);
                 GameObject.Destroy(newItem.gameObject);
                 continue;
             }
