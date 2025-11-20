@@ -44,6 +44,7 @@ public class Inventory : MonoBehaviour
 
     void Awake()
     { 
+        // Creates inventory instance if does not exist yet
         if (Instance != null && Instance != this)
         {
             Destroy(gameObject);

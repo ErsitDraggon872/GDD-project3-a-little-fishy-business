@@ -26,7 +26,7 @@ RectTransform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1512399886680693633}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -62,14 +62,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 0.392}
+  m_Color: {r: 0.78867924, g: 0.7451974, b: 0.69493055, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: -9024726199993359555, guid: cec6e537f2e26eb409a9911825782706, type: 3}
+  m_Sprite: {fileID: 1543802194450361860, guid: 747cf3bca3143504aacb9905becf3258, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -95,6 +95,7 @@ MonoBehaviour:
   fishName: {fileID: 156025716457552509}
   fishPrice: {fileID: 5425523631811952214}
   fishShopSpawner: {fileID: 0}
+  nullImage: {fileID: 0}
 --- !u!1 &2086670625088728393
 GameObject:
   m_ObjectHideFlags: 0

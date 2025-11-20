@@ -16,4 +16,6 @@ MonoBehaviour:
   baseData:
     level: 0
     price: 5
+    cost: 3
+    FishType: Sardine
     size: {x: 2, y: 1}
