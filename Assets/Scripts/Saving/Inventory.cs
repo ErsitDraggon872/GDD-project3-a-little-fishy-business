@@ -5,7 +5,6 @@ using System.Collections.Generic;
 using System.Data.Common;
 using System.Diagnostics.Tracing;
 using System;
-using Unity.VisualScripting;
 
 
 public class FishEntry
@@ -40,7 +39,7 @@ public class Inventory : MonoBehaviour
 
 
     private Dictionary<string, Fish> fishLookup;
-    private List<FishEntry> currentInventory;
+    private List<FishEntry> currentInventory = new List<FishEntry>();
 
     void Awake()
     { 
@@ -99,6 +98,13 @@ public class Inventory : MonoBehaviour
     public void LoadInventory()
     {
         JObject inventory = OverallGameManager.GetLoadedInventory();
+
+        if (inventory == null)
+        {
+            Debug.LogWarning("Loaded inventory was null. Starting empty.");
+            return;
+        }
+
         foreach (JProperty keyValuePair in inventory.Properties())
         {
             int ID = Convert.ToInt32(keyValuePair.Name);
@@ -118,11 +124,43 @@ public class Inventory : MonoBehaviour
         currentInventory.Add(new FishEntry(fishLookup[name].GetData()));
     }
 
+    public void PopulateInventoryGrid(ItemGrid grid, GameObject itemPrefab)
+    {
+        Debug.Log("Populating grid with " + currentInventory.Count + " fish");
 
+        foreach (FishEntry entry in currentInventory)
+        {
+            // 1. Create inventory item object
+            InventoryItem newItem = GameObject.Instantiate(itemPrefab).GetComponent<InventoryItem>();
 
+            // 2. Create fresh ItemData
+            ItemData data = ScriptableObject.CreateInstance<ItemData>();
+            var fishSO = fishLookup[entry.fishMetaData.FishType];
+            data.SetData(fishSO);
+            data.width = fishSO.GetData().size.x;
+            data.height = fishSO.GetData().size.y;
 
+            newItem.Set(data);
 
+            // 3. Parent temporarily into the grid
+            RectTransform rt = newItem.GetComponent<RectTransform>();
+            rt.SetParent(grid.transform);
+            rt.localScale = Vector3.one;
 
+            // 4. Find a free spot in the grid
+            Vector2Int? pos = grid.FindSpaceForObject(newItem);
+
+            if (pos == null)
+            {
+                Debug.LogWarning("Inventory grid full, cannot place: " + entry.fishMetaData.FishType);
+                GameObject.Destroy(newItem.gameObject);
+                continue;
+            }
+
+            // 5. Place it
+            grid.PlaceItem(newItem, pos.Value.x, pos.Value.y);
+        }
+    }
 }
 
 

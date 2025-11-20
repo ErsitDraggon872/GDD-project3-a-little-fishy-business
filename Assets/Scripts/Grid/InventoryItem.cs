@@ -40,16 +40,28 @@ public class InventoryItem : MonoBehaviour
     internal void Set(ItemData itemData)
     {
         this.itemData = itemData;
-        Debug.Log(itemData.itemIcon);
-        GetComponent<Image>().sprite = itemData.itemIcon;
 
+        // Apply sprite
+        Image img = GetComponent<Image>();
+        img.sprite = itemData.itemIcon;
+        img.preserveAspect = true;
+
+        // Try to find grid
         ItemGrid parentGrid = GetComponentInParent<ItemGrid>();
 
-        Vector2 size = new Vector2();
-        size.x = WIDTH * parentGrid.tileSizeWidth;
-        size.y = HEIGHT * parentGrid.tileSizeHeight;
+        // If not inside a grid yet, skip sizing
+        if (parentGrid == null)
+            return;
+
+        // If inside grid → apply proper size
+        Vector2 size = new Vector2(
+            WIDTH * parentGrid.tileSizeWidth,
+            HEIGHT * parentGrid.tileSizeHeight
+        );
+
         GetComponent<RectTransform>().sizeDelta = size;
     }
+
 
     internal void Rotate()
     {

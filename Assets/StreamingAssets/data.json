@@ -15,7 +15,22 @@
         "Current_Day": 1,
         "Current_Rent": 50,
         "Money": 0,
-        "Inventory": {},
+        "Inventory": {
+            "1": {
+                "Level": 1,
+                "Price": 10,
+                "Cost": 5,
+                "Size": [2, 2],
+                "FishType": "Bass"
+            },
+            "2": {
+                "Level": 3,
+                "Price": 20,
+                "Cost": 10,
+                "Size": [1, 1],
+                "FishType": "GoldFish"
+            }
+        },
         "Upgrades": {},
         "Relationships": {},
         "Alive": true,
