@@ -7,7 +7,10 @@ public class Tuna : Fish
 {
     public override void FinalAbility(int x)
     {
-        return;
+        for (int i = 0; i < x; i++)
+        {
+            Counting.MultScore(1.05f);
+        }
     }
     public override void OnCount((int x, int y) pos, int z, ItemGrid itemGrid)
     {

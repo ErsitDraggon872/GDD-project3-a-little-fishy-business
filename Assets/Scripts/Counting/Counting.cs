@@ -12,6 +12,7 @@ public class Counting : MonoBehaviour
 {
     #region StaticScoring
     private static float Score = 0;
+    private static float Multiplier = 1;
 
     public static void AddScore(float x)
     {
@@ -19,7 +20,7 @@ public class Counting : MonoBehaviour
     }
     public static void MultScore(float x)
     {
-        Score *= x;
+        Multiplier += x;
     }
 
     #endregion
@@ -103,6 +104,8 @@ public class Counting : MonoBehaviour
 
             action?.Invoke(count);   // null-safe call
         }
+
+        Score *= Multiplier;
         
         if (reset)
         {
