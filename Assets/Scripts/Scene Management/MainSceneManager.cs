@@ -35,7 +35,7 @@ public class MainSceneManager : MonoBehaviour
         AsyncOperation async = SceneManager.LoadSceneAsync(s);
         // allows control over when the next scene will load by stopping it from loading automatically
         async.allowSceneActivation = false;
-
+ 
         float t = 0;
 
         while (async.progress < 0.9f || t < 1)

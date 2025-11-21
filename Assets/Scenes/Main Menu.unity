@@ -466,11 +466,31 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8403091619074838065, guid: fddeefc3a94e6734f8a3d0db130526d8, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
-      value: 1
+      value: 5
       objectReference: {fileID: 0}
+    - target: {fileID: 8403091619074838065, guid: fddeefc3a94e6734f8a3d0db130526d8, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 830111852}
     - target: {fileID: 8403091619074838065, guid: fddeefc3a94e6734f8a3d0db130526d8, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
       value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 8403091619074838065, guid: fddeefc3a94e6734f8a3d0db130526d8, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: SceneTransition
+      objectReference: {fileID: 0}
+    - target: {fileID: 8403091619074838065, guid: fddeefc3a94e6734f8a3d0db130526d8, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: MainSceneManager, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 8403091619074838065, guid: fddeefc3a94e6734f8a3d0db130526d8, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_StringArgument
+      value: Main Menu
+      objectReference: {fileID: 0}
+    - target: {fileID: 8403091619074838065, guid: fddeefc3a94e6734f8a3d0db130526d8, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
