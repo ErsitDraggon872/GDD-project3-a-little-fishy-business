@@ -7,14 +7,25 @@ public class MainSceneManager : MonoBehaviour
 {
     #region Variables
 
+    public static MainSceneManager Instance { get; private set; }
     private Image transitionImage;
+    private bool transitioning;
 
     #endregion
-
+    
     #region Initialization
     private void Awake()
     {
-        DontDestroyOnLoad(this);
+        // Creates scenemanager instance if does not exist yet
+        if (Instance != null && Instance != this)
+        {
+            Destroy(gameObject);
+        }
+        else
+        {
+            Instance = this;
+            DontDestroyOnLoad(this);
+        }
     }
 
     private void Start()
@@ -26,11 +37,18 @@ public class MainSceneManager : MonoBehaviour
 
     public void SceneTransition(int sceneNum)
     {
+        if (transitioning)
+        {
+            return;
+        }
+        transitioning = true;
         StartCoroutine(AsyncSceneTransition(sceneNum));
     }
 
     IEnumerator AsyncSceneTransition(int s)
-    {
+    {   
+        transitionImage.gameObject.SetActive(true);
+
         // load next scene asynchronously for smooth transition
         AsyncOperation async = SceneManager.LoadSceneAsync(s);
         // allows control over when the next scene will load by stopping it from loading automatically
@@ -78,6 +96,7 @@ public class MainSceneManager : MonoBehaviour
             yield return null;
         }
 
+        transitioning = false;
         transitionImage.gameObject.SetActive(false);
     }
 }

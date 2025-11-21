@@ -48,6 +48,6 @@ public class Goldfish : Fish
     public override (Action<int>, string) GetAbilityTracker()
     {
 
-        return (FinalAbility, "GoldFish");
+        return (FinalAbility, "Goldfish");
     }
 }

@@ -13,7 +13,6 @@ public class FishEntry
     //Level etc
     public FishMetaData fishMetaData;
 
-
     public FishEntry(JObject JsonData)
     {
         JArray sizeArr = (JArray)JsonData["Size"];
@@ -21,13 +20,16 @@ public class FishEntry
         int y = sizeArr[1].Value<int>();
 
         Vector2Int size = new Vector2Int(x, y);
+        string[] types = { "Empty" };
+
         this.fishMetaData = new FishMetaData(
             (int)JsonData["Level"],
             (float)JsonData["Price"],
             (float)JsonData["Cost"],
             size,
-            (string)JsonData["FishType"],
-            (string)JsonData["FishName"]
+            types,
+            (string)JsonData["FishName"],
+            (string)JsonData["Description"]
         );
 
     }
@@ -70,11 +72,6 @@ public class Inventory : MonoBehaviour
         foreach (Fish fish in FishSOs)
         {
             Debug.Log($"SO asset name = {fish.name}, SO FishName = {fish.GetData().FishName}, SO FishType = {fish.GetData().FishType}");
-        }
-
-        foreach (Fish fish in FishSOs)
-        {
-            fishLookup[fish.GetData().FishType] = fish;
             fishLookupByName[fish.GetData().FishName] = fish;
         }
         Debug.Log(fishLookup);
@@ -148,7 +145,7 @@ public class Inventory : MonoBehaviour
         foreach (FishEntry entry in currentInventory)
         {
             // 1. Create inventory item object
-            InventoryItem newItem = GameObject.Instantiate(itemPrefab).GetComponent<InventoryItem>();
+            InventoryItem newItem = Instantiate(itemPrefab).GetComponent<InventoryItem>();
 
             // 2. Create fresh ItemData
             ItemData data = ScriptableObject.CreateInstance<ItemData>();
@@ -179,7 +176,7 @@ public class Inventory : MonoBehaviour
             if (pos == null)
             {
                 Debug.LogWarning("Inventory grid full, cannot place: " + entry.fishMetaData.FishName);
-                GameObject.Destroy(newItem.gameObject);
+                Destroy(newItem.gameObject);
                 continue;
             }
 
