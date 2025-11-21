@@ -105,11 +105,8 @@ public class Counting : MonoBehaviour
             action?.Invoke(count);   // null-safe call
         }
 
-<<<<<<< HEAD
         Score *= Multiplier;
         
-=======
->>>>>>> 06c5d9a7923a81695f3be07d9174454e381eb149
         if (reset)
         {
             foreach (Fish fish in fishObjects)
