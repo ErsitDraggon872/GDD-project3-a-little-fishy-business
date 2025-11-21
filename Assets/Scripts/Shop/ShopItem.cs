@@ -8,6 +8,7 @@ public class ShopItem : MonoBehaviour
     public TextMeshProUGUI fishName;
     public TextMeshProUGUI fishPrice;
     public FishShopSpawner fishShopSpawner;
+    public GameObject disablePanel;
 
     public Sprite nullImage;
 
@@ -24,7 +25,7 @@ public class ShopItem : MonoBehaviour
     public void AssignSlot()
     {
         //readonly here pls
-        this.gameObject.SetActive(true);
+        disablePanel.SetActive(false);
         fishSO = fishShopSpawner.getShopSlot();
         image.sprite = fishSO.Sprite;
         fishName.text = fishSO.GetData().FishName;
@@ -42,7 +43,7 @@ public class ShopItem : MonoBehaviour
         image.sprite = nullImage;
         fishName.text = "";
         fishPrice.text = "";
-        this.gameObject.SetActive(false);
+        disablePanel.SetActive(true);
     }
 
     //Assign Null & Assign 
