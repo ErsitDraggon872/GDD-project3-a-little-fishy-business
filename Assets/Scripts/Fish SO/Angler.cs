@@ -1,6 +1,8 @@
 using System;
 using Unity.VisualScripting;
 using UnityEngine;
+using System.Collections.Generic;
+
 
 [CreateAssetMenu(menuName = "FishSO/Angler")]
 public class Angler : Fish

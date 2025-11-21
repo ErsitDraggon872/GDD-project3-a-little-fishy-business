@@ -14,7 +14,7 @@ public class Koi : Fish
         int r = UnityEngine.Random.Range(1, 101);
         if (r <= 10)
         {
-            Counting.MultScore(1.25);
+            Counting.MultScore(1.25f);
         }
         return;
     }
