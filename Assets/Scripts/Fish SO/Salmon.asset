@@ -1,0 +1,19 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1d7f4ce58312c964ca652ba8c360dfd1, type: 3}
+  m_Name: Salmon
+  m_EditorClassIdentifier: 
+  sprite: {fileID: -6967122372230043882, guid: 5a3c6a5157fab1540849f1b4260a845c, type: 3}
+  baseData:
+    level: 1
+    price: 9
+    size: {x: 2, y: 1}
