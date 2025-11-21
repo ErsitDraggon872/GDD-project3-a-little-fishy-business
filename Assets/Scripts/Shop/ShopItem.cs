@@ -25,7 +25,7 @@ public class ShopItem : MonoBehaviour
     public void AssignSlot()
     {
         //readonly here pls
-        disablePanel.SetActive(false);
+        disablePanel.SetActive(true);
         fishSO = fishShopSpawner.getShopSlot();
         image.sprite = fishSO.Sprite;
         fishName.text = fishSO.GetData().FishName;
