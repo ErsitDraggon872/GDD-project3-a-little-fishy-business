@@ -281,8 +281,8 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: db1c662c80e574c90973764178b520f8, type: 3}
-  m_Name:
-  m_EditorClassIdentifier:
+  m_Name: 
+  m_EditorClassIdentifier: 
   inventoryGrid: {fileID: 1651083603}
   itemPrefab: {fileID: 4677592062807147059, guid: aff9378aa009944b8a588d7932fe206d, type: 3}
 --- !u!1 &38951998
@@ -462,11 +462,10 @@ RectTransform:
   - {fileID: 1696671986}
   - {fileID: 2046187793}
   - {fileID: 1440587259}
-  - {fileID: 943117128}
   - {fileID: 1932873938}
   - {fileID: 806963736}
-  - {fileID: 1358031011}
   - {fileID: 2068334329975108811}
+  - {fileID: 943117128}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
@@ -521,8 +520,8 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
-  m_Name:
-  m_EditorClassIdentifier:
+  m_Name: 
+  m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
@@ -657,8 +656,8 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
-  m_Name:
-  m_EditorClassIdentifier:
+  m_Name: 
+  m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
@@ -1245,19 +1244,17 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 'Sell Fish
-
-'
+  m_text: sell fish
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: dc36b3fdc14f47ebb36fd484a67e268a, type: 2}
-  m_sharedMaterial: {fileID: 2140032, guid: dc36b3fdc14f47ebb36fd484a67e268a, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: d4179f50f1b12064fa76aed617b11348, type: 2}
+  m_sharedMaterial: {fileID: 2282197154690413801, guid: d4179f50f1b12064fa76aed617b11348, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
-    rgba: 4278465346
-  m_fontColor: {r: 0.2603773, g: 0.20029205, b: 0.015229601, a: 1}
+    rgba: 4278728260
+  m_fontColor: {r: 0.2679245, g: 0.21031988, b: 0.029825535, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3
   m_fontColorGradient:
@@ -1274,8 +1271,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 20
-  m_fontSizeBase: 20
+  m_fontSize: 26
+  m_fontSizeBase: 26
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 0
@@ -1630,8 +1627,8 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: f19146772dd683945812a0db1bcaa2b7, type: 3}
-  m_Name:
-  m_EditorClassIdentifier:
+  m_Name: 
+  m_EditorClassIdentifier: 
   FishSOs:
   - {fileID: 11400000, guid: f0049a288aec09742b937df3a76e9b6c, type: 2}
   - {fileID: 11400000, guid: 6325b86027143ec489187fccb19d1eab, type: 2}
@@ -2050,8 +2047,8 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
-  m_Name:
-  m_EditorClassIdentifier:
+  m_Name: 
+  m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
@@ -2060,12 +2057,10 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 'Buy Fish
-
-'
+  m_text: get more fish
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: dc36b3fdc14f47ebb36fd484a67e268a, type: 2}
-  m_sharedMaterial: {fileID: 2140032, guid: dc36b3fdc14f47ebb36fd484a67e268a, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: d4179f50f1b12064fa76aed617b11348, type: 2}
+  m_sharedMaterial: {fileID: 2282197154690413801, guid: d4179f50f1b12064fa76aed617b11348, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -2111,7 +2106,7 @@ MonoBehaviour:
   m_linkedTextComponent: {fileID: 0}
   parentLinkedComponent: {fileID: 0}
   m_enableKerning: 0
-  m_ActiveFontFeatures:
+  m_ActiveFontFeatures: 
   m_enableExtraPadding: 0
   checkPaddingRequired: 0
   m_isRichText: 1
@@ -2591,8 +2586,8 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 42bd6b1dfd4c14f618d0c4ccde98383b, type: 3}
-  m_Name:
-  m_EditorClassIdentifier:
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &1651083603
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2603,14 +2598,15 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 96059a584041b4138bff0033aaee9d9e, type: 3}
-  m_Name:
-  m_EditorClassIdentifier:
+  m_Name: 
+  m_EditorClassIdentifier: 
   tileSizeWidth: 64
   tileSizeHeight: 64
   isPocketGrid: 1
   gridSizeWidth: 2
   gridSizeHeight: 2
   inventoryItemPrefab: {fileID: 0}
+  counting: {fileID: 0}
 --- !u!114 &1651083604
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2621,8 +2617,8 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
-  m_Name:
-  m_EditorClassIdentifier:
+  m_Name: 
+  m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
@@ -2798,6 +2794,7 @@ GameObject:
   - component: {fileID: 1696671988}
   - component: {fileID: 1696671987}
   - component: {fileID: 1696671990}
+  - component: {fileID: 1696671991}
   m_Layer: 5
   m_Name: Counting
   m_TagString: Untagged
@@ -2868,31 +2865,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1696671988}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 771203428349594831}
-        m_TargetAssemblyTypeName: OverallGameManager, Assembly-CSharp
-        m_MethodName: EndDay
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-      - m_Target: {fileID: 8431648520602546703}
-        m_TargetAssemblyTypeName: MainSceneManager, Assembly-CSharp
-        m_MethodName: ClickSound
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument:
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
 --- !u!114 &1696671988
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2945,6 +2918,19 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   itemGrid: {fileID: 1710837022}
   ScoreText: {fileID: 714435631}
+--- !u!114 &1696671991
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1696671985}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4504aee492c86174c987ae917825221e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  myButton: {fileID: 0}
 --- !u!1 &1710837018
 GameObject:
   m_ObjectHideFlags: 0
@@ -3040,6 +3026,7 @@ MonoBehaviour:
   gridSizeWidth: 6
   gridSizeHeight: 6
   inventoryItemPrefab: {fileID: 0}
+  counting: {fileID: 0}
 --- !u!114 &1710837023
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3254,8 +3241,8 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 05e700da6c7c9a442957439dbfb28a3c, type: 3}
-  m_Name:
-  m_EditorClassIdentifier:
+  m_Name: 
+  m_EditorClassIdentifier: 
   itemGrid: {fileID: 1710837022}
   ScoreText: {fileID: 714435631}
 --- !u!114 &2046187795
@@ -3268,8 +3255,8 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
-  m_Name:
-  m_EditorClassIdentifier:
+  m_Name: 
+  m_EditorClassIdentifier: 
   m_Navigation:
     m_Mode: 3
     m_WrapAround: 0
@@ -3302,7 +3289,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 8431648520602546703}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: MainSceneManager, Assembly-CSharp
         m_MethodName: ClickSound
         m_Mode: 1
@@ -3311,7 +3298,7 @@ MonoBehaviour:
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
-          m_StringArgument:
+          m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
       - m_Target: {fileID: 992358363}
@@ -3323,7 +3310,7 @@ MonoBehaviour:
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
-          m_StringArgument:
+          m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
 --- !u!114 &2046187796
@@ -3336,8 +3323,8 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
-  m_Name:
-  m_EditorClassIdentifier:
+  m_Name: 
+  m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
@@ -3650,12 +3637,10 @@ GameObject:
   m_Component:
   - component: {fileID: 3219507580532435081}
   - component: {fileID: 771203428349594831}
-  - component: {fileID: 8431648520602546702}
   - component: {fileID: 8431648520602546701}
-  - component: {fileID: 8431648520602546703}
   m_Layer: 0
   m_Name: GameManager
-  m_TagString: Untagged
+  m_TagString: GameController
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -3757,46 +3742,6 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
---- !u!114 &8431648520602546702
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8431648520602546700}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f30738fc1bc60664ba16233089c87f85, type: 3}
-  m_Name:
-  m_EditorClassIdentifier:
-  sounds_list:
-  - {fileID: 8300000, guid: 3104ea5d1e268434f9de06d48de0a757, type: 3}
-  - {fileID: 8300000, guid: 62698cf10df23cd46bdbea313f69cac0, type: 3}
-  - {fileID: 8300000, guid: f395387a7764d5940961fddf8629b8e4, type: 3}
-  - {fileID: 8300000, guid: 72d84dea372b88d45ae2296f18f1f14b, type: 3}
-  - {fileID: 8300000, guid: 62b07958132048d43a1c97e940d6d175, type: 3}
-  - {fileID: 8300000, guid: 19a960d19a33cab4bbea4ec6bd84c21e, type: 3}
-  - {fileID: 8300000, guid: 402e4b013de171c48bf99db5352d3ed5, type: 3}
-  - {fileID: 8300000, guid: 007a5f9bbaea1f944a33cb075595fbca, type: 3}
-  - {fileID: 8300000, guid: 42daf7acfb1f01846bd7083c74b16ab3, type: 3}
-  - {fileID: 8300000, guid: a46688d20dafdaa43b8db0fe6b4e947f, type: 3}
-  - {fileID: 8300000, guid: f8d7c70798b7ddf418577a34d415cea1, type: 3}
-  - {fileID: 8300000, guid: 05bd7cc62ee799a4c8afcf74354376db, type: 3}
-  - {fileID: 8300000, guid: 9b29811b2059d024c9fd5774def419bd, type: 3}
-  audioSource: {fileID: 8431648520602546701}
-  musicSource: {fileID: 8431648520602546701}
---- !u!114 &8431648520602546703
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8431648520602546700}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4ce6dffe87735c2468cd8c443639641b, type: 3}
-  m_Name:
-  m_EditorClassIdentifier:
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0
