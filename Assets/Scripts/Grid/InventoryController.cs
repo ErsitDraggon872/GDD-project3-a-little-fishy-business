@@ -23,7 +23,6 @@ public class InventoryController : MonoBehaviour
     [SerializeField] List<Fish> fishes;
     [SerializeField] GameObject itemPrefab;
     [SerializeField] Transform canvasTransform;
-
     InventoryHighlight inventoryHighlight;
     #endregion
 
@@ -35,6 +34,7 @@ public class InventoryController : MonoBehaviour
     private void Update()
     {
         ItemIconDrag();
+
 
         if (Input.GetKeyDown(KeyCode.Q))
         {
@@ -232,4 +232,12 @@ public class InventoryController : MonoBehaviour
         }
     }
     #endregion
+
+    public void BuyItem()
+    {
+        if (selectedItem == null)
+        {
+            CreateRandomItem();
+        }
+    }
 }

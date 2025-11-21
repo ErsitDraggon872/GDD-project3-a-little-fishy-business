@@ -131,6 +131,8 @@ public class ItemGrid : MonoBehaviour
 
         rectTransform.localPosition = position;
 
+        FishSlapSound();
+
         Debug.Log($"Placed {inventoryItem.name} at {rectTransform.localPosition} on grid {posX},{posY}");
     }
 
@@ -265,6 +267,18 @@ public class ItemGrid : MonoBehaviour
         }
 
         return true;
+    }
+    #endregion
+    #region Sound Effects
+    public void FishSlapSound()
+    {
+        // Randomly choose 0 or 1
+        int index = Random.Range(0, 2);
+
+        if (index == 0)
+            SoundManager.Instance.Play("fish_slapping_table1_lower");
+        else
+            SoundManager.Instance.Play("fish_slapping_table2_lower");
     }
     #endregion
 }
