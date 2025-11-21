@@ -1,5 +1,6 @@
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 public class SettingsManager : MonoBehaviour
 {
     public Scrollbar musicScrollbar;
@@ -43,6 +44,11 @@ public class SettingsManager : MonoBehaviour
     public void ToggleSettingsPanel()
     {
         settingsPanel.SetActive(!settingsPanel.activeSelf);
+    }
+    public void TutorialSceneButton()
+    {
+               UnityEngine.SceneManagement.SceneManager.LoadScene("TutorialScene");
+        SoundManager.Instance.Play("click1");
     }
 }
 
