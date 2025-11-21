@@ -99,4 +99,9 @@ public class MainSceneManager : MonoBehaviour
         transitioning = false;
         transitionImage.gameObject.SetActive(false);
     }
+
+    public void ClickSound()
+    {
+        SoundManager.Instance.Play("click1");
+    }
 }

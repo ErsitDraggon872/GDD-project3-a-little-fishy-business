@@ -161,9 +161,9 @@ public class InventoryController : MonoBehaviour
                 rectTransform = selectedItem.GetComponent<RectTransform>();
                 rectTransform.SetAsLastSibling();
             }
-        } 
+        }
         else
-        {   
+        {
             SnapBack();
         }
     }
@@ -408,4 +408,12 @@ public class InventoryController : MonoBehaviour
 
     }
     #endregion
+
+    public void BuyItem()
+    {
+        if (selectedItem == null)
+        {
+            CreateRandomItem();
+        }
+    }
 }
