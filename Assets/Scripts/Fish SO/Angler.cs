@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
 
@@ -28,7 +29,7 @@ public class Angler : Fish
 
             if (slotData == null)
             {
-                runtimeData.price*1.1f;
+                runtimeData.price*=1.1f;
                 continue;
             }
                 

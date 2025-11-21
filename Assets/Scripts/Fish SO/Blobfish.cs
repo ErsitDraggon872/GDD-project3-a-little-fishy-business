@@ -1,4 +1,5 @@
 using System;
+using System.Linq;
 using Unity.VisualScripting;
 using UnityEngine;
 
@@ -11,7 +12,7 @@ public class Blobfish : Fish
     }
     public override void OnCount((int x, int y) pos, int z, ItemGrid itemGrid)
     {
-        (gridX, gridY) = itemGrid.GetGridDimensions();
+        var(gridX, gridY) = itemGrid.GetGridDimensions();
 
         var places = new (int x, int y)[]
         {

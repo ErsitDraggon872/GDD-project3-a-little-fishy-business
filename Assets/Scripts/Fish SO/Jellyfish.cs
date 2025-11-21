@@ -1,5 +1,6 @@
 using System;
 using Unity.VisualScripting;
+using System.Collections.Generic;
 using UnityEngine;
 
 [CreateAssetMenu(menuName = "FishSO/Jellyfish")]
@@ -37,9 +38,9 @@ public class Jellyfish : Fish
             var finalAbility = tracker.Item1;
             var trackingName = tracker.Item2;
 
-            if (slotData.GetFishInformation().GetData().FishType == "Blobfish")
+            if (slotData.GetFishInformation().GetData().FishName == "Blobfish")
             {
-                runtimeData.price *= 1.15;
+                runtimeData.price *= 1.15f;
             }
         }
     }

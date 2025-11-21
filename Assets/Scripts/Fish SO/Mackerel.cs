@@ -12,7 +12,7 @@ public class Mackerel : Fish
     public override void OnCount((int x, int y) pos, int z, ItemGrid itemGrid)
     {
         OverallGameManager overallGameManager = GameObject.FindFirstObjectByType<OverallGameManager>();
-        if (overallGameManager%2 == 1)
+        if (overallGameManager.GetDay()%2 == 1)
         {
             runtimeData.price *= 2;
         }
