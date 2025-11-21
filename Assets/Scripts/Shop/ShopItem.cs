@@ -18,7 +18,7 @@ public class ShopItem : MonoBehaviour
     void Start()
     {
         AssignSlot();
-        inventory = GameObject.FindFirstObjectByType<Inventory>();
+        inventory = FindFirstObjectByType<Inventory>();
     }
 
     public void AssignSlot()

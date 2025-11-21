@@ -123,7 +123,7 @@ public class OverallGameManager : MonoBehaviour
 
     private void UpdateMoney()
     {
-        moneyText.SetText($"Money: {Mathf.Floor(money)}");
+        moneyText.SetText("Money: " + money.ToString("F2"));
     }
 
     private void UpdateDay()
@@ -160,6 +160,7 @@ public class OverallGameManager : MonoBehaviour
         UpdateMoney();
 
         itemGrid.ClearGrid();
+        counting.UpdateScore();
     }
     
     public float GetMoney()

@@ -17,6 +17,7 @@ public class ItemGrid : MonoBehaviour
     [SerializeField] int gridSizeHeight;
 
     [SerializeField] GameObject inventoryItemPrefab;
+    [SerializeField] Counting counting;
     #endregion
 
     #region Grid Initialization

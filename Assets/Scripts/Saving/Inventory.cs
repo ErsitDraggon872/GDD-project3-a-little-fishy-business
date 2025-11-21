@@ -47,7 +47,6 @@ public class Inventory : MonoBehaviour
     public List<Fish> FishSOs;
     public static Inventory Instance;
 
-
     private Dictionary<string, Fish> fishLookup;
     private Dictionary<string, Fish> fishLookupByName;
 
@@ -71,6 +70,7 @@ public class Inventory : MonoBehaviour
 
         foreach (Fish fish in FishSOs)
         {
+
             Debug.Log($"SO asset name = {fish.name}, SO FishName = {fish.GetData().FishName}, SO FishType = {fish.GetData().FishType}");
             fishLookupByName[fish.GetData().FishName] = fish;
         }
@@ -79,12 +79,6 @@ public class Inventory : MonoBehaviour
     }
 
     private void AddFish(int id, JObject fishMetaData)
-    {
-        FishEntry newFish = new FishEntry(fishMetaData);
-        currentInventory.Add(newFish);
-    }
-    
-    private void AddFish(int id, FishMetaData fishMetaData)
     {
         FishEntry newFish = new FishEntry(fishMetaData);
         currentInventory.Add(newFish);
@@ -144,6 +138,15 @@ public class Inventory : MonoBehaviour
 
         foreach (FishEntry entry in currentInventory)
         {
+
+            Debug.Log("Looking up fish: " + entry.fishMetaData.FishName);
+            
+            //bandaid from ersit cuz idk how to edit the fishmetadata
+            if (entry.fishMetaData.FishName == "GoldFish")
+            {
+                entry.fishMetaData.FishName = "Goldfish";
+            }
+
             // 1. Create inventory item object
             InventoryItem newItem = Instantiate(itemPrefab).GetComponent<InventoryItem>();
 
