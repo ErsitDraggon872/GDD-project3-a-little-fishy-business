@@ -31,7 +31,7 @@ public class Counting : MonoBehaviour
     public float UpdateScore()
     {
         Count();
-        ScoreText.text = "Current Value: " + Score.ToString();
+        ScoreText.text = "Current Value: " + Score.ToString("F2");
         return Score;
     }
 
@@ -105,8 +105,11 @@ public class Counting : MonoBehaviour
             action?.Invoke(count);   // null-safe call
         }
 
+<<<<<<< HEAD
         Score *= Multiplier;
         
+=======
+>>>>>>> 06c5d9a7923a81695f3be07d9174454e381eb149
         if (reset)
         {
             foreach (Fish fish in fishObjects)
@@ -116,7 +119,6 @@ public class Counting : MonoBehaviour
             }
         }
 
-        itemGrid.ClearGrid();
     }
 
 }

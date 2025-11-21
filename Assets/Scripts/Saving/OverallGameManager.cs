@@ -67,6 +67,11 @@ public class OverallGameManager : MonoBehaviour
         currentRent = (int)chosen_file["Current_Rent"];
         loadedUpgrades = (JObject)chosen_file["Upgrades"];
         loadedInventory = (JObject)chosen_file["Inventory"];
+        if (currentDay == 1)
+        {
+            money = 100f;
+            UpdateMoney();
+        }
 
         UpdateDay();
         UpdateMoney();
@@ -100,10 +105,12 @@ public class OverallGameManager : MonoBehaviour
             money -= currentRent;
             currentRent = CalculateNewRent();
             UpdateRent();
+            PlayVictory();
             return true;
         }
         else
         {
+            PlayLoss();
             return false;
         }
     }
@@ -123,7 +130,7 @@ public class OverallGameManager : MonoBehaviour
 
     private void UpdateMoney()
     {
-        moneyText.SetText($"Money: {Mathf.Floor(money)}");
+        moneyText.SetText("Money: " + money.ToString("F2"));
     }
 
     private void UpdateDay()
@@ -142,6 +149,7 @@ public class OverallGameManager : MonoBehaviour
     
     public int GetDay()
     {
+        
         return currentDay;
     }
 
@@ -160,6 +168,7 @@ public class OverallGameManager : MonoBehaviour
         UpdateMoney();
 
         itemGrid.ClearGrid();
+        counting.UpdateScore();
     }
     
     public float GetMoney()
@@ -170,6 +179,10 @@ public class OverallGameManager : MonoBehaviour
     public void AddMoney(float moneyToAdd)
     {
         money += moneyToAdd;
+    }
+    public void SubtractMoney(float moneyToSubtract)
+    {
+        money -= moneyToSubtract;
     }
 
     private void EndGame()
@@ -203,6 +216,19 @@ public class OverallGameManager : MonoBehaviour
         return loadedUpgrades;
     }
     #endregion
+
+    public void ClickSound()
+    {
+        SoundManager.Instance.Play("click");
+    }
+    public void PlayVictory()
+    {
+        SoundManager.Instance.Play("victory");
+    }
+    public void PlayLoss()
+    {
+        SoundManager.Instance.Play("loss");
+    }
 
 }
 

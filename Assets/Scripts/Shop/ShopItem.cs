@@ -18,7 +18,7 @@ public class ShopItem : MonoBehaviour
     void Start()
     {
         AssignSlot();
-        inventory = GameObject.FindFirstObjectByType<Inventory>();
+        inventory = FindFirstObjectByType<Inventory>();
     }
 
     public void AssignSlot()
@@ -27,13 +27,13 @@ public class ShopItem : MonoBehaviour
         this.gameObject.SetActive(true);
         fishSO = fishShopSpawner.getShopSlot();
         image.sprite = fishSO.Sprite;
-        fishName.text = fishSO.GetData().FishType;
+        fishName.text = fishSO.GetData().FishName;
         fishPrice.text = fishSO.GetData().cost.ToString();
     }
 
     public void Buy()
     {
-        inventory.AddFishByName(fishSO.GetData().FishType);
+        inventory.AddFishByName(fishSO.GetData().FishName);
         AssignNull();
     }
 

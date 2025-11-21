@@ -1,6 +1,7 @@
 using UnityEngine;
 using UnityEngine.UI;
 using System.Collections.Generic;
+using TMPro;
 
 //
 public class InventoryController : MonoBehaviour
@@ -42,6 +43,9 @@ public class InventoryController : MonoBehaviour
     [SerializeField] List<Fish> fishes;
     [SerializeField] GameObject itemPrefab;
     [SerializeField] Transform canvasTransform;
+    [SerializeField] TextMeshProUGUI nameText;
+    [SerializeField] TextMeshProUGUI priceText;
+    [SerializeField] TextMeshProUGUI abilityText;
 
     InventoryHighlight inventoryHighlight;
     #endregion
@@ -157,9 +161,9 @@ public class InventoryController : MonoBehaviour
                 rectTransform = selectedItem.GetComponent<RectTransform>();
                 rectTransform.SetAsLastSibling();
             }
-        } 
+        }
         else
-        {   
+        {
             SnapBack();
         }
     }
@@ -264,6 +268,8 @@ public class InventoryController : MonoBehaviour
         selectedItem = selectedItemGrid.PickUpItem(tileGridPosition.x, tileGridPosition.y);
         if (selectedItem != null)
         {
+            DisplayItemDescription(selectedItem);
+
             rectTransform = selectedItem.GetComponent<RectTransform>();
 
             originalGrid = selectedItemGrid;
@@ -391,4 +397,23 @@ public class InventoryController : MonoBehaviour
         }
     }
     #endregion
+
+    #region Description
+    public void DisplayItemDescription(InventoryItem item)
+    {
+        var fishData = item.itemData.GetFishInformation().GetData();
+        nameText.text = fishData.FishName;
+        priceText.text = "value: " + fishData.price.ToString();
+        abilityText.text = fishData.description;
+
+    }
+    #endregion
+
+    public void BuyItem()
+    {
+        if (selectedItem == null)
+        {
+            CreateRandomItem();
+        }
+    }
 }

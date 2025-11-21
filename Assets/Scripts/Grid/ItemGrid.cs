@@ -17,6 +17,7 @@ public class ItemGrid : MonoBehaviour
     [SerializeField] int gridSizeHeight;
 
     [SerializeField] GameObject inventoryItemPrefab;
+    [SerializeField] Counting counting;
     #endregion
 
     #region Grid Initialization
@@ -136,6 +137,8 @@ public class ItemGrid : MonoBehaviour
         Vector2 position = CalculatePositionOnGrid(inventoryItem, posX, posY);
 
         rectTransform.localPosition = position;
+
+        FishSlapSound();
 
         Debug.Log($"Placed {inventoryItem.name} at {rectTransform.localPosition} on grid {posX},{posY}");
     }
@@ -272,6 +275,18 @@ public class ItemGrid : MonoBehaviour
         }
 
         return true;
+    }
+    #endregion
+    #region Sound Effects
+    public void FishSlapSound()
+    {
+        // Randomly choose 0 or 1
+        int index = Random.Range(0, 2);
+
+        if (index == 0)
+            SoundManager.Instance.Play("fish_slapping_table1_lower");
+        else
+            SoundManager.Instance.Play("fish_slapping_table2_lower");
     }
     #endregion
 }

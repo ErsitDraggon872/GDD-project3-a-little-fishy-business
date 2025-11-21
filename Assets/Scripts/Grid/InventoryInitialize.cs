@@ -9,4 +9,5 @@ public class InventoryInitializer : MonoBehaviour
     {
         Inventory.Instance.PopulateInventoryGrid(inventoryGrid, itemPrefab);
     }
+    
 }
