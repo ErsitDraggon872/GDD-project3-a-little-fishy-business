@@ -2,6 +2,7 @@ using System;
 using Unity.VisualScripting;
 using System.Collections.Generic;
 using UnityEngine;
+using System.Collections.Generic;
 
 [CreateAssetMenu(menuName = "FishSO/Jellyfish")]
 public class Jellyfish : Fish

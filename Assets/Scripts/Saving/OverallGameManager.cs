@@ -219,7 +219,7 @@ public class OverallGameManager : MonoBehaviour
 
     public void ClickSound()
     {
-        SoundManager.Instance.Play("click");
+        SoundManager.Instance.Play("click2");
     }
     public void PlayVictory()
     {

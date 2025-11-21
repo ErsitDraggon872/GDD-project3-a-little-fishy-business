@@ -204,7 +204,7 @@ public class InventoryController : MonoBehaviour
     #endregion
 
     #region Item Randomization
-    private void InsertRandomItem()
+    public void InsertRandomItem()
     {
         if (selectedItemGrid == null)
         {
