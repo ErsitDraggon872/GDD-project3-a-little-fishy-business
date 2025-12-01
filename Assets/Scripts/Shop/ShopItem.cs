@@ -14,18 +14,20 @@ public class ShopItem : MonoBehaviour
 
 
     private Inventory inventory;
+    private OverallGameManager game;
     private Fish fishSO;
 
     void Start()
     {
         AssignSlot();
         inventory = FindFirstObjectByType<Inventory>();
+        game = FindFirstObjectByType<OverallGameManager>();
     }
 
     public void AssignSlot()
     {
         //readonly here pls
-        disablePanel.SetActive(true);
+        disablePanel.SetActive(false);
         fishSO = fishShopSpawner.getShopSlot();
         image.sprite = fishSO.Sprite;
         fishName.text = fishSO.GetData().FishName;
@@ -35,7 +37,12 @@ public class ShopItem : MonoBehaviour
     public void Buy()
     {
         inventory.AddFishByName(fishSO.GetData().FishName);
-        AssignNull();
+        if (game.GetMoney() - fishSO.GetData().cost >= 0)
+        {
+            game.SubtractMoney(fishSO.GetData().cost);
+            game.AddExpenses(fishSO.GetData().cost);
+            AssignNull();
+        }
     }
 
     public void AssignNull()

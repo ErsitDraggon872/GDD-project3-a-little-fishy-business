@@ -14,14 +14,16 @@ public class OverallGameManager : MonoBehaviour
     public static List<float> FirstSevenRent = new List<float>{50, 60, 75, 100, 130, 165, 200};
     private static int currentDay;
     private static float currentRent;
+    private float currentRevenue;
+    private float currentExpenses;
     #endregion
 
     #region GameReferences
 
     public Counting counting;
     public TextMeshProUGUI moneyText;
-    public TextMeshProUGUI DayText;
-    public TextMeshProUGUI RentText;
+    public TextMeshProUGUI dayText;
+    public TextMeshProUGUI rentText;
     public GameObject DisableGamePanel;
     public TextMeshProUGUI GameOverText;
     public ItemGrid itemGrid;
@@ -135,21 +137,20 @@ public class OverallGameManager : MonoBehaviour
 
     private void UpdateDay()
     {
-        if (DayText == null)
+        if (dayText == null)
         {
-            DayText = GameObject.Find("Day").GetComponent<TextMeshProUGUI>();
+            dayText = GameObject.Find("Day").GetComponent<TextMeshProUGUI>();
         }
-        DayText.SetText($"Day: {currentDay}");
+        dayText.SetText($"Day: {currentDay}");
     }
 
     private void UpdateRent()
     {
-        RentText.SetText($"rent due: {Mathf.Round(currentRent)}");
+        rentText.SetText($"rent due: {Mathf.Round(currentRent)}");
     }
     
     public int GetDay()
     {
-        
         return currentDay;
     }
 
@@ -158,22 +159,36 @@ public class OverallGameManager : MonoBehaviour
         currentDay += 1;
         UpdateDay();
 
-        float newMoney = counting.UpdateScore();
-        AddMoney(newMoney);
+        currentRevenue = counting.UpdateScore();
+        AddMoney(currentRevenue);
+
         if (!PayRent())
         {
-            EndGame();
+            MainSceneManager.Instance.SceneTransition(4);
             return;
         }
-        UpdateMoney();
 
+        UpdateMoney();
         itemGrid.ClearGrid();
         counting.UpdateScore();
+        Destroy(inventory.gameObject);
+        Debug.Log("transition!");
+        MainSceneManager.Instance.SceneTransition(3);
     }
     
     public float GetMoney()
     {
         return money;
+    }
+    
+    public float GetRevenue()
+    {
+        return currentRevenue;
+    }
+    
+    public float GetRent()
+    {
+        return currentRent;
     }
 
     public void AddMoney(float moneyToAdd)
@@ -183,6 +198,16 @@ public class OverallGameManager : MonoBehaviour
     public void SubtractMoney(float moneyToSubtract)
     {
         money -= moneyToSubtract;
+    }
+
+    public void AddExpenses(float expensesToAdd)
+    {
+        currentExpenses += expensesToAdd;
+    }
+
+    public float GetExpenses()
+    {
+        return currentExpenses;
     }
 
     private void EndGame()
