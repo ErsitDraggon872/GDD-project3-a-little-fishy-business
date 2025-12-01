@@ -11,7 +11,8 @@ public class OverallGameManager : MonoBehaviour
     #region Variables
     public static string path_to_save = "data.json";
     private static float money;
-    public static List<float> FirstSevenRent = new List<float>{50, 60, 75, 100, 130, 165, 200};
+    public static List<float> FirstSevenRent = new List<float>{20, 30, 45, 60, 75, 100, 150};
+        //new List<float>{50, 60, 75, 100, 130, 165, 200};
     private static int currentDay;
     private static float currentRent;
     private float currentRevenue;
@@ -20,13 +21,9 @@ public class OverallGameManager : MonoBehaviour
 
     #region GameReferences
 
-    public Counting counting;
-    public TextMeshProUGUI moneyText;
-    public TextMeshProUGUI dayText;
-    public TextMeshProUGUI rentText;
-    public GameObject DisableGamePanel;
-    public TextMeshProUGUI GameOverText;
-    public ItemGrid itemGrid;
+    private Counting counting;
+    private ItemGrid itemGrid;
+    private SellMenuManager sellMenu;
 
     #endregion
 
@@ -48,7 +45,7 @@ public class OverallGameManager : MonoBehaviour
         path_to_save = Path.Combine(Application.streamingAssetsPath, path_to_save);
         if (!loadJson(1))
         {
-            EndGame();
+            Application.Quit();
         }
     }
 
@@ -72,12 +69,7 @@ public class OverallGameManager : MonoBehaviour
         if (currentDay == 1)
         {
             money = 100f;
-            UpdateMoney();
         }
-
-        UpdateDay();
-        UpdateMoney();
-        UpdateRent();
 
         return true;
     }
@@ -105,14 +97,12 @@ public class OverallGameManager : MonoBehaviour
         if (money > currentRent)
         {
             money -= currentRent;
-            currentRent = CalculateNewRent();
-            UpdateRent();
-            PlayVictory();
+            sellMenu.UpdateRent(currentRent);
             return true;
         }
         else
         {
-            PlayLoss();
+            money -= currentRent;
             return false;
         }
     }
@@ -130,35 +120,20 @@ public class OverallGameManager : MonoBehaviour
         }
     }
 
-    private void UpdateMoney()
-    {
-        moneyText.SetText("Money: " + money.ToString("F2"));
-    }
-
-    private void UpdateDay()
-    {
-        if (dayText == null)
-        {
-            dayText = GameObject.Find("Day").GetComponent<TextMeshProUGUI>();
-        }
-        dayText.SetText($"Day: {currentDay}");
-    }
-
-    private void UpdateRent()
-    {
-        rentText.SetText($"rent due: {Mathf.Round(currentRent)}");
-    }
-    
     public int GetDay()
     {
         return currentDay;
     }
 
-    public void EndDay()
+    public void NextDay()
     {
         currentDay += 1;
-        UpdateDay();
+        currentRent = CalculateNewRent();
+        MainSceneManager.Instance.SceneTransition(1);
+    }
 
+    public void EndDay()
+    {
         currentRevenue = counting.UpdateScore();
         AddMoney(currentRevenue);
 
@@ -168,10 +143,14 @@ public class OverallGameManager : MonoBehaviour
             return;
         }
 
-        UpdateMoney();
         itemGrid.ClearGrid();
         counting.UpdateScore();
-        Destroy(inventory.gameObject);
+
+        if (inventory != null)
+        {
+            Destroy(inventory.gameObject);
+        }
+
         Debug.Log("transition!");
         MainSceneManager.Instance.SceneTransition(3);
     }
@@ -209,13 +188,6 @@ public class OverallGameManager : MonoBehaviour
     {
         return currentExpenses;
     }
-
-    private void EndGame()
-    {
-        DisableGamePanel.SetActive(true);
-        GameOverText.gameObject.SetActive(true);
-        GameOverText.text = $"Game Over!\nYou were ${Mathf.Round(currentRent - money)} short!";
-    }
     #endregion
 
     #region JSON Getters
@@ -242,6 +214,21 @@ public class OverallGameManager : MonoBehaviour
     }
     #endregion
 
+    #region Sell Menu Assigning
+    public void assignSellMenu()
+    {
+        Debug.Log("assigned sell menu");
+        sellMenu = FindFirstObjectByType<SellMenuManager>();
+        counting = FindFirstObjectByType<Counting>();
+        itemGrid = GameObject.FindWithTag("SellGrid").GetComponent<ItemGrid>();
+        sellMenu.UpdateDay(currentDay);
+        sellMenu.UpdateMoney(money);
+        sellMenu.UpdateRent(currentRent);
+    }
+    #endregion
+
+    #region Sounds
+
     public void ClickSound()
     {
         SoundManager.Instance.Play("click2");
@@ -254,6 +241,23 @@ public class OverallGameManager : MonoBehaviour
     {
         SoundManager.Instance.Play("loss");
     }
+    public void PlayPurchase()
+    {
+        SoundManager.Instance.Play("money");
+    }
+    #endregion
+
+    #region End Game
+    public void RestartGame()
+    {
+        currentDay = 0;
+        money = 100;
+        currentExpenses = 0;
+        MainSceneManager.Instance.SceneTransition(0);
+        Destroy(gameObject);
+    }
+
+    #endregion
 
 }
 

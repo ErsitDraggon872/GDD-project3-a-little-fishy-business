@@ -15,6 +15,7 @@ public class ShopItem : MonoBehaviour
 
     private Inventory inventory;
     private OverallGameManager game;
+    private BuyMenuManager buyMenu;
     private Fish fishSO;
 
     void Start()
@@ -22,6 +23,8 @@ public class ShopItem : MonoBehaviour
         AssignSlot();
         inventory = FindFirstObjectByType<Inventory>();
         game = FindFirstObjectByType<OverallGameManager>();
+        buyMenu = FindFirstObjectByType<BuyMenuManager>();
+        buyMenu.UpdateMoney(game.GetMoney());
     }
 
     public void AssignSlot()
@@ -37,11 +40,21 @@ public class ShopItem : MonoBehaviour
     public void Buy()
     {
         inventory.AddFishByName(fishSO.GetData().FishName);
+        if (fishName.text == "")
+        {
+            return;
+        }
         if (game.GetMoney() - fishSO.GetData().cost >= 0)
         {
             game.SubtractMoney(fishSO.GetData().cost);
             game.AddExpenses(fishSO.GetData().cost);
+            game.PlayPurchase();
+            buyMenu.UpdateMoney(game.GetMoney());
             AssignNull();
+        } 
+        else 
+        {
+            buyMenu.FailPurchase();
         }
     }
 

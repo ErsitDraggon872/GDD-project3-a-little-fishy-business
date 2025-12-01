@@ -21,7 +21,8 @@ public class ReceiptUpdater : MonoBehaviour
         revenueNumText.text = $"${gameManager.GetRevenue().ToString("F2")}";
         expensesNumText.text = $"${gameManager.GetExpenses().ToString("F2")}";
         rentNumText.text = $"${gameManager.GetRent().ToString("F2")}";
-        profitNumText.text = $"${(gameManager.GetRevenue() - gameManager.GetExpenses() - gameManager.GetRent()).ToString("F2")}";
+        float profit = gameManager.GetRevenue() - gameManager.GetExpenses() - gameManager.GetRent();
+        profitNumText.text = $"${profit.ToString("F2")}";
         balanceNumText.text = $"${gameManager.GetMoney().ToString("F2")}";
 
         if (SceneManager.GetActiveScene().buildIndex == 3)
