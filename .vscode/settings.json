@@ -66,5 +66,5 @@
     "explorer.fileNesting.patterns": {
         "*.sln": "*.csproj"
     },
-    "dotnet.defaultSolution": "_Proj_3 - A Little Fishy Business.sln"
+    "dotnet.defaultSolution": "GDD-project3-a-little-fishy-business.sln"
 }
