@@ -1,0 +1,19 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ea736443870ea854f937cc051fa257aa, type: 3}
+  m_Name: Tuna
+  m_EditorClassIdentifier: 
+  sprite: {fileID: -4895150494573996402, guid: cfe247d9231b34749810d402c69f859a, type: 3}
+  baseData:
+    level: 1
+    price: 15
+    size: {x: 3, y: 2}

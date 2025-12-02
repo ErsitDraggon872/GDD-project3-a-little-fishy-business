@@ -3,10 +3,13 @@ using UnityEngine;
 public class ItemGrid : MonoBehaviour
 {
     #region Variables/References
-    public const float tileSizeWidth = 32;
-    public const float tileSizeHeight = 32;
+    public float tileSizeWidth = 32;
+    public float tileSizeHeight = 32;
+
 
     InventoryItem[,] inventoryItemSlot;
+
+    public bool isPocketGrid = false;
 
     RectTransform rectTransform;
 
@@ -14,10 +17,11 @@ public class ItemGrid : MonoBehaviour
     [SerializeField] int gridSizeHeight;
 
     [SerializeField] GameObject inventoryItemPrefab;
+    [SerializeField] Counting counting;
     #endregion
 
     #region Grid Initialization
-    private void Start()
+    private void Awake()
     {
         rectTransform = GetComponent<RectTransform>();
         Init(gridSizeWidth, gridSizeHeight);
@@ -102,10 +106,13 @@ public class ItemGrid : MonoBehaviour
             return false;
         }
 
-        if (overlapItem != null)
+        if (isPocketGrid)
         {
-            CleanGridReference(overlapItem);
+            inventoryItem.itemData.width = 1;
+            inventoryItem.itemData.height = 1;
+            inventoryItem.rotated = false;
         }
+
 
         PlaceItem(inventoryItem, posX, posY);
 
@@ -235,17 +242,18 @@ public class ItemGrid : MonoBehaviour
             {
                 if (inventoryItemSlot[posX + x, posY + y] != null)
                 {
-                    if (overlapItem == null)
-                    {
-                        overlapItem = inventoryItemSlot[posX + x, posY + y];
-                    }
-                    else
-                    {
-                        if (overlapItem != inventoryItemSlot[posX + x, posY + y])
-                        {
-                            return false;
-                        }
-                    }
+                    // if (overlapItem == null)
+                    // {
+                    //     overlapItem = inventoryItemSlot[posX + x, posY + y];
+                    // }
+                    // else
+                    // {
+                    //     if (overlapItem != inventoryItemSlot[posX + x, posY + y])
+                    //     {
+                    //         return false;
+                    //     }
+                    // }
+                    return false;
                 }
             }
         }

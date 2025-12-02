@@ -1,9 +1,13 @@
 using UnityEngine;
+using UnityEngine.UI;
 using System.Collections.Generic;
+using TMPro;
 
 //
 public class InventoryController : MonoBehaviour
 {
+    public static InventoryController Instance;
+
     #region Variables/References
     [HideInInspector]
     private ItemGrid selectedItemGrid;
@@ -12,9 +16,25 @@ public class InventoryController : MonoBehaviour
         get => selectedItemGrid;
         set {
             selectedItemGrid = value;
-            inventoryHighlight.SetParent(value);
+
+            if (value != null)
+                pointerInsideGrid = true;
+            else
+                pointerInsideGrid = false;
+
+            if (value != null)
+                inventoryHighlight.SetParent(value);
+            else
+                inventoryHighlight.Show(false);
         }
     }
+
+    private ItemGrid originalGrid;
+    private Vector2 originalItemPosition;
+    private int originalX;
+    private int originalY;
+    private bool pointerInsideGrid = false;
+
 
     InventoryItem selectedItem;
     InventoryItem overlapItem;
@@ -23,18 +43,22 @@ public class InventoryController : MonoBehaviour
     [SerializeField] List<Fish> fishes;
     [SerializeField] GameObject itemPrefab;
     [SerializeField] Transform canvasTransform;
+    [SerializeField] TextMeshProUGUI nameText;
+    [SerializeField] TextMeshProUGUI priceText;
+    [SerializeField] TextMeshProUGUI abilityText;
+
     InventoryHighlight inventoryHighlight;
     #endregion
 
     private void Awake()
     {
+        Instance = this;
         inventoryHighlight = GetComponent<InventoryHighlight>();
     }
 
     private void Update()
     {
         ItemIconDrag();
-
 
         if (Input.GetKeyDown(KeyCode.Q))
         {
@@ -57,6 +81,13 @@ public class InventoryController : MonoBehaviour
         if (selectedItemGrid == null)
         {
             inventoryHighlight.Show(false);
+
+            if (selectedItem != null && !Input.GetMouseButton(0)) {
+                {
+                    PlaceDown();
+                }
+            }
+
             return;
         }
 
@@ -64,7 +95,12 @@ public class InventoryController : MonoBehaviour
 
         if (Input.GetMouseButtonDown(0))
         {
-            LeftMouseButtonPress();
+            PickUp();
+        }
+
+        if (!Input.GetMouseButton(0))
+        {
+            PlaceDown();
         }
     }
 
@@ -81,6 +117,25 @@ public class InventoryController : MonoBehaviour
     #endregion
 
     #region Item Placement
+    private void SnapBack()
+    {
+        if (rectTransform == null)
+            rectTransform = selectedItem.GetComponent<RectTransform>();
+
+        if (originalGrid != null)
+        {
+            if (originalGrid.isPocketGrid)
+                ApplyPocketGridSize(selectedItem, originalGrid);
+            else
+                ApplyMainGridSize(selectedItem, originalGrid);
+
+            originalGrid.PlaceItem(selectedItem, originalX, originalY);
+        }
+
+        rectTransform.localPosition = originalItemPosition;
+
+        selectedItem = null;
+    }
     private void InsertItem(InventoryItem itemToInsert)
     {
         Vector2Int? posOnGrid = selectedItemGrid.FindSpaceForObject(itemToInsert);
@@ -107,11 +162,49 @@ public class InventoryController : MonoBehaviour
                 rectTransform.SetAsLastSibling();
             }
         }
+        else
+        {
+            SnapBack();
+        }
     }
+    private void PickUp()
+    {
+        Vector2Int tileGridPosition = GetTileGridPosition();
+
+        if (selectedItem == null)
+        {
+            PickUpItem(tileGridPosition);
+        }
+    }
+
+    private void PlaceDown()
+    {
+        if (!pointerInsideGrid)
+        {
+            SnapBack();
+
+            return;
+        }
+
+        if (selectedItem != null)
+        {
+            if (selectedItemGrid != originalGrid)
+            {
+                if (selectedItemGrid.isPocketGrid)
+                    ApplyPocketGridSize(selectedItem, selectedItemGrid);
+                else
+                    ApplyMainGridSize(selectedItem, selectedItemGrid);
+            }
+
+            Vector2Int tileGridPosition = GetTileGridPosition();
+            PlaceItem(tileGridPosition);
+        }
+    }
+
     #endregion
 
     #region Item Randomization
-    private void InsertRandomItem()
+    public void InsertRandomItem()
     {
         if (selectedItemGrid == null)
         {
@@ -142,29 +235,29 @@ public class InventoryController : MonoBehaviour
     #endregion
 
     #region Item Movement
-    private void LeftMouseButtonPress()
-    {
-        //Debug.Log(selectedItemGrid.GetTileGridPosition(Input.mousePosition));
-        Vector2Int tileGridPosition = GetTileGridPosition();
+    // private void LeftMouseButtonPress()
+    // {
+    //     //Debug.Log(selectedItemGrid.GetTileGridPosition(Input.mousePosition));
+    //     Vector2Int tileGridPosition = GetTileGridPosition();
 
-        if (selectedItem == null)
-        {
-            PickUpItem(tileGridPosition);
-        }
-        else
-        {
-            PlaceItem(tileGridPosition);
-        }
-    }
+    //     if (selectedItem == null)
+    //     {
+    //         PickUpItem(tileGridPosition);
+    //     }
+    //     else
+    //     {
+    //         PlaceItem(tileGridPosition);
+    //     }
+    // }
 
     private Vector2Int GetTileGridPosition()
     {
         Vector2 position = Input.mousePosition;
 
-        if (selectedItem != null)
+        if (selectedItem != null && !selectedItemGrid.isPocketGrid)
         {
-            position.x -= (selectedItem.WIDTH - 1) * ItemGrid.tileSizeWidth / 2;
-            position.y += (selectedItem.HEIGHT - 1) * ItemGrid.tileSizeHeight / 2;
+            position.x -= (selectedItem.WIDTH - 1) * selectedItemGrid.tileSizeWidth / 2;
+            position.y += (selectedItem.HEIGHT - 1) * selectedItemGrid.tileSizeHeight / 2;
         }
 
         return selectedItemGrid.GetTileGridPosition(position);
@@ -175,7 +268,20 @@ public class InventoryController : MonoBehaviour
         selectedItem = selectedItemGrid.PickUpItem(tileGridPosition.x, tileGridPosition.y);
         if (selectedItem != null)
         {
+            DisplayItemDescription(selectedItem);
+
             rectTransform = selectedItem.GetComponent<RectTransform>();
+
+            originalGrid = selectedItemGrid;
+
+            if (originalGrid.isPocketGrid)
+                ApplyPocketGridSize(selectedItem, originalGrid);
+            else
+                ApplyMainGridSize(selectedItem, originalGrid);
+
+            originalX = selectedItem.onGridPositionX;
+            originalY = selectedItem.onGridPositionY;
+            originalItemPosition = rectTransform.localPosition;
         }
     }
 
@@ -185,7 +291,66 @@ public class InventoryController : MonoBehaviour
         {
             rectTransform.position = Input.mousePosition;
         }
+
+        // Resize only if pointer is inside a *different* grid from the one we picked up from
+        if (selectedItem != null && selectedItemGrid != null && pointerInsideGrid)
+        {
+            // Did we actually change grids?
+            if (selectedItemGrid != originalGrid)
+            {
+                if (selectedItemGrid.isPocketGrid)
+                    ApplyPocketGridSize(selectedItem, selectedItemGrid);
+                else
+                    ApplyMainGridSize(selectedItem, selectedItemGrid);
+            }
+        }
     }
+
+    public void ApplyPocketGridSize(InventoryItem item, ItemGrid pocketGrid)
+    {
+        item.itemData.width = 1;
+        item.itemData.height = 1;
+        item.rotated = false;
+
+        RectTransform rt = item.GetComponent<RectTransform>();
+        rt.localScale = Vector3.one;   // IMPORTANT
+        rt.sizeDelta = new Vector2(
+            pocketGrid.tileSizeWidth,
+            pocketGrid.tileSizeHeight
+        );
+
+        Image img = item.GetComponent<Image>();
+        img.preserveAspect = true;
+    }
+
+    public void ApplyMainGridSize(InventoryItem item, ItemGrid mainGrid)
+    {
+        var fish = item.itemData.GetFishInformation();
+        item.itemData.width = fish.GetData().size.x;
+        item.itemData.height = fish.GetData().size.y;
+
+        RectTransform rt = item.GetComponent<RectTransform>();
+        rt.localScale = Vector3.one;  // IMPORTANT
+        rt.sizeDelta = new Vector2(
+            item.WIDTH * mainGrid.tileSizeWidth,
+            item.HEIGHT * mainGrid.tileSizeHeight
+        );
+
+        Image img = item.GetComponent<Image>();
+        img.preserveAspect = true;
+    }
+
+    public static void ApplyPocket(InventoryItem item, ItemGrid grid)
+    {
+        Instance.ApplyPocketGridSize(item, grid);
+    }
+
+    public static void ApplyMain(InventoryItem item, ItemGrid grid)
+    {
+        Instance.ApplyMainGridSize(item, grid);
+    }
+
+
     #endregion
 
     #region Item Highlighting
@@ -230,6 +395,17 @@ public class InventoryController : MonoBehaviour
             inventoryHighlight.SetSize(selectedItem);
             inventoryHighlight.SetPosition(selectedItemGrid, selectedItem, positionOnGrid.x, positionOnGrid.y);
         }
+    }
+    #endregion
+
+    #region Description
+    public void DisplayItemDescription(InventoryItem item)
+    {
+        var fishData = item.itemData.GetFishInformation().GetData();
+        nameText.text = fishData.FishName;
+        priceText.text = "value: " + fishData.price.ToString();
+        abilityText.text = fishData.description;
+
     }
     #endregion
 

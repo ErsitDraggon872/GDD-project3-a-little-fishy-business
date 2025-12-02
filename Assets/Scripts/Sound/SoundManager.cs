@@ -25,7 +25,7 @@ public class SoundManager : MonoBehaviour
         {
             Destroy(gameObject);
             return;
-        }
+        }   
 
         audioSource = gameObject.AddComponent<AudioSource>();
 
@@ -103,5 +103,11 @@ public class SoundManager : MonoBehaviour
             musicSource.volume = PlayerPrefs.GetFloat("MusicVolume");
         //if (PlayerPrefs.HasKey("SFXVolume"))
         //    sfxSource.volume = PlayerPrefs.GetFloat("SFXVolume");
+    }
+
+
+    public void ClickSound()
+    {
+        Instance.Play("click1");
     }
 }
