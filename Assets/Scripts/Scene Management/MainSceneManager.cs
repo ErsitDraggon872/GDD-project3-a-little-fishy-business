@@ -35,7 +35,7 @@ public class MainSceneManager : MonoBehaviour
 
     #endregion
 
-    public void SceneTransition(string sceneNum)
+    public void SceneTransition(int sceneNum)
     {
         if (transitioning)
         {
@@ -45,7 +45,7 @@ public class MainSceneManager : MonoBehaviour
         StartCoroutine(AsyncSceneTransition(sceneNum));
     }
 
-    IEnumerator AsyncSceneTransition(string s)
+    IEnumerator AsyncSceneTransition(int s)
     {   
         transitionImage.gameObject.SetActive(true);
 
@@ -72,7 +72,7 @@ public class MainSceneManager : MonoBehaviour
         // once progress > 90%, allows next scene to load
         async.allowSceneActivation = true;
 
-        while (s != SceneManager.GetActiveScene().name)
+        while (s != SceneManager.GetActiveScene().buildIndex)
         {
             yield return null;
         }
