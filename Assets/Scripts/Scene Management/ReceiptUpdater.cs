@@ -12,6 +12,7 @@ public class ReceiptUpdater : MonoBehaviour
     [SerializeField] private TextMeshProUGUI rentNumText;
     [SerializeField] private TextMeshProUGUI profitNumText;
     [SerializeField] private TextMeshProUGUI balanceNumText;
+    [SerializeField] private TextMeshProUGUI openingNumText;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -24,6 +25,8 @@ public class ReceiptUpdater : MonoBehaviour
         float profit = gameManager.GetRevenue() - gameManager.GetExpenses() - gameManager.GetRent();
         profitNumText.text = $"${profit.ToString("F2")}";
         balanceNumText.text = $"${gameManager.GetMoney().ToString("F2")}";
+        float initialMoney = gameManager.GetMoney()-profit;
+        openingNumText.text = $"${initialMoney.ToString("F2")}";
 
         if (SceneManager.GetActiveScene().buildIndex == 3)
         {

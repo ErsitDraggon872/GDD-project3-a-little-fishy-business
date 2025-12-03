@@ -1,14 +1,21 @@
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.EventSystems;
+using Unity.VisualScripting;
+using UnityEngine.Rendering;
 
-public class ShopItem : MonoBehaviour
+public class ShopItem : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler, IPointerMoveHandler
 {
     public Image image;
     public TextMeshProUGUI fishName;
     public TextMeshProUGUI fishPrice;
     public FishShopSpawner fishShopSpawner;
     public GameObject disablePanel;
+    public GameObject descriptionPanel;
+    public TextMeshProUGUI descriptionText;
+
+    public Canvas canvas;
 
     public Sprite nullImage;
 
@@ -63,9 +70,86 @@ public class ShopItem : MonoBehaviour
         image.sprite = nullImage;
         fishName.text = "";
         fishPrice.text = "";
+        fishSO = null;
         disablePanel.SetActive(true);
+        descriptionPanel.SetActive(false);
     }
 
     //Assign Null & Assign 
+
+    public void OnPointerEnter(PointerEventData eventData)
+    {
+        if (descriptionPanel == null) return;
+        if (disablePanel.activeSelf)
+        {
+            return;
+        }
+
+        descriptionPanel.SetActive(true);
+
+        if (descriptionText != null)
+            descriptionText.text = fishSO.GetData().description;
+
+        UpdatePanelPosition(eventData);
+    }
+
+    public void OnPointerExit(PointerEventData eventData)
+    {
+        if (descriptionPanel == null) return;
+
+        descriptionPanel.SetActive(false);
+        if (!this.enabled)
+        {
+            return;
+        }
+    }
+
+    public void OnPointerMove(PointerEventData eventData)
+    {
+        if (!this.enabled || !descriptionPanel.activeSelf)
+        {
+            return;
+        }
+        UpdatePanelPosition(eventData);
+    }
+
+    private void UpdatePanelPosition(PointerEventData eventData)
+    {
+        if (descriptionPanel == null || canvas == null) return;
+
+        RectTransform panelRect = descriptionPanel.GetComponent<RectTransform>();
+        RectTransform canvasRect = canvas.transform as RectTransform;
+
+        Vector2 size = panelRect.rect.size;
+        // float scale = panelRect.rect.scale;
+
+        Vector2 localPoint;
+        RectTransformUtility.ScreenPointToLocalPointInRectangle(
+            canvasRect,
+            eventData.position,
+            canvas.worldCamera,
+            out localPoint
+        );
+
+        if (panelRect.anchoredPosition == localPoint)
+        {
+            return;
+        }
+
+        // Set position with offset
+        panelRect.anchoredPosition = localPoint + new Vector2(size.x/2 * panelRect.lossyScale.x, -(size.y/2 * panelRect.lossyScale.y));
+        // panelRect.position = eventData.position + new Vector2(size.x, -size.y);
+
+        // OPTIONAL: clamp inside canvas
+        // Vector2 clampedPos = panelRect.anchoredPosition;
+        // Vector2 min = canvasRect.rect.min + panelRect.rect.size * 0.5f;
+        // Vector2 max = canvasRect.rect.max - panelRect.rect.size * 0.5f;
+
+        // clampedPos.x = Mathf.Clamp(clampedPos.x, min.x, max.x);
+        // clampedPos.y = Mathf.Clamp(clampedPos.y, min.y, max.y);
+
+        // panelRect.anchoredPosition = clampedPos;
+    }
+
 
 }
