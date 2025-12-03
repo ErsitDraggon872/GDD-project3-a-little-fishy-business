@@ -123,7 +123,12 @@ public class Inventory : MonoBehaviour
 
     public Fish getFishByName(string name)
     {
-        return fishLookupByName[name];
+        if (fishLookupByName.TryGetValue(name, out Fish fish))
+        {
+            return fish;   
+        }
+
+        return null;
     }
 
     public void AddFishByName(string name)

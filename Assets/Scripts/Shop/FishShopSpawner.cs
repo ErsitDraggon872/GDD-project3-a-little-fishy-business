@@ -95,9 +95,14 @@ public class FishShopSpawner : MonoBehaviour
         {
             if (val<rate)
             {
-                return Inventory.Instance.getFishByName(name);
+                Fish fish = Inventory.Instance.getFishByName(name);
+                if (fish == null)
+                {
+                    return getShopSlot();
+                }
+                return fish;
             }
         }
-        return Inventory.Instance.getFishByName(FishLookup[FishLookup.Count - 1].Item2);
+        return Inventory.Instance.getFishByName(FishLookup[0].Item2);
     }
 }
