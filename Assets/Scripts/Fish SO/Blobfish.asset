@@ -16,4 +16,8 @@ MonoBehaviour:
   baseData:
     level: 2
     price: 18
+    cost: 0
+    FishType: []
+    FishName: Blobfish
+    description: 
     size: {x: 1, y: 1}

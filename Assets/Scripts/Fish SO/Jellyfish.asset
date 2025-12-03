@@ -16,4 +16,8 @@ MonoBehaviour:
   baseData:
     level: 1
     price: 12
+    cost: 0
+    FishType: []
+    FishName: Jellyfish
+    description: 
     size: {x: 1, y: 2}

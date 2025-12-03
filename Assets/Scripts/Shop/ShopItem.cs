@@ -88,7 +88,10 @@ public class ShopItem : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
         descriptionPanel.SetActive(true);
 
         if (descriptionText != null)
-            descriptionText.text = fishSO.GetData().description;
+        {
+            string text = "Base Price: " + fishSO.GetData().price.ToString() + "\n" + fishSO.GetData().description;
+            descriptionText.text = text;
+        }
 
         UpdatePanelPosition(eventData);
     }

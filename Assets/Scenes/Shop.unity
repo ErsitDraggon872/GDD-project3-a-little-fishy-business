@@ -881,7 +881,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &565984572
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1390,13 +1390,43 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d83790f04d5994d4490cefc0c140de74, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  SpawnRates:
-  - fishType: Perch
-    rate: 0.25
-  - fishType: Bass
-    rate: 0.5
+  ShallowSpawnRates:
   - fishType: Guppy
-    rate: 2
+    rate: 0.2
+  - fishType: Bass
+    rate: 0.2
+  - fishType: Perch
+    rate: 0.2
+  - fishType: Goldfish
+    rate: 0.15
+  - fishType: Sardine
+    rate: 0
+  - fishType: Sunfish
+    rate: 0.05
+  MidSpawnRates:
+  - fishType: Koi
+    rate: 0.2
+  - fishType: Mackerel
+    rate: 0.15
+  - fishType: Jellyfish
+    rate: 0.15
+  - fishType: Salmon
+    rate: 0.2
+  - fishType: Tuna
+    rate: 0.15
+  - fishType: Trout
+    rate: 0.15
+  DeepSpawnRates:
+  - fishType: Angler
+    rate: 0.25
+  - fishType: Blob
+    rate: 0.2
+  - fishType: Megamouth Shark
+    rate: 0.15
+  - fishType: Flounder
+    rate: 0.2
+  - fishType: Lantern Shark
+    rate: 0.2
 --- !u!4 &1304658161
 Transform:
   m_ObjectHideFlags: 0

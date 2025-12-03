@@ -18,46 +18,86 @@ public struct SpawnRateEntry
 
 public class FishShopSpawner : MonoBehaviour
 { 
+
     [SerializeField]
-    public List<SpawnRateEntry> SpawnRates;
+    public List<SpawnRateEntry> ShallowSpawnRates;
+    [SerializeField]
+    public List<SpawnRateEntry> MidSpawnRates;
+    [SerializeField]
+    public List<SpawnRateEntry> DeepSpawnRates;
     
     private List<(float, string)> FishLookup = new();
-    private Inventory inventory;
+    private int day;
 
-    void Awake()
+
+
+    private void setSpawnRate(int day)
     {
-        float total_rates = SpawnRates.Sum(x => x.rate);
-        float cumulative = 0f;
-        foreach (SpawnRateEntry entry in SpawnRates)
+        if (FishLookup.Count > 0)
         {
-            cumulative += entry.rate;
-            FishLookup.Add((cumulative, entry.fishType));
+            return;
         }
-    }
-    void Start()
-    {
-        inventory = GameObject.FindFirstObjectByType<Inventory>();
-    }
-
-    private void ensureInventory()
-    {
-        if (!inventory)
+        if (day < 3)
         {
-            inventory = GameObject.FindFirstObjectByType<Inventory>();
+            float total_rates = ShallowSpawnRates.Sum(x => x.rate);
+            float cumulative = 0f;
+            foreach (SpawnRateEntry entry in ShallowSpawnRates)
+            {
+                cumulative += entry.rate/total_rates;
+                FishLookup.Add((cumulative, entry.fishType));
+            }
+        }
+        else if (day < 5)
+        {
+            float total_rates = ShallowSpawnRates.Sum(x => x.rate)*0.6f;
+            total_rates += MidSpawnRates.Sum(x => x.rate)*0.4f;
+            float cumulative = 0f;
+            foreach (SpawnRateEntry entry in ShallowSpawnRates)
+            {
+                cumulative += entry.rate*0.6f/total_rates;
+                FishLookup.Add((cumulative, entry.fishType));
+            }
+            foreach (SpawnRateEntry entry in MidSpawnRates)
+            {
+                cumulative += entry.rate*0.4f/total_rates;
+                FishLookup.Add((cumulative, entry.fishType));
+            }
+        }
+        else
+        {
+            float total_rates = ShallowSpawnRates.Sum(x => x.rate)*0.45f;
+            total_rates += MidSpawnRates.Sum(x => x.rate)*0.35f;
+            total_rates += DeepSpawnRates.Sum(x => x.rate)*0.2f;
+            float cumulative = 0f;
+            foreach (SpawnRateEntry entry in ShallowSpawnRates)
+            {
+                cumulative += entry.rate*0.45f/total_rates;
+                FishLookup.Add((cumulative, entry.fishType));
+            }
+            foreach (SpawnRateEntry entry in MidSpawnRates)
+            {
+                cumulative += entry.rate*0.35f/total_rates;
+                FishLookup.Add((cumulative, entry.fishType));
+            }
+            foreach (SpawnRateEntry entry in DeepSpawnRates)
+            {
+                cumulative += entry.rate*0.2f/total_rates;
+                FishLookup.Add((cumulative, entry.fishType));
+            }
         }
     }
 
     public Fish getShopSlot()
     {
-        ensureInventory();
+        setSpawnRate(OverallGameManager.Instance.GetDay());
         float val = UnityEngine.Random.Range(0f, 1f);
         foreach ((float rate, string name) in FishLookup)
         {
             if (val<rate)
             {
-                return inventory.getFishByName(name);
+                return Inventory.Instance.getFishByName(name);
             }
         }
-        return inventory.getFishByName(FishLookup[FishLookup.Count - 1].Item2);
+        return Inventory.Instance.getFishByName(FishLookup[FishLookup.Count - 1].Item2);
     }
 }

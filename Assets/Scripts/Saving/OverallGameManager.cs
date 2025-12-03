@@ -8,6 +8,7 @@ using TMPro;
 
 public class OverallGameManager : MonoBehaviour
 {
+    public static OverallGameManager Instance;
     #region Variables
     public static string path_to_save = "data.json";
     private static float money;
@@ -41,7 +42,15 @@ public class OverallGameManager : MonoBehaviour
 
     void Awake()
     {
-        DontDestroyOnLoad(this);
+        if (Instance != null && Instance != this)
+        {
+            Destroy(gameObject);
+        }
+        else
+        {
+            Instance = this;
+            DontDestroyOnLoad(this);
+        }
         path_to_save = Path.Combine(Application.streamingAssetsPath, path_to_save);
         if (!loadJson(1))
         {

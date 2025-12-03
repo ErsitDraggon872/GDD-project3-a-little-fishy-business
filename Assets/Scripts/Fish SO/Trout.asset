@@ -16,4 +16,8 @@ MonoBehaviour:
   baseData:
     level: 1
     price: 8
+    cost: 0
+    FishType: []
+    FishName: Trout
+    description: 
     size: {x: 2, y: 1}

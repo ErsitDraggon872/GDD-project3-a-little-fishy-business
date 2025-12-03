@@ -70,7 +70,6 @@ public class Inventory : MonoBehaviour
 
         foreach (Fish fish in FishSOs)
         {
-
             Debug.Log($"SO asset name = {fish.name}, SO FishName = {fish.GetData().FishName}, SO FishType = {fish.GetData().FishType}");
             fishLookupByName[fish.GetData().FishName] = fish;
         }

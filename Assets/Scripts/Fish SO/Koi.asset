@@ -16,4 +16,8 @@ MonoBehaviour:
   baseData:
     level: 1
     price: 7
+    cost: 0
+    FishType: []
+    FishName: Koi
+    description: 
     size: {x: 1, y: 1}
