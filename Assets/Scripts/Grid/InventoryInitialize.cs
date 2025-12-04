@@ -8,6 +8,7 @@ public class InventoryInitializer : MonoBehaviour
     void Start()
     {
         Inventory.Instance.PopulateInventoryGrid(inventoryGrid, itemPrefab);
+        InventoryController.Instance.MainGridReference = inventoryGrid; 
     }
     
 }
