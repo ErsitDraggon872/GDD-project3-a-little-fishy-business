@@ -1765,6 +1765,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4dfe5e3f85c074829afc209b5003c5b4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  MainGridReference: {fileID: 1710837022}
+  PocketGridReference: {fileID: 1651083603}
   fishes:
   - {fileID: 11400000, guid: f0049a288aec09742b937df3a76e9b6c, type: 2}
   - {fileID: 11400000, guid: 6325b86027143ec489187fccb19d1eab, type: 2}

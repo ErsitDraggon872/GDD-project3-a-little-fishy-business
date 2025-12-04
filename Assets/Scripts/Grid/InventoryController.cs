@@ -7,6 +7,8 @@ using TMPro;
 public class InventoryController : MonoBehaviour
 {
     public static InventoryController Instance;
+    public ItemGrid MainGridReference;
+    public ItemGrid PocketGridReference;
 
     #region Variables/References
     [HideInInspector]
@@ -117,6 +119,16 @@ public class InventoryController : MonoBehaviour
     #endregion
 
     #region Item Placement
+    public bool IsDragging()
+    {
+        return selectedItem != null;
+    }
+
+    public InventoryItem GetSelectedItem()
+    {
+        return selectedItem;
+    }
+
     private void SnapBack()
     {
         if (rectTransform == null)
