@@ -136,61 +136,33 @@ public class Inventory : MonoBehaviour
         currentInventory.Add(new FishEntry(fishLookupByName[name].GetData()));
     }
 
-    public void PopulateInventoryGrid(ItemGrid grid, GameObject itemPrefab)
+    public List<InventoryItem> CreateInventoryItems(GameObject itemPrefab)
     {
-        Debug.Log("Populating grid with " + currentInventory.Count + " fish");
+        List<InventoryItem> created = new List<InventoryItem>();
+
+        Debug.Log("Creating " + currentInventory.Count + " inventory items...");
 
         foreach (FishEntry entry in currentInventory)
         {
-
             Debug.Log("Looking up fish: " + entry.fishMetaData.FishName);
-            
-            //bandaid from ersit cuz idk how to edit the fishmetadata
-            if (entry.fishMetaData.FishName == "GoldFish")
-            {
-                entry.fishMetaData.FishName = "Goldfish";
-            }
 
-            // 1. Create inventory item object
+            if (entry.fishMetaData.FishName == "GoldFish")
+                entry.fishMetaData.FishName = "Goldfish";
+
             InventoryItem newItem = Instantiate(itemPrefab).GetComponent<InventoryItem>();
 
-            // 2. Create fresh ItemData
             ItemData data = ScriptableObject.CreateInstance<ItemData>();
-            var fishSO = fishLookupByName[entry.fishMetaData.FishName];
-            data.SetData(fishSO);
-            data.width = fishSO.GetData().size.x;
-            data.height = fishSO.GetData().size.y;
+            Fish fishSO = fishLookupByName[entry.fishMetaData.FishName];
 
+            data.SetData(fishSO);
             newItem.Set(data);
 
-            // 3. Parent temporarily into the grid
-            RectTransform rt = newItem.GetComponent<RectTransform>();
-            rt.SetParent(grid.transform);
-            rt.localScale = Vector3.one;
-
-            if (grid.isPocketGrid)
-            {
-                InventoryController.ApplyPocket(newItem, grid);
-            }
-            else
-            {
-                InventoryController.ApplyMain(newItem, grid);
-            }
-
-            // 4. Find a free spot in the grid
-            Vector2Int? pos = grid.FindSpaceForObject(newItem);
-
-            if (pos == null)
-            {
-                Debug.LogWarning("Inventory grid full, cannot place: " + entry.fishMetaData.FishName);
-                Destroy(newItem.gameObject);
-                continue;
-            }
-
-            // 5. Place it
-            grid.PlaceItem(newItem, pos.Value.x, pos.Value.y);
+            created.Add(newItem);
         }
+
+        return created;
     }
+
 }
 
 

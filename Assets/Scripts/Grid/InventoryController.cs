@@ -8,6 +8,7 @@ public class InventoryController : MonoBehaviour
 {
     public static InventoryController Instance;
     public ItemGrid MainGridReference;
+    public PocketGridController pocketController;
 
     #region Variables/References
     [HideInInspector]
@@ -118,6 +119,11 @@ public class InventoryController : MonoBehaviour
     #endregion
 
     #region Item Placement
+    public void PopulatePocketAtStart(List<InventoryItem> pocketItems)
+    {
+        pocketController.PopulatePocketPages(pocketItems);
+    }
+
     private void SnapBack()
     {
         if (rectTransform == null)
