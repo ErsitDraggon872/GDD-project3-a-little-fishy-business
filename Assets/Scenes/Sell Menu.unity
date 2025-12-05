@@ -1759,10 +1759,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f19146772dd683945812a0db1bcaa2b7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  FishSOs:
-  - {fileID: 11400000, guid: f0049a288aec09742b937df3a76e9b6c, type: 2}
-  - {fileID: 11400000, guid: 6325b86027143ec489187fccb19d1eab, type: 2}
-  - {fileID: 11400000, guid: 6325b86027143ec489187fccb19d1eab, type: 2}
+  FishSOs: []
 --- !u!4 &962512466
 Transform:
   m_ObjectHideFlags: 0
@@ -2167,13 +2164,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   MainGridReference: {fileID: 1710837022}
   pocketController: {fileID: 31101945}
-  fishes:
-  - {fileID: 11400000, guid: f0049a288aec09742b937df3a76e9b6c, type: 2}
-  - {fileID: 11400000, guid: 6325b86027143ec489187fccb19d1eab, type: 2}
-  - {fileID: 11400000, guid: 9e8c3ec3c1c92c94eb698b5c4ff20364, type: 2}
-  - {fileID: 11400000, guid: e64f4a12b86c9b24ba33b4cd562ce707, type: 2}
-  - {fileID: 11400000, guid: 322ae3e8f5a8b124ca2611fb70e51151, type: 2}
-  - {fileID: 11400000, guid: eefbba4a4c523794c9670db6e8b2c08d, type: 2}
+  randomFishes: []
   itemPrefab: {fileID: 4677592062807147059, guid: aff9378aa009944b8a588d7932fe206d, type: 3}
   canvasTransform: {fileID: 128747090}
   nameText: {fileID: 354358934}

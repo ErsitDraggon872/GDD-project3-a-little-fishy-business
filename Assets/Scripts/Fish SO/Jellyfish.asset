@@ -20,4 +20,4 @@ MonoBehaviour:
     FishType: []
     FishName: Jellyfish
     description: increases total value by 15% when adjacent to a blobfish
-    size: {x: 1, y: 2}
+    size: {x: 1, y: 1}

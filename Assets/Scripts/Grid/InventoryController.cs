@@ -42,7 +42,7 @@ public class InventoryController : MonoBehaviour
     InventoryItem overlapItem;
     RectTransform rectTransform;
 
-    [SerializeField] List<Fish> fishes;
+    [SerializeField] List<Fish> randomFishes;
     [SerializeField] GameObject itemPrefab;
     [SerializeField] Transform canvasTransform;
     [SerializeField] TextMeshProUGUI nameText;
@@ -234,9 +234,9 @@ public class InventoryController : MonoBehaviour
         rectTransform.SetAsLastSibling();
 
         // soon to be changed with actual probabilities
-        int selectedItemID = Random.Range(0, fishes.Count);
+        int selectedItemID = Random.Range(0, randomFishes.Count);
         ItemData item = ScriptableObject.CreateInstance<ItemData>();
-        item.SetData(fishes[selectedItemID]);
+        item.SetData(randomFishes[selectedItemID]);
         inventoryItem.Set(item);
     }
     #endregion
