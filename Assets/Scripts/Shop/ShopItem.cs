@@ -142,9 +142,9 @@ public class ShopItem : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
         panelRect.anchoredPosition = localPoint + new Vector2(size.x/2 * panelRect.lossyScale.x, -(size.y/2 * panelRect.lossyScale.y));
 
         Vector2 clampedPos = panelRect.anchoredPosition;
-        Debug.Log(clampedPos.x + " " + canvasRect.rect.xMin + " " + canvasRect.rect.xMax + " " + size.x);
+        //Debug.Log(clampedPos.x + " " + canvasRect.rect.xMin + " " + canvasRect.rect.xMax + " " + size.x);
         clampedPos.x = Mathf.Clamp(clampedPos.x, canvasRect.rect.xMin - 113, canvasRect.rect.xMax - 113);
-        Debug.Log(clampedPos.x);
+        //Debug.Log(clampedPos.x);
         panelRect.anchoredPosition = clampedPos;
         // panelRect.position = eventData.position + new Vector2(size.x, -size.y);
 

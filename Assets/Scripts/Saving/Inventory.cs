@@ -54,6 +54,9 @@ public class Inventory : MonoBehaviour
 
     void Awake()
     {
+        Debug.Log("Inventory Awake() instance = " + GetInstanceID() + 
+          "  count=" + currentInventory.Count);
+
         if (Instance != null && Instance != this)
         {
             Debug.LogWarning("Duplicate Inventory detected. Destroying: " + gameObject.name);
@@ -80,6 +83,7 @@ public class Inventory : MonoBehaviour
 
     private void AddFish(int id, JObject fishMetaData)
     {
+        Debug.Log("AddFish() added: " + fishMetaData["FishName"]);
         FishEntry newFish = new FishEntry(fishMetaData);
         currentInventory.Add(newFish);
     }
@@ -127,6 +131,7 @@ public class Inventory : MonoBehaviour
 
     public void LoadInventory()
     {
+        Debug.Log("LoadInventory() called");
         JObject inventory = OverallGameManager.GetLoadedInventory();
 
         if (inventory == null)
