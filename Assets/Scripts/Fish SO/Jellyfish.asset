@@ -16,8 +16,8 @@ MonoBehaviour:
   baseData:
     level: 1
     price: 12
-    cost: 0
+    cost: 8
     FishType: []
     FishName: Jellyfish
-    description: 
+    description: increases total value by 15% when adjacent to a blobfish
     size: {x: 1, y: 2}

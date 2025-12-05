@@ -19,5 +19,5 @@ MonoBehaviour:
     cost: 2
     FishType: []
     FishName: Goldfish
-    description: increases adjacent fish base value by 15%!
+    description: increases adjacent fish base value by +15%
     size: {x: 1, y: 1}

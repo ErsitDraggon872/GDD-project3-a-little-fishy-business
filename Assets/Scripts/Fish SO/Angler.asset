@@ -16,4 +16,8 @@ MonoBehaviour:
   baseData:
     level: 2
     price: 20
+    cost: 10
+    FishType: []
+    FishName: Angler
+    description: +10% to base value per empty adjacent tile
     size: {x: 2, y: 2}

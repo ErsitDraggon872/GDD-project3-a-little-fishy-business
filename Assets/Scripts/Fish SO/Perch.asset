@@ -19,5 +19,5 @@ MonoBehaviour:
     cost: 2
     FishType: []
     FishName: Perch
-    description: '-50% base value when alone '
+    description: '-50% base value when placed alone '
     size: {x: 1, y: 1}

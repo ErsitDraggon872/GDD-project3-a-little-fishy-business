@@ -16,8 +16,8 @@ MonoBehaviour:
   baseData:
     level: 1
     price: 7
-    cost: 0
+    cost: 3
     FishType: []
     FishName: Koi
-    description: 
+    description: has a 10% chance to increase total value by 25%
     size: {x: 1, y: 1}

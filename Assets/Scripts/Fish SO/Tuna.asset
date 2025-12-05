@@ -15,9 +15,9 @@ MonoBehaviour:
   sprite: {fileID: -4895150494573996402, guid: cfe247d9231b34749810d402c69f859a, type: 3}
   baseData:
     level: 1
-    price: 15
-    cost: 0
+    price: 20
+    cost: 10
     FishType: []
     FishName: Tuna
-    description: 
+    description: increases total value by 5% for each tuna
     size: {x: 3, y: 2}

@@ -16,8 +16,8 @@ MonoBehaviour:
   baseData:
     level: 2
     price: 18
-    cost: 0
+    cost: 12
     FishType: []
     FishName: Blobfish
-    description: 
+    description: +20% to sell value if placed in a corner
     size: {x: 1, y: 1}

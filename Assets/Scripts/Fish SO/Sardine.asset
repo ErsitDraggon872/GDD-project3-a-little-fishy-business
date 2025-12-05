@@ -19,5 +19,5 @@ MonoBehaviour:
     cost: 3
     FishType: []
     FishName: Sardine
-    description: +15% to total sell value if you have 3+ sardines
+    description: +15% to total value if you have 3+ sardines
     size: {x: 2, y: 1}

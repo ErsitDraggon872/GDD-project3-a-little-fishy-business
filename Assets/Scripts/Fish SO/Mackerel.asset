@@ -12,12 +12,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8794204c22905c6469020291aa3ff411, type: 3}
   m_Name: Mackerel
   m_EditorClassIdentifier: 
-  sprite: {fileID: 0}
+  sprite: {fileID: 4233636233250675457, guid: dbcd00b68b5485146b22d6480de51065, type: 3}
   baseData:
     level: 1
     price: 12
-    cost: 0
+    cost: 6
     FishType: []
     FishName: Mackerel
-    description: 
+    description: gains 2x value if the day is odd
     size: {x: 1, y: 3}

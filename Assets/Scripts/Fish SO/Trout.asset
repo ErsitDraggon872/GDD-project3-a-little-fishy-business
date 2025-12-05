@@ -16,8 +16,8 @@ MonoBehaviour:
   baseData:
     level: 1
     price: 8
-    cost: 0
+    cost: 3
     FishType: []
     FishName: Trout
-    description: 
+    description: basic fish. no special ability.
     size: {x: 2, y: 1}

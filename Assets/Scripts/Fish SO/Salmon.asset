@@ -15,9 +15,9 @@ MonoBehaviour:
   sprite: {fileID: -6967122372230043882, guid: 5a3c6a5157fab1540849f1b4260a845c, type: 3}
   baseData:
     level: 1
-    price: 9
-    cost: 0
+    price: 15
+    cost: 5
     FishType: []
     FishName: Salmon
-    description: 
+    description: basic fish. no special ability.
     size: {x: 2, y: 1}

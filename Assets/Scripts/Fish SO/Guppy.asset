@@ -19,5 +19,5 @@ MonoBehaviour:
     cost: 1
     FishType: []
     FishName: Guppy
-    description: '+100% value for each adjacent guppy '
+    description: '+100% to sell value for each adjacent guppy '
     size: {x: 1, y: 1}
