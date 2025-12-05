@@ -5,6 +5,7 @@ using UnityEngine;
 [CreateAssetMenu(menuName = "FishSO/Koi")]
 public class Koi : Fish
 {
+    public int classNum = 1;
     public override void FinalAbility(int x)
     {
         return;

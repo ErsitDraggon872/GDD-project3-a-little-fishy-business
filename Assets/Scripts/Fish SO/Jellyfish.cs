@@ -7,6 +7,7 @@ using System.Collections.Generic;
 [CreateAssetMenu(menuName = "FishSO/Jellyfish")]
 public class Jellyfish : Fish
 {
+    public int classNum = 1;
     public override void FinalAbility(int x)
     {
         return;
