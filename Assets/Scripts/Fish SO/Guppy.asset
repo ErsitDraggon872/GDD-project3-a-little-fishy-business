@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 62239edec4980d6428a7f50a2f459439, type: 3}
   m_Name: Guppy
   m_EditorClassIdentifier: 
+  classNum: 0
   sprite: {fileID: 4981255395197408248, guid: a9a7de9471d5bbd4cb740ea05136d3c4, type: 3}
   baseData:
     level: 0
@@ -19,5 +20,6 @@ MonoBehaviour:
     cost: 1
     FishType: []
     FishName: Guppy
-    description: '+100% to sell value for each adjacent guppy '
+    description: 'doubles base value for each adjacent guppy '
     size: {x: 1, y: 1}
+  classNum: 0
