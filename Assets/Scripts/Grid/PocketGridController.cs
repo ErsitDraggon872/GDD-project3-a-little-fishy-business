@@ -25,15 +25,32 @@ public class PocketGridController : MonoBehaviour
 
     public void NextPage()
     {
-        int next = currentPage + 1;
-        if (next >= pocketPages.Count) next = 0;
+        int next = currentPage;
+        do
+        {
+            next = (next + 1) % pocketPages.Count;
+
+            // Page 0 always valid
+            if (next == 0)
+                break;
+
+        } while (pocketPages[next].GetItemCount() == 0);
         ShowPage(next);
     }
 
     public void PreviousPage()
     {
-        int prev = currentPage - 1;
-        if (prev < 0) prev = pocketPages.Count - 1;
+        int prev = currentPage;
+        do
+        {
+            prev--;
+            if (prev < 0)
+                prev = pocketPages.Count - 1;
+
+            if (prev == 0)
+                break;
+
+        } while (pocketPages[prev].GetItemCount() == 0);
         ShowPage(prev);
     }
 
@@ -87,6 +104,24 @@ public class PocketGridController : MonoBehaviour
 
             currentPage.PlaceItem(item, pos.Value.x, pos.Value.y);
         }
+
+        for (int i = 0; i < pocketPages.Count; i++)
+        {
+            if (i == 0)
+            {
+                // Page 0 always visible
+                pocketPages[i].gameObject.SetActive(true);
+            }
+            else
+            {
+                // Visible only if it has items
+                bool hasItems = pocketPages[i].GetItemCount() > 0;
+                pocketPages[i].gameObject.SetActive(hasItems);
+            }
+        }
+
+        this.currentPage = 0;
+        ShowPage(0);
     }
 
 }

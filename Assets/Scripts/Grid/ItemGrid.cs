@@ -282,6 +282,25 @@ public class ItemGrid : MonoBehaviour
 
         return true;
     }
+
+    public int GetItemCount()
+    {
+        int count = 0;
+
+        for (int x = 0; x < inventoryItemSlot.GetLength(0); x++)
+        {
+            for (int y = 0; y < inventoryItemSlot.GetLength(1); y++)
+            {
+                if (inventoryItemSlot[x, y] != null)
+                {
+                    count++;
+                }
+            }
+        }
+
+        return count;
+    }
+
     #endregion
 
     #region Sound Effects
