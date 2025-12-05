@@ -8,6 +8,7 @@ using System.Collections.Generic;
 [CreateAssetMenu(menuName = "FishSO/Angler")]
 public class Angler : Fish
 {
+    public int classNum = 2;
     public override void FinalAbility(int x)
     {
         return;

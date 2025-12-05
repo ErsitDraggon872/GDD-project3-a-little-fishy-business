@@ -3,6 +3,7 @@ using UnityEngine;
 
 public abstract class Fish: ScriptableObject
 {
+    public int classNum;
     [SerializeField] protected Sprite sprite;
     public Sprite Sprite => sprite;
     [SerializeField] protected FishMetaData baseData;  

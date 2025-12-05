@@ -7,6 +7,7 @@ using UnityEngine;
 [CreateAssetMenu(menuName = "FishSO/Guppy")]
 public class Guppy : Fish
 {
+    public int classNum = 0;
     public override void FinalAbility(int x)
     {
         return;
