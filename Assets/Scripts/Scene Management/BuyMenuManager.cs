@@ -10,7 +10,7 @@ public class BuyMenuManager : MonoBehaviour
 
     public void UpdateMoney(float money)
     {
-        moneyText.SetText("balance: " + money.ToString("F2"));
+        moneyText.SetText("balance: $" + money.ToString("F2"));
     }
 
     public void FailPurchase()

@@ -275,7 +275,7 @@ public class InventoryController : MonoBehaviour
         selectedItem = selectedItemGrid.PickUpItem(tileGridPosition.x, tileGridPosition.y);
         if (selectedItem != null)
         {
-            DisplayItemDescription(selectedItem);
+            //DisplayItemDescription(selectedItem);
 
             rectTransform = selectedItem.GetComponent<RectTransform>();
 
@@ -383,6 +383,7 @@ public class InventoryController : MonoBehaviour
                 inventoryHighlight.Show(true);
                 inventoryHighlight.SetSize(itemToHighlight);
                 inventoryHighlight.SetPosition(selectedItemGrid, itemToHighlight);
+                DisplayItemDescription(itemToHighlight);
             }
             else
             {
@@ -399,6 +400,7 @@ public class InventoryController : MonoBehaviour
                 selectedItem.HEIGHT
                 ));
 
+            DisplayItemDescription(selectedItem);
             inventoryHighlight.SetSize(selectedItem);
             inventoryHighlight.SetPosition(selectedItemGrid, selectedItem, positionOnGrid.x, positionOnGrid.y);
         }
@@ -410,7 +412,7 @@ public class InventoryController : MonoBehaviour
     {
         var fishData = item.itemData.GetFishInformation().GetData();
         nameText.text = fishData.FishName;
-        priceText.text = "value: " + fishData.price.ToString();
+        priceText.text = "value: $" + fishData.price.ToString();
         abilityText.text = fishData.description;
 
     }

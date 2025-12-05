@@ -41,7 +41,7 @@ public class ShopItem : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
         fishSO = fishShopSpawner.getShopSlot();
         image.sprite = fishSO.Sprite;
         fishName.text = fishSO.GetData().FishName;
-        fishPrice.text = fishSO.GetData().cost.ToString();
+        fishPrice.text = "$" + fishSO.GetData().cost.ToString();
     }
 
     public void Buy()
@@ -88,7 +88,7 @@ public class ShopItem : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
 
         if (descriptionText != null)
         {
-            string text = "Sell Value: " + fishSO.GetData().price.ToString() + "\n" + fishSO.GetData().description;
+            string text = "Sell Value: $" + fishSO.GetData().price.ToString() + "\n" + fishSO.GetData().description;
             descriptionText.text = text;
         }
 
@@ -140,6 +140,12 @@ public class ShopItem : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
 
         // Set position with offset
         panelRect.anchoredPosition = localPoint + new Vector2(size.x/2 * panelRect.lossyScale.x, -(size.y/2 * panelRect.lossyScale.y));
+
+        Vector2 clampedPos = panelRect.anchoredPosition;
+        Debug.Log(clampedPos.x + " " + canvasRect.rect.xMin + " " + canvasRect.rect.xMax + " " + size.x);
+        clampedPos.x = Mathf.Clamp(clampedPos.x, canvasRect.rect.xMin - 113, canvasRect.rect.xMax - 113);
+        Debug.Log(clampedPos.x);
+        panelRect.anchoredPosition = clampedPos;
         // panelRect.position = eventData.position + new Vector2(size.x, -size.y);
 
         // OPTIONAL: clamp inside canvas
