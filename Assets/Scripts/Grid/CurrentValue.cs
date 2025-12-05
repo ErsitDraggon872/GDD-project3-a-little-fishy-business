@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 
@@ -17,6 +18,8 @@ public class CurrentValue : MonoBehaviour
     {
         float totalPrice = 0;
 
+        List<int> ids = new List<int>();
+
         (int rows, int cols) = itemGrid.GetGridDimensions();
 
         for (int i = 0; i < rows; i++)
@@ -27,6 +30,11 @@ public class CurrentValue : MonoBehaviour
 
                 if (item != null)
                 {
+                    if (ids.Contains(item.ID))
+                    {
+                        continue;
+                    }
+                    ids.Add(item.ID);
                     totalPrice += item.GetFishInformation().GetData().price;
                 }
             }
