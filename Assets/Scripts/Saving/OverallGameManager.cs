@@ -1,5 +1,6 @@
 using UnityEngine;
 using Newtonsoft.Json.Linq;
+using UnityEngine.SceneManagement;
 using System.Collections;
 using System.Collections.Generic;
 using System.Numerics;
@@ -56,6 +57,7 @@ public class OverallGameManager : MonoBehaviour
         {
             Application.Quit();
         }
+        RestartGame();  
     }
 
     #region Saving/Loading 
@@ -260,10 +262,13 @@ public class OverallGameManager : MonoBehaviour
     #region End Game
     public void RestartGame()
     {
-        currentDay = 0;
+        currentDay = 1;
         money = 100;
         currentExpenses = 0;
-        MainSceneManager.Instance.SceneTransition(0);
+        if (SceneManager.GetActiveScene().buildIndex != 0)
+        {
+            MainSceneManager.Instance.SceneTransition(0);
+        }
     }
 
     #endregion
