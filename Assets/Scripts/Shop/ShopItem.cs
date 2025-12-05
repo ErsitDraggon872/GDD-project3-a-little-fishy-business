@@ -79,8 +79,7 @@ public class ShopItem : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
 
     public void OnPointerEnter(PointerEventData eventData)
     {
-        if (descriptionPanel == null) return;
-        if (disablePanel.activeSelf)
+        if (descriptionPanel == null || disablePanel.activeSelf)
         {
             return;
         }
@@ -89,7 +88,7 @@ public class ShopItem : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
 
         if (descriptionText != null)
         {
-            string text = "Base Price: " + fishSO.GetData().price.ToString() + "\n" + fishSO.GetData().description;
+            string text = "Sell Value: " + fishSO.GetData().price.ToString() + "\n" + fishSO.GetData().description;
             descriptionText.text = text;
         }
 

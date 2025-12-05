@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: a40422f32c129a04e9243fca94707b81, type: 3}
-  m_Name: Goldfish
+  m_Name: GoldFish
   m_EditorClassIdentifier: 
   sprite: {fileID: 2866502940677049033, guid: 9907cbd145f247c418e38017ebfdda5c, type: 3}
   baseData:

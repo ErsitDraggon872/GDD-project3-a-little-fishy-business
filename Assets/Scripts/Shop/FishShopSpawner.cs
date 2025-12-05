@@ -45,6 +45,7 @@ public class FishShopSpawner : MonoBehaviour
             {
                 cumulative += entry.rate/total_rates;
                 FishLookup.Add((cumulative, entry.fishType));
+                Debug.Log(entry);
             }
         }
         else if (day < 5)
@@ -98,7 +99,7 @@ public class FishShopSpawner : MonoBehaviour
                 Fish fish = Inventory.Instance.getFishByName(name);
                 if (fish == null)
                 {
-                    return getShopSlot();
+                    return null;
                 }
                 return fish;
             }

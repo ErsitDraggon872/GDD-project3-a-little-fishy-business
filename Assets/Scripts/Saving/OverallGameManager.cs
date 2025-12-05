@@ -263,7 +263,6 @@ public class OverallGameManager : MonoBehaviour
         money = 100;
         currentExpenses = 0;
         MainSceneManager.Instance.SceneTransition(0);
-        Destroy(gameObject);
     }
 
     #endregion
