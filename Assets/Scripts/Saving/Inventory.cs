@@ -53,27 +53,28 @@ public class Inventory : MonoBehaviour
     private List<FishEntry> currentInventory = new List<FishEntry>();
 
     void Awake()
-    { 
-        // Creates inventory instance if does not exist yet
+    {
         if (Instance != null && Instance != this)
         {
+            Debug.LogWarning("Duplicate Inventory detected. Destroying: " + gameObject.name);
             Destroy(gameObject);
+            return;
         }
-        else
-        {
-            Instance = this;
-            DontDestroyOnLoad(this);
-        }
-        // Build lookup for quick access
+
+        Instance = this;
+        DontDestroyOnLoad(gameObject);
+
+        Debug.Log("Inventory Awake(): instance = " + GetInstanceID());
+
+        // continue initialization
         fishLookup = new Dictionary<string, Fish>();
         fishLookupByName = new Dictionary<string, Fish>();
 
         foreach (Fish fish in FishSOs)
         {
-            Debug.Log($"SO asset name = {fish.name}, SO FishName = {fish.GetData().FishName}, SO FishType = {fish.GetData().FishType}");
             fishLookupByName[fish.GetData().FishName] = fish;
         }
-        Debug.Log(fishLookup);
+
         LoadInventory();
     }
 
@@ -99,7 +100,29 @@ public class Inventory : MonoBehaviour
     public JObject GetInventory()
     {
         //Convert FishMetaData to JObject
-        return new JObject();
+        JObject obj = new JObject();
+        int index = 0;
+
+        foreach (var entry in currentInventory)
+        {
+            JObject fishObj = new JObject();
+            fishObj["Level"] = entry.fishMetaData.level;
+            fishObj["Price"] = entry.fishMetaData.price;
+            fishObj["Cost"] = entry.fishMetaData.cost;
+
+            JArray size = new JArray();
+            size.Add(entry.fishMetaData.size.x);
+            size.Add(entry.fishMetaData.size.y);
+            fishObj["Size"] = size;
+
+            fishObj["FishName"] = entry.fishMetaData.FishName;
+            fishObj["Description"] = entry.fishMetaData.description;
+
+            obj[index.ToString()] = fishObj;
+            index++;
+        }
+
+        return obj;
     }
 
     public void LoadInventory()
@@ -161,6 +184,11 @@ public class Inventory : MonoBehaviour
         }
 
         return created;
+    }
+
+    public void RemoveFishByName(string name)
+    {
+        currentInventory.RemoveAll(f => f.fishMetaData.FishName == name);
     }
 
 }

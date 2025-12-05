@@ -261,6 +261,12 @@ public class ItemGrid : MonoBehaviour
         return true;
     }
 
+    public InventoryItem[,] GetSlotGrid()
+    {
+        return inventoryItemSlot;
+    }
+
+
     private bool CheckAvailableSpace(int posX, int posY, int width, int height)
     {
         for (int x = 0; x < width; x++)

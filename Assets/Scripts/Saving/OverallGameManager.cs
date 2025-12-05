@@ -152,6 +152,7 @@ public class OverallGameManager : MonoBehaviour
             return;
         }
 
+        RemoveUsedFishesFromInventory();
         itemGrid.ClearGrid();
         counting.UpdateScore();
 
@@ -266,6 +267,32 @@ public class OverallGameManager : MonoBehaviour
     }
 
     #endregion
+
+    private void RemoveUsedFishesFromInventory()
+    {
+        // This grid holds the fish sold that day
+        InventoryItem[,] grid = itemGrid.GetSlotGrid(); // you will need to add accessor
+
+        HashSet<string> removed = new HashSet<string>();
+
+        for (int x = 0; x < grid.GetLength(0); x++)
+        {
+            for (int y = 0; y < grid.GetLength(1); y++)
+            {
+                InventoryItem item = grid[x, y];
+                if (item != null)
+                {
+                    string fishName = item.itemData.GetFishInformation().GetData().FishName;
+
+                    if (!removed.Contains(fishName))
+                    {
+                        Inventory.Instance.RemoveFishByName(fishName);
+                        removed.Add(fishName);
+                    }
+                }
+            }
+        }
+    }
 
 }
 
