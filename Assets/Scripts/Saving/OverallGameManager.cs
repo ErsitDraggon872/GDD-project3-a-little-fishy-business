@@ -13,7 +13,7 @@ public class OverallGameManager : MonoBehaviour
     #region Variables
     public static string path_to_save = "data.json";
     private static float money;
-    public static List<float> FirstSevenRent = new List<float>{20, 30, 45, 60, 75, 100, 150};
+    public static List<float> FirstSevenRent = new List<float>{30, 45, 65, 100, 140, 200, 275};
         //new List<float>{50, 60, 75, 100, 130, 165, 200};
     private static int currentDay;
     private static float currentRent;
@@ -273,6 +273,7 @@ public class OverallGameManager : MonoBehaviour
         currentExpenses = 0;
         if (SceneManager.GetActiveScene().buildIndex != 0)
         {
+            Destroy(Inventory.Instance.gameObject);
             MainSceneManager.Instance.SceneTransition(0);
         }
     }

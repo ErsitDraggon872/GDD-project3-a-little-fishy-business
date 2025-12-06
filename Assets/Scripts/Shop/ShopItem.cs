@@ -79,7 +79,7 @@ public class ShopItem : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
 
     public void OnPointerEnter(PointerEventData eventData)
     {
-        if (descriptionPanel == null || descriptionPanel.activeSelf)
+        if (descriptionPanel == null || disablePanel.activeSelf)
         {
             return;
         }

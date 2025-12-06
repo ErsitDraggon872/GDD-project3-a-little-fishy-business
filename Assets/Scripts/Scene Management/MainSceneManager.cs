@@ -31,6 +31,7 @@ public class MainSceneManager : MonoBehaviour
     private void Start()
     {
         transitionImage = GameObject.FindWithTag("TransitionFade").GetComponent<Image>();
+        transitionImage.gameObject.SetActive(false);
     }
 
     #endregion
@@ -47,6 +48,11 @@ public class MainSceneManager : MonoBehaviour
 
     IEnumerator AsyncSceneTransition(int s)
     {   
+        if (transitionImage == null)
+        {
+            transitionImage = GameObject.FindWithTag("TransitionFade").GetComponent<Image>();
+        }
+
         transitionImage.gameObject.SetActive(true);
 
         // load next scene asynchronously for smooth transition
