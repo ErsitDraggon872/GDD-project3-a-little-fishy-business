@@ -19,6 +19,7 @@ public class OverallGameManager : MonoBehaviour
     private static float currentRent;
     private float currentRevenue;
     private float currentExpenses;
+    private bool transitioning;
     #endregion
 
     #region GameReferences
@@ -140,11 +141,16 @@ public class OverallGameManager : MonoBehaviour
     {
         currentDay += 1;
         currentRent = CalculateNewRent();
+        currentExpenses = 0;
+        transitioning = false;
         MainSceneManager.Instance.SceneTransition(1);
     }
 
     public void EndDay()
     {
+        if (transitioning) return;
+
+        transitioning = true;
         currentRevenue = counting.UpdateScore();
         AddMoney(currentRevenue);
 

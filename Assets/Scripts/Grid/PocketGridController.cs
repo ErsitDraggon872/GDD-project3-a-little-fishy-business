@@ -1,10 +1,12 @@
 using UnityEngine;
 using System.Collections.Generic;
+using TMPro;
 
 public class PocketGridController : MonoBehaviour
 {
     public List<ItemGrid> pocketPages;
     public int currentPage = 0;
+    [SerializeField] private TextMeshProUGUI pageNumText;
 
     void Start()
     {
@@ -21,6 +23,7 @@ public class PocketGridController : MonoBehaviour
 
         pocketPages[pageIndex].gameObject.SetActive(true);
         currentPage = pageIndex;
+        pageNumText.text = $"{currentPage + 1}";
     }
 
     public void NextPage()

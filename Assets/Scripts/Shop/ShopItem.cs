@@ -79,7 +79,7 @@ public class ShopItem : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
 
     public void OnPointerEnter(PointerEventData eventData)
     {
-        if (descriptionPanel == null || disablePanel.activeSelf)
+        if (descriptionPanel == null || descriptionPanel.activeSelf)
         {
             return;
         }
@@ -98,7 +98,7 @@ public class ShopItem : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
     public void OnPointerExit(PointerEventData eventData)
     {
         if (descriptionPanel == null) return;
-
+         
         descriptionPanel.SetActive(false);
         if (!this.enabled)
         {
@@ -139,24 +139,14 @@ public class ShopItem : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
         }
 
         // Set position with offset
-        panelRect.anchoredPosition = localPoint + new Vector2(size.x/2 * panelRect.lossyScale.x, -(size.y/2 * panelRect.lossyScale.y));
+        panelRect.anchoredPosition = localPoint + new Vector2(size.x/1.5f * panelRect.lossyScale.x, -(size.y/1.5f * panelRect.lossyScale.y));
 
         Vector2 clampedPos = panelRect.anchoredPosition;
-        //Debug.Log(clampedPos.x + " " + canvasRect.rect.xMin + " " + canvasRect.rect.xMax + " " + size.x);
-        clampedPos.x = Mathf.Clamp(clampedPos.x, canvasRect.rect.xMin - 113, canvasRect.rect.xMax - 113);
-        //Debug.Log(clampedPos.x);
+        // Debug.Log(clampedPos.x + " " + canvasRect.rect.xMin + " " + canvasRect.rect.xMax + " " + size.x);
+        clampedPos.x = Mathf.Clamp(clampedPos.x, canvasRect.rect.xMin - 135, canvasRect.rect.xMax - 135);
+        // Debug.Log(clampedPos.x);
         panelRect.anchoredPosition = clampedPos;
-        // panelRect.position = eventData.position + new Vector2(size.x, -size.y);
 
-        // OPTIONAL: clamp inside canvas
-        // Vector2 clampedPos = panelRect.anchoredPosition;
-        // Vector2 min = canvasRect.rect.min + panelRect.rect.size * 0.5f;
-        // Vector2 max = canvasRect.rect.max - panelRect.rect.size * 0.5f;
-
-        // clampedPos.x = Mathf.Clamp(clampedPos.x, min.x, max.x);
-        // clampedPos.y = Mathf.Clamp(clampedPos.y, min.y, max.y);
-
-        // panelRect.anchoredPosition = clampedPos;
     }
 
 
