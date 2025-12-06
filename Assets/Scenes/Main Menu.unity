@@ -1267,6 +1267,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: TransitionFade
       objectReference: {fileID: 0}
+    - target: {fileID: 2531820736427862544, guid: 40397d2e958bab44db6a637d68ed5291, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 5235237292392608419, guid: 40397d2e958bab44db6a637d68ed5291, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5
