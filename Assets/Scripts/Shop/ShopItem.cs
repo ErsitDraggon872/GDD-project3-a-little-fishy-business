@@ -139,7 +139,7 @@ public class ShopItem : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
         }
 
         // Set position with offset
-        panelRect.anchoredPosition = localPoint + new Vector2(size.x/1.5f * panelRect.lossyScale.x, -(size.y/1.5f * panelRect.lossyScale.y));
+        panelRect.anchoredPosition = localPoint + new Vector2(size.x/2f * panelRect.lossyScale.x, -(size.y/2f * panelRect.lossyScale.y));
 
         Vector2 clampedPos = panelRect.anchoredPosition;
         // Debug.Log(clampedPos.x + " " + canvasRect.rect.xMin + " " + canvasRect.rect.xMax + " " + size.x);

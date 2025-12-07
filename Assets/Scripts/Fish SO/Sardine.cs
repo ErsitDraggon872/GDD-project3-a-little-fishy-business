@@ -10,7 +10,7 @@ public class Sardine : Fish
     {
         if (x >= 3)
         {
-            Counting.MultScore(1.15f);
+            Counting.MultScore(0.15f);
         }
         
     }

@@ -22,6 +22,10 @@ public class Counting : MonoBehaviour
     {
         Multiplier += x;
     }
+    public static void ResetScores()
+    {
+        //yuh
+    }
 
     #endregion
 
@@ -31,7 +35,7 @@ public class Counting : MonoBehaviour
     public float UpdateScore()
     {
         Count();
-        ScoreText.text = "Current Value: " + Score.ToString("F2");
+        ScoreText.text = "Current Value: " + (Score * Multiplier).ToString("F2") + "Score: " + Score.ToString("F2") + " and Multiplier: " + Multiplier.ToString("F2");
         return Score;
     }
 
@@ -109,6 +113,7 @@ public class Counting : MonoBehaviour
                             Debug.Log($"Null FishInfo");
                         }
                         var (finalAbility, trackingName) = fishInfo.GetAbilityTracker();
+
                         if (countingDict.TryGetValue(trackingName, out var entry))
                         {
                             countingDict[trackingName] = (entry.action, entry.count + 1);
@@ -118,6 +123,7 @@ public class Counting : MonoBehaviour
                             countingDict[trackingName] = (finalAbility, 1);
                         }
                         fishInfo.OnCount((i, j), countingDict[trackingName].count, itemGrid);
+
                         if (fishInfo.classNum != 2)
                         {
                             fishClasses[fishInfo.classNum] += 1;
@@ -177,7 +183,7 @@ public class Counting : MonoBehaviour
         //class ability
         if (fishClasses[0] >= 3)
         {
-            MultScore(0.25f);
+            MultScore(0.20f);
         }
         if (fishClasses[0] > 0 || fishClasses[1] > 0 || fishClasses[2] > 0)
         {
@@ -189,10 +195,9 @@ public class Counting : MonoBehaviour
             int adj = deepSeaAdj.Count;
             if (deepSeaCount > adj)
             {
-                MultScore(0.20f*(deepSeaCount-adj));
+                MultScore(0.05f*(deepSeaCount-adj));
             }
         }
-
 
         Score *= Multiplier;
         
