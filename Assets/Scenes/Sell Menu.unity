@@ -2997,6 +2997,7 @@ MonoBehaviour:
   moneyText: {fileID: 436417605}
   dayText: {fileID: 2062304197}
   rentText: {fileID: 1346663686}
+  sellButton: {fileID: 1696671987}
 --- !u!4 &981543108
 Transform:
   m_ObjectHideFlags: 0
@@ -4656,7 +4657,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1696671988}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1696671991}
+        m_TargetAssemblyTypeName: SellButton, Assembly-CSharp
+        m_MethodName: Sell
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1696671988
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4721,7 +4734,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4504aee492c86174c987ae917825221e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  myButton: {fileID: 0}
 --- !u!1 &1710837018
 GameObject:
   m_ObjectHideFlags: 0

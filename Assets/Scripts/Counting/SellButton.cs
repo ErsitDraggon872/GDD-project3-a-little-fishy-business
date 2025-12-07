@@ -3,13 +3,16 @@ using UnityEngine.UI;
 
 public class SellButton : MonoBehaviour
 {
-    public Button myButton;
+    private Button myButton;
 
-    void Start()
+    void Awake()
     {
         myButton = GetComponent<Button>();
-        OverallGameManager game = FindAnyObjectByType<OverallGameManager>();
-        myButton.onClick.AddListener(game.EndDay);
-        myButton.onClick.AddListener(SoundManager.Instance.ClickSound);
+    }
+
+    public void Sell()
+    {
+        SoundManager.Instance.ClickSound();
+        OverallGameManager.Instance.EndDay();
     }
 }

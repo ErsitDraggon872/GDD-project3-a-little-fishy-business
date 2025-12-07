@@ -9,7 +9,8 @@ using TMPro;
 
 public class OverallGameManager : MonoBehaviour
 {
-    public static OverallGameManager Instance;
+    public static OverallGameManager Instance { get; private set; }
+
     #region Variables
     public static string path_to_save = "data.json";
     private static float money;
@@ -43,7 +44,7 @@ public class OverallGameManager : MonoBehaviour
 
     #endregion
 
-    void Awake()
+    private void Awake()
     {
         if (Instance != null && Instance != this)
         {
@@ -54,7 +55,9 @@ public class OverallGameManager : MonoBehaviour
             Instance = this;
             DontDestroyOnLoad(this);
         }
+
         path_to_save = Path.Combine(Application.streamingAssetsPath, path_to_save);
+
         if (!loadJson(1))
         {
             Application.Quit();
@@ -274,6 +277,7 @@ public class OverallGameManager : MonoBehaviour
         currentDay = 1;
         money = 100;
         currentExpenses = 0;
+        transitioning = false;
         if (SceneManager.GetActiveScene().buildIndex != 0)
         {
             Destroy(Inventory.Instance.gameObject);
@@ -307,6 +311,11 @@ public class OverallGameManager : MonoBehaviour
                 }
             }
         }
+    }
+
+    public void StartTutorial()
+    {
+        MainSceneManager.Instance.SceneTransition(5);
     }
 
 }

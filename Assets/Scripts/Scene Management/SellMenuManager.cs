@@ -1,16 +1,19 @@
 using UnityEngine;
+using UnityEngine.UI;
+using System.Collections;
 using TMPro;
 
 public class SellMenuManager : MonoBehaviour
-{ 
+{
     public TextMeshProUGUI moneyText;
     public TextMeshProUGUI dayText;
     public TextMeshProUGUI rentText;
+    public Button sellButton;
 
     private void Start()
     {
-        FindFirstObjectByType<OverallGameManager>().assignSellMenu();
-    }   
+        OverallGameManager.Instance.assignSellMenu();
+    }
 
     public void UpdateMoney(float money)
     {
@@ -25,5 +28,13 @@ public class SellMenuManager : MonoBehaviour
     public void UpdateRent(float rent)
     {
         rentText.SetText($"rent due: ${Mathf.Round(rent)}");
+    }
+
+    IEnumerator assignButton()
+    {
+        yield return new WaitForSeconds(1);
+        OverallGameManager game = FindFirstObjectByType<OverallGameManager>();
+        sellButton.onClick.AddListener(game.EndDay);
+        sellButton.onClick.AddListener(SoundManager.Instance.ClickSound);
     }
 }

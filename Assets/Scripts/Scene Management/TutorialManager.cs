@@ -24,17 +24,15 @@ public class TutorialManager : MonoBehaviour
 
     void NextPanel()
     {
-        tutorialPanels[currentPanel].SetActive(false);
-
-        currentPanel++;
-
-        if (currentPanel < tutorialPanels.Length)
+        if (currentPanel < tutorialPanels.Length - 1)
         {
+            tutorialPanels[currentPanel].SetActive(false);
+            currentPanel++;
             tutorialPanels[currentPanel].SetActive(true);
         }
         else
         {
-            SceneManager.LoadScene("Main Menu");
+            MainSceneManager.Instance.SceneTransition(0);
         }
     }
 }
