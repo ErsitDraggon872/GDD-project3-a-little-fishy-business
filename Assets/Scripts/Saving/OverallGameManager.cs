@@ -20,6 +20,7 @@ public class OverallGameManager : MonoBehaviour
     private float currentRevenue;
     private float currentExpenses;
     private bool transitioning;
+    [SerializeField] int startDay = 0;
     #endregion
 
     #region GameReferences
@@ -58,7 +59,9 @@ public class OverallGameManager : MonoBehaviour
         {
             Application.Quit();
         }
-        RestartGame();  
+        currentDay = startDay; // Day 0 = Tutorial Day
+        money = 20;
+        currentRent = 15;
     }
 
     #region Saving/Loading 
@@ -265,7 +268,7 @@ public class OverallGameManager : MonoBehaviour
     }
     #endregion
 
-    #region End Game
+    #region Restart Game
     public void RestartGame()
     {
         currentDay = 1;

@@ -66,13 +66,13 @@ public class InventoryController : MonoBehaviour
         {
             if (selectedItem == null)
             {
-                CreateRandomItem();
+                //CreateRandomItem();
             }
         }
 
         if (Input.GetKeyDown(KeyCode.W))
         {
-            InsertRandomItem();
+            //InsertRandomItem();
         }
 
         if (Input.GetKeyDown(KeyCode.R))
@@ -317,7 +317,7 @@ public class InventoryController : MonoBehaviour
     {
         item.itemData.width = 1;
         item.itemData.height = 1;
-        item.rotated = false;
+        //item.rotated = false;
 
         RectTransform rt = item.GetComponent<RectTransform>();
         rt.localScale = Vector3.one;   // IMPORTANT
@@ -328,6 +328,7 @@ public class InventoryController : MonoBehaviour
 
         Image img = item.GetComponent<Image>();
         img.preserveAspect = true;
+
     }
 
     public void ApplyMainGridSize(InventoryItem item, ItemGrid mainGrid)
@@ -345,6 +346,7 @@ public class InventoryController : MonoBehaviour
 
         Image img = item.GetComponent<Image>();
         img.preserveAspect = true;
+
     }
 
     public static void ApplyPocket(InventoryItem item, ItemGrid grid)

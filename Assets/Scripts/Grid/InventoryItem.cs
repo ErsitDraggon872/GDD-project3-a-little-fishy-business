@@ -40,18 +40,18 @@ public class InventoryItem : MonoBehaviour
     internal void Set(ItemData itemData)
     {
         this.itemData = itemData;
-
+        
         // Apply sprite
         Image img = GetComponent<Image>();
         img.sprite = itemData.itemIcon;
-        img.preserveAspect = true;
+        //img.preserveAspect = true;
 
         // Try to find grid
         ItemGrid parentGrid = GetComponentInParent<ItemGrid>();
 
         // If not inside a grid yet, skip sizing
         if (parentGrid == null)
-            return;
+           return;
 
         // If inside grid → apply proper size
         Vector2 size = new Vector2(
@@ -60,6 +60,8 @@ public class InventoryItem : MonoBehaviour
         );
 
         GetComponent<RectTransform>().sizeDelta = size;
+        gameObject.layer = LayerMask.NameToLayer("Overlay");
+        Debug.Log("yo!!!");
     }
 
 
