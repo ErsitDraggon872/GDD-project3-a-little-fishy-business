@@ -273,7 +273,9 @@ public class InventoryController : MonoBehaviour
     private void PickUpItem(Vector2Int tileGridPosition)
     {
         Debug.Log(tileGridPosition);
-        if (tileGridPosition.x > 6 || tileGridPosition.y > 6) return;
+
+        if (tileGridPosition.x > 6 || tileGridPosition.y > 6) { Debug.Log("yo u outta bounds"); }
+
         selectedItem = selectedItemGrid.PickUpItem(tileGridPosition.x, tileGridPosition.y);
         if (selectedItem != null)
         {

@@ -27,14 +27,6 @@ public class SellMenuManager : MonoBehaviour
 
     public void UpdateRent(float rent)
     {
-        rentText.SetText($"rent due: ${Mathf.Round(rent)}");
-    }
-
-    IEnumerator assignButton()
-    {
-        yield return new WaitForSeconds(1);
-        OverallGameManager game = FindFirstObjectByType<OverallGameManager>();
-        sellButton.onClick.AddListener(game.EndDay);
-        sellButton.onClick.AddListener(SoundManager.Instance.ClickSound);
+        rentText.SetText($"Rent: ${Mathf.Round(rent)}");
     }
 }
