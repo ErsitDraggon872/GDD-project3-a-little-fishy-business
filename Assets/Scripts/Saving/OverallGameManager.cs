@@ -275,8 +275,8 @@ public class OverallGameManager : MonoBehaviour
     #region Restart Game
     public void RestartGame()
     {
-        currentDay = 1;
-        money = 100;
+        currentDay = 0;
+        money = 20;
         currentExpenses = 0;
         transitioning = false;
         if (SceneManager.GetActiveScene().buildIndex != 0)
