@@ -11,7 +11,8 @@ public class CurrentValue : MonoBehaviour
     void Update()
     {
         float score = SumItemGridPrices();
-        textbox.text = "Current Value: " + score.ToString();
+        //textbox.text = "Current Value: " + score.ToString();
+        textbox.text = "Base Value: " + score.ToString("F2");
     }
 
     public float SumItemGridPrices()

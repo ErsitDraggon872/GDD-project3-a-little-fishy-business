@@ -13,15 +13,16 @@ public class OverallGameManager : MonoBehaviour
 
     #region Variables
     public static string path_to_save = "data.json";
-    private static float money;
-    public static List<float> FirstSevenRent = new List<float>{30, 45, 65, 100, 140, 200, 275};
+    private float money;
+    public List<float> FirstSevenRent = new List<float>{30, 45, 65, 100, 140, 200, 275};
         //new List<float>{50, 60, 75, 100, 130, 165, 200};
-    private static int currentDay;
-    private static float currentRent;
+    private int currentDay;
+    private float currentRent;
     private float currentRevenue;
     private float currentExpenses;
     private bool transitioning;
     [SerializeField] int startDay = 0;
+    [SerializeField] int startMoney = 0;
     #endregion
 
     #region GameReferences
@@ -49,22 +50,22 @@ public class OverallGameManager : MonoBehaviour
         if (Instance != null && Instance != this)
         {
             Destroy(gameObject);
-        }
-        else
-        {
-            Instance = this;
-            DontDestroyOnLoad(this);
+            return;
         }
 
-        path_to_save = Path.Combine(Application.streamingAssetsPath, path_to_save);
+        Instance = this;
+        DontDestroyOnLoad(gameObject);
 
-        if (!loadJson(1))
-        {
-            Application.Quit();
-        }
-        currentDay = startDay; // Day 0 = Tutorial Day
-        money = 20;
+        currentDay = 0 + startDay; // Day 0 = Tutorial Day
+        money = 20 + startMoney; //
         currentRent = 15;
+
+        //path_to_save = Path.Combine(Application.streamingAssetsPath, path_to_save);
+
+        //if (!loadJson(1))
+        //{
+            //Application.Quit();
+        //}
     }
 
     #region Saving/Loading 

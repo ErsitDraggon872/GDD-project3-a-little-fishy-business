@@ -22,9 +22,20 @@ public class Counting : MonoBehaviour
     {
         Multiplier += x;
     }
-    public static void ResetScores()
+
+    public float GetMult()
     {
-        //yuh
+        return Multiplier;
+    }
+
+    public float CheckScore()
+    {
+        Count();
+        float savedScore = Score * Multiplier;
+        Debug.Log("Current Value: " + (Score * Multiplier).ToString("F2") + "Score: " + Score.ToString("F2") + " and Multiplier: " + Multiplier.ToString("F2"));
+        Score = 0;
+        Multiplier = 1;
+        return savedScore;
     }
 
     #endregion
@@ -35,7 +46,7 @@ public class Counting : MonoBehaviour
     public float UpdateScore()
     {
         Count();
-        ScoreText.text = "Current Value: " + (Score * Multiplier).ToString("F2") + "Score: " + Score.ToString("F2") + " and Multiplier: " + Multiplier.ToString("F2");
+        ScoreText.text = "Score: " + Score.ToString("F2");
         return Score;
     }
 

@@ -1,4 +1,5 @@
 using UnityEngine;
+using System.Collections;
 using UnityEngine.SceneManagement;
 using TMPro;
 
@@ -6,6 +7,7 @@ public class ReceiptUpdater : MonoBehaviour
 {
     private OverallGameManager gameManager;
 
+    [SerializeField] private RectTransform receiptContainer;
     [SerializeField] private TextMeshProUGUI dayText;
     [SerializeField] private TextMeshProUGUI revenueNumText;
     [SerializeField] private TextMeshProUGUI expensesNumText;
@@ -32,10 +34,28 @@ public class ReceiptUpdater : MonoBehaviour
         {
             gameManager.PlayVictory();
 
+            if (gameManager.GetDay() == 7 && gameManager.GetMoney() >= 1000)
+            {
+                StartCoroutine(SpecialMessage());
+            }
+
         } else if (SceneManager.GetActiveScene().buildIndex == 4)
         {
             gameManager.PlayLoss();
         }
+    }
+
+    IEnumerator SpecialMessage()
+    {
+        yield return new WaitForSeconds(2.5f);
+        SoundManager.Instance.Play("paper");
+        yield return new WaitForSeconds(0.6f);
+        while (receiptContainer.position.y > -1000)
+        {
+            receiptContainer.position = new Vector2(receiptContainer.position.x, receiptContainer.position.y - 7);
+            yield return new WaitForSeconds(Time.deltaTime);
+        }
+        receiptContainer.gameObject.SetActive(false);
     }
 
 }

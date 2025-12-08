@@ -32,7 +32,7 @@ public class Angler : Fish
 
             if (slotData == null)
             {
-                runtimeData.price*=1.05f;
+                runtimeData.price*=1.1f;
                 continue;
             }
                 

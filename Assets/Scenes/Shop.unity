@@ -1418,15 +1418,9 @@ MonoBehaviour:
     rate: 0.15
   DeepSpawnRates:
   - fishType: Angler
-    rate: 0.25
-  - fishType: Blob
-    rate: 0.2
-  - fishType: Megamouth Shark
-    rate: 0.15
-  - fishType: Flounder
-    rate: 0.2
-  - fishType: Lantern Shark
-    rate: 0.2
+    rate: 0.5
+  - fishType: Blobfish
+    rate: 0.5
 --- !u!4 &1304658161
 Transform:
   m_ObjectHideFlags: 0

@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8db0cffd4c9a3a94e983ccb545bd871a, type: 3}
   m_Name: Angler
   m_EditorClassIdentifier: 
+  classNum: 0
   sprite: {fileID: 4214174381351694745, guid: b8aaac7e1539b7641b6d42e028973200, type: 3}
   baseData:
     level: 2
@@ -21,3 +22,4 @@ MonoBehaviour:
     FishName: Angler
     description: +10% to base value per empty adjacent tile
     size: {x: 2, y: 2}
+  classNum: 2

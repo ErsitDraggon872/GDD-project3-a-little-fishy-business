@@ -191,7 +191,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 272978275}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -819,6 +819,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   startDay: 0
+  startMoney: 0
 --- !u!4 &1470587391
 Transform:
   m_ObjectHideFlags: 0
@@ -1511,6 +1512,7 @@ MonoBehaviour:
   - {fileID: 8300000, guid: f8d7c70798b7ddf418577a34d415cea1, type: 3}
   - {fileID: 8300000, guid: 05bd7cc62ee799a4c8afcf74354376db, type: 3}
   - {fileID: 8300000, guid: 9b29811b2059d024c9fd5774def419bd, type: 3}
+  - {fileID: 8300000, guid: 43be5723fe45e6a47a13cf80c75ec6a7, type: 3}
   audioSource: {fileID: 709326444880975568}
   musicSource: {fileID: 709326444880975568}
 --- !u!222 &4899264020527359338
