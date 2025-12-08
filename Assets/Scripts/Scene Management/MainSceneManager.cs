@@ -20,12 +20,10 @@ public class MainSceneManager : MonoBehaviour
         if (Instance != null && Instance != this)
         {
             Destroy(gameObject);
+            return;
         }
-        else
-        {
-            Instance = this;
-            DontDestroyOnLoad(this);
-        }
+         Instance = this;
+         DontDestroyOnLoad(this);
     }
 
     private void Start()

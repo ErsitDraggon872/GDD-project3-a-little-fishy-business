@@ -34,7 +34,7 @@ public class ReceiptUpdater : MonoBehaviour
         {
             gameManager.PlayVictory();
 
-            if (gameManager.GetDay() == 7 && gameManager.GetMoney() >= 1000)
+            if (gameManager.GetDay() >= 6 && gameManager.GetMoney() >= 1000)
             {
                 StartCoroutine(SpecialMessage());
             }
