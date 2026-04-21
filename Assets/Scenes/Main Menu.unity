@@ -818,6 +818,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3b4f46cd9128420468fcbaf8c2d5b518, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  FirstSevenRent:
+  - 30
+  - 45
+  - 65
+  - 100
+  - 140
+  - 200
+  - 275
   startDay: 0
   startMoney: 0
 --- !u!4 &1470587391

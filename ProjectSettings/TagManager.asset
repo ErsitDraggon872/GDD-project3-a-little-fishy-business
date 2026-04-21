@@ -6,6 +6,7 @@ TagManager:
   tags:
   - TransitionFade
   - SellGrid
+  - FinalDay
   layers:
   - Default
   - TransparentFX

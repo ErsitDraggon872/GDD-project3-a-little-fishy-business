@@ -36,6 +36,7 @@ public class ReceiptUpdater : MonoBehaviour
 
             if (gameManager.GetDay() >= 6 && gameManager.GetMoney() >= 1000)
             {
+                GameObject.FindWithTag("FinalDay").GetComponent<TextMeshProUGUI>().text = $"Day {gameManager.GetDay()}";
                 StartCoroutine(SpecialMessage());
             }
 

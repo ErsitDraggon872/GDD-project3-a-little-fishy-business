@@ -14,8 +14,8 @@ public class OverallGameManager : MonoBehaviour
     #region Variables
     public static string path_to_save = "data.json";
     private float money;
-    public List<float> FirstSevenRent = new List<float>{30, 45, 65, 100, 140, 200, 275};
-        //new List<float>{50, 60, 75, 100, 130, 165, 200};
+    public List<float> FirstSevenRent = new List<float>{15, 30, 45, 65, 100, 140, 200, 275};
+    //new List<float>{50, 60, 75, 100, 130, 165, 200};
     private int currentDay;
     private float currentRent;
     private float currentRevenue;
@@ -131,11 +131,11 @@ public class OverallGameManager : MonoBehaviour
         //Change formula
         if (currentDay <= 7)
         {
-            return FirstSevenRent[currentDay - 1];
+            return FirstSevenRent[currentDay];
         }
         else
         {
-            return currentRent * 2;
+            return currentRent * 1.5f;
         }
     }
 
@@ -278,6 +278,7 @@ public class OverallGameManager : MonoBehaviour
         currentDay = 0;
         money = 20;
         currentExpenses = 0;
+        currentRent = CalculateNewRent();
         transitioning = false;
         if (SceneManager.GetActiveScene().buildIndex != 0)
         {
